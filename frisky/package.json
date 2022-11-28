@@ -12,9 +12,15 @@
     "expo": "~47.0.8",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
+<<<<<<< HEAD
     "react-native": "0.70.5",
     "react-native-vector-icons": "^9.2.0",
     "expo-font": "~11.0.1"
+=======
+    "react-icons": "^4.6.0",
+    "react-native": "0.70.5",
+    "react-native-vector-icons": "^9.2.0"
+>>>>>>> a97d09de7a78ca28ec3eeeeb061795df01d9b79c
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
