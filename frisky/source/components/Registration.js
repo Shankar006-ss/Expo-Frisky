@@ -9,7 +9,13 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
+
 import Icon from 'react-native-vector-icons/AntDesign';
+
+
+
+
+
 export default function Regs() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("")
@@ -19,12 +25,6 @@ export default function Regs() {
   const [Name, setname] = useState("")
   const [checkValidpass, setCheckValidpass] = useState(false)
   const [Confirm, setConfirmpass] = useState(false)
-
-
-
-
-
-  
   //name field validation
   const handlename = (text) => {
     let rule = /^[a-zA-Z]{8}$/;
@@ -33,8 +33,11 @@ export default function Regs() {
       setCheckValidateName(false);
     } else {
       setCheckValidateName(true);
+
     }
   };
+
+
   //Email field validation
   const handleCheckEmail = (text) => {
     let re = /\S+@\S+\.\S+/;
@@ -46,6 +49,8 @@ export default function Regs() {
       setCheckValidateEmail(true);
     }
   };
+
+
   //password field
   const checkPasswordValidity = value => {
     const isNonWhiteSpace = /^\S*$/;
@@ -68,8 +73,10 @@ export default function Regs() {
     if (!isValidLength.test(value)) {
       return 'password must be 8-16 character long .';
     }
+
     return null;
   };
+
   //confirm password
   // const setConfirm = (text) => {
   //   let rule = password;
@@ -81,6 +88,8 @@ export default function Regs() {
   //     setCheckValidpass(true);
   //   }
   // }
+
+
   //signup button
   const handleregis = () => {
     const checkPassword = checkPasswordValidity(password)
@@ -89,8 +98,14 @@ export default function Regs() {
       navigation.navigate("Home");
     } else {
       alert(checkPassword)
+
     }
+
   };
+
+  
+
+  
   const renderHeader = () => {
     return (
       <View style={styles.container}>
@@ -99,13 +114,8 @@ export default function Regs() {
       </View>
     )
   }
-
-
-    
-  
-
-
   return (
+
     <View>
       <View>
        
@@ -114,15 +124,19 @@ export default function Regs() {
       <View style={styles.image}>
       <Image style={styles.img} source={require('./logo.png')} />
       </View>
+
       <View style={styles.line}>
         <TextInput style={styles.textinput} placeholder="Name" value={Name}
-          onChange={(e => setname(e.target.value))}
+          onChange={(e => setname(e.target.value))} 
           onChangeText={(text) => handlename(text)} underlineColorAndroid={'transparent'} />
+
                {checkValidName ? (
                 <Text style={styles.textFailed}>Name is required</Text>
               ) : (
                 <Text style={styles.textFailed}></Text>
               )}
+
+
         <TextInput style={styles.textinput} placeholder="Email" value={email}
           onChangeText={(text) => handleCheckEmail(text)} underlineColorAndroid={'transparent'} />
                {checkValidEmail ? (
@@ -130,33 +144,49 @@ export default function Regs() {
               ) : (
                 <Text style={styles.textFailed}></Text>
               )}
+
         <TextInput style={styles.pass} placeholder="Password" value={password} 
-          onChangeText={(text) => setPassword(text)} secureTextEntry={true}
+          onChangeText={(text) => setPassword(text)} secureTextEntry={true} 
           underlineColorAndroid={'transparent'} />
+
         <TextInput style={styles.text} placeholder="ConfirmPassword" value={Confirm} 
-        
-          onChangeText={(text) => setConfirm(text)} secureTextEntry={true}
+        onChange={(e => setConfirmpass(e.target.value))} 
+          onChangeText={(text) => setConfirm(text)} secureTextEntry={true} 
           underlineColorAndroid={'transparent'} />
-                
+                {email ==""|| password == true? (
+                  <Text style={styles.textFailed}>Enter valid password</Text>
+                ) : (
+                  <Text style={styles.textFailed}></Text>
+                )}
+
                 {email ==""|| password == "" || Name =="" || checkValidEmail == true ?(
-        <TouchableOpacity onPress={() => this.functionCombined()}
+
+        <TouchableOpacity
         disabled
-        style={styles.button}
-        >
+        style={styles.button} 
+        onPress={handleregis}>
           <Text style={styles.btntext}>Register</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> 
         ): (
         <TouchableOpacity style={styles.button} onPress={handleregis}>
           <Text style={styles.btntext}>Register</Text>
         </TouchableOpacity>
         ) }
+
         <Text style={styles.bottom}>Already a user?Login here</Text>
       </View>
       
     </View>
   );
 }
+<<<<<<< Updated upstream
 const styles = StyleSheet.create({
+=======
+
+
+const styles = StyleSheet.create({
+
+>>>>>>> Stashed changes
   container: {
     width: "100%",
     height: 100,
@@ -173,6 +203,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white',
     paddingRight: 170,
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
   },
   line: {
     paddingLeft: 30,
@@ -209,6 +244,11 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 20,
     textAlign: 'center',
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
   },
   button: {
     alignItems: 'center',
@@ -238,6 +278,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     paddingLeft: 130,
+<<<<<<< Updated upstream
+=======
+    
+
+>>>>>>> Stashed changes
   },
   image: {
     height: 100,
@@ -248,7 +293,13 @@ const styles = StyleSheet.create({
   img: {
     height: 100,
     width: 100,
+<<<<<<< Updated upstream
   },
+=======
+
+  },
+
+>>>>>>> Stashed changes
   textFailed: {
     color: 'red',
     paddingLeft: 220,

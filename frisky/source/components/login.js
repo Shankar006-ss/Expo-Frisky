@@ -55,7 +55,7 @@ export default function Logform() {
         } else {
             alert(checkPassword);
         }
-    };
+    }; 
   const renderHeader = () => {
     return (
       <View style={styles.headercontainer}>
@@ -83,8 +83,8 @@ export default function Logform() {
           style={styles.textinput}
           placeholder=" Email"
           underlineColorAndroid={"transparent"}
-          value={email}
-          onChangeText={handleCheckEmail}
+          value={email} 
+          onChangeText={handleCheckEmail} 
         />
           {checkValidEmail ?
                     <Text style={styles.textfailed}>Enter valid email</Text> :
