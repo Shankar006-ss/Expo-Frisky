@@ -12,6 +12,10 @@ import {
 import Icon from "react-native-vector-icons/AntDesign";
 export default function Logform() {
   const navigation = useNavigation();
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [checkValidEmail, setCheckValidEmail] = useState(false)
@@ -55,7 +59,11 @@ export default function Logform() {
         } else {
             alert(checkPassword);
         }
+<<<<<<< Updated upstream
     };
+=======
+    }; 
+>>>>>>> Stashed changes
   const renderHeader = () => {
     return (
       <View style={styles.headercontainer}>
@@ -80,8 +88,13 @@ export default function Logform() {
           style={styles.textinput}
           placeholder="Username or Email"
           underlineColorAndroid={"transparent"}
+<<<<<<< Updated upstream
           value={email}
           onChangeText={handleCheckEmail}
+=======
+          value={email} 
+          onChangeText={handleCheckEmail} 
+>>>>>>> Stashed changes
         />
           {checkValidEmail ?
                     <Text style={styles.textfailed}>Enter valid email</Text> :
@@ -204,4 +217,8 @@ const styles = StyleSheet.create({
     color:"red",
     textAlign:"right"
   }
+<<<<<<< Updated upstream
 });
+=======
+});
+>>>>>>> Stashed changes
