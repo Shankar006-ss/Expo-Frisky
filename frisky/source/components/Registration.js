@@ -179,14 +179,10 @@ export default function Regs() {
     </View>
   );
 }
-<<<<<<< Updated upstream
-const styles = StyleSheet.create({
-=======
 
 
 const styles = StyleSheet.create({
 
->>>>>>> Stashed changes
   container: {
     width: "100%",
     height: 100,
@@ -203,11 +199,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white',
     paddingRight: 170,
-<<<<<<< Updated upstream
-=======
 
 
->>>>>>> Stashed changes
   },
   line: {
     paddingLeft: 30,
@@ -244,11 +237,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 20,
     textAlign: 'center',
-<<<<<<< Updated upstream
-=======
 
 
->>>>>>> Stashed changes
   },
   button: {
     alignItems: 'center',
@@ -278,11 +268,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     paddingLeft: 130,
-<<<<<<< Updated upstream
-=======
     
 
->>>>>>> Stashed changes
   },
   image: {
     height: 100,
@@ -293,13 +280,9 @@ const styles = StyleSheet.create({
   img: {
     height: 100,
     width: 100,
-<<<<<<< Updated upstream
-  },
-=======
 
   },
 
->>>>>>> Stashed changes
   textFailed: {
     color: 'red',
     paddingLeft: 220,
