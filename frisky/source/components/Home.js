@@ -93,7 +93,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: 'Punk and hardcore',
+    title: 'Song for you Guys',
     horizontal: true,
     data: [
       {
@@ -169,6 +169,9 @@ const styles = StyleSheet.create({
     color: '#f4f4f4',
     marginTop: 20,
     marginBottom: 5,
+    alignItems:'center',
+    // marginLeft:120
+    textAlign:'center'
   },
   item: {
     margin: 10,
@@ -181,6 +184,10 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 0.5)',
     marginTop: 5,
   },
+  title:{
+    alignItems:'center'
+    
+  }
 
   
 });

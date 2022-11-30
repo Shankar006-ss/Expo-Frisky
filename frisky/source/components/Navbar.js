@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Home from './Home';
 import Search from './Search';
 import Library from './Library';
+import HSB from './Appbar';
 
 // const ListItem = ({ item}) => {
 //   return(
@@ -39,17 +40,14 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function Navbar() {
   return (
-    // <View>
+  
 
-    // <View>
-    // <Header/>
-    // </View>
     <NavigationContainer>
       <Tab.Navigator 
       activeColor="white"
       barStyle={{ backgroundColor: 'black' }}>
         <Tab.Screen
-          name="Home"
+          name="home"
           component={Home}
           options={{
             tabBarLabel: 'Home',
