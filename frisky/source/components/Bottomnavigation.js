@@ -4,15 +4,11 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
-
-
-
 // import Header from './source/components/Header';
 import Home from './Home';
 import Search from './Search';
 import Library from './Library';
 import HSB from './Appbar';
-
 // const ListItem = ({ item}) => {
 //   return(
 //     <View style = {styles.item}>
@@ -26,24 +22,17 @@ import HSB from './Appbar';
 //     </View>
 //   )
 // }
-
 {/* <Header
   placement="left"
   leftComponent={{ icon: 'menu', color: '#fff' }}
   centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
   rightComponent={{ icon: 'home', color: '#fff' }}
 /> */}
-
-
-
 const Tab = createMaterialBottomTabNavigator();
-
 export default function Navbar() {
   return (
-  
-
-    <NavigationContainer>
-      <Tab.Navigator 
+    
+      <Tab.Navigator
       activeColor="white"
       barStyle={{ backgroundColor: 'black' }}>
         <Tab.Screen
@@ -76,13 +65,11 @@ export default function Navbar() {
             ),
           }}
         />
-
       </Tab.Navigator>
-    </NavigationContainer>
+    
     // </View>
   );
 }
-
 const styles = StyleSheet.create({
   // container: {
   //   flex: 1,
@@ -91,8 +78,5 @@ const styles = StyleSheet.create({
   //   justifyContent: 'center',
   // },
   Navbar: {
-
   },
- 
-
 });

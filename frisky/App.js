@@ -7,6 +7,7 @@ import Regs from "./source/components/Registration";
 import Home from "./source/components/Home";
 import Icon from "react-native-vector-icons/AntDesign";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
+import MainScreen from "./source/components/Main";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
             title: "Login",
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#36454F", height: 100 },
+            headerStyle: { backgroundColor: "#000000", height: 100 },
           }}
         />
         <Stack.Screen
@@ -38,7 +39,7 @@ export default function App() {
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
             headerTintColor: "#fff",
-            headerStyle: { backgroundColor: "#36454F", height: 100 },
+            headerStyle: { backgroundColor: "#000000", height: 100 },
           }}
         />
         <Stack.Screen
@@ -49,7 +50,7 @@ export default function App() {
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
             headerTintColor: "#fff",
-            headerStyle: { backgroundColor: "#36454F", height: 100 },
+            headerStyle: { backgroundColor: "#000000", height: 100 },
           }}
         />
         <Stack.Screen
@@ -60,10 +61,11 @@ export default function App() {
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
             headerTintColor: "#fff",
-            headerStyle: { backgroundColor: "#36454F", height: 100 },
+            headerStyle: { backgroundColor: "#000000", height: 100 },
           }}
         />
         
+       <Stack.Screen name="Main" component={MainScreen} options={{title:"",headerStyle: { backgroundColor: "#000000", height: 0 },}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

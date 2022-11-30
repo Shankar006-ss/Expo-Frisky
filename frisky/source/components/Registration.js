@@ -24,7 +24,7 @@ export default function Regs() {
   const [checkValidName, setCheckValidateName] = useState(false)
   const [Name, setname] = useState("")
   const [checkValidpass, setCheckValidpass] = useState(false)
-  const [Confirm, setConfirmpass] = useState(false)
+
   //name field validation
   const handlename = (text) => {
     let rule = /^[a-zA-Z]{8}$/;
@@ -95,7 +95,7 @@ export default function Regs() {
     const checkPassword = checkPasswordValidity(password)
     // const checkName =handlename(Name)
     if (!checkPassword) {
-      navigation.navigate("Home");
+      navigation.navigate("Main");
     } else {
       alert(checkPassword)
 
@@ -149,15 +149,11 @@ export default function Regs() {
           onChangeText={(text) => setPassword(text)} secureTextEntry={true} 
           underlineColorAndroid={'transparent'} />
 
-        <TextInput style={styles.text} placeholder="ConfirmPassword" value={Confirm} 
-        onChange={(e => setConfirmpass(e.target.value))} 
-          onChangeText={(text) => setConfirm(text)} secureTextEntry={true} 
+        <TextInput style={styles.text} placeholder="ConfirmPassword" 
+        
+           secureTextEntry={true} 
           underlineColorAndroid={'transparent'} />
-                {email ==""|| password == true? (
-                  <Text style={styles.textFailed}>Enter valid password</Text>
-                ) : (
-                  <Text style={styles.textFailed}></Text>
-                )}
+                
 
                 {email ==""|| password == "" || Name =="" || checkValidEmail == true ?(
 
@@ -173,7 +169,7 @@ export default function Regs() {
         </TouchableOpacity>
         ) }
 
-        <Text style={styles.bottom}>Already a user?Login here</Text>
+        <Text  onPress={() => navigation.navigate("Login")} style={styles.bottom}>Already a user?Login here</Text>
       </View>
       
     </View>

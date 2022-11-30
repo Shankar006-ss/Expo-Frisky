@@ -4,20 +4,22 @@ import { StyleSheet, View } from 'react-native';
 
 
 
-import Navbar from './Navbar';
-import Appbar from './Appbar';
-import Home from './Home';
-import HSB from './Appbar';
-import ListItem from './Home'
+import HSB from './Appbar'; 
+import Navbar from './Bottomnavigation';
+
+
+
+
+
 
 
 export default function MainScreen() {
   return (
     <View style={styles.main}>
 
-      <HSB />
+      <HSB/>
 
-      <Navbar />
+      <Navbar/>
 
       {/* <Navbar/>
        <Appbar/>

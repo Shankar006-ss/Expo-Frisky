@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     height:70
   },
   conclr:{
-    alignItems:'center'
+    alignItems:'center',
+    
   }
 })
 

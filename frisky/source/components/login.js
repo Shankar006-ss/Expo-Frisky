@@ -51,7 +51,7 @@ export default function Logform() {
     const handleLogin = () => {
         const checkPassword = checkPasswordValidity(password);
         if (!checkPassword) {
-            navigation.navigate("Forgetpassword")
+            navigation.replace("Main")
         } else {
             alert(checkPassword);
         }

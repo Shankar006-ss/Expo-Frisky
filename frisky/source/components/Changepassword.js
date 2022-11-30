@@ -49,7 +49,7 @@ export default function Change() {
   const handleLogin = () => {
     const checkPassword = checkPasswordValidity(password);
     if (!checkPassword) {
-      navigation.navigate("Registration");
+      navigation.navigate("Login");
     } else {
       alert(checkPassword);
     }
