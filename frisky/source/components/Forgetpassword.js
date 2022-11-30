@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from 'react';
-import React from "react";
+import React, { useState } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -9,17 +8,22 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
 
 export default function Forget() {
   const navigation = useNavigation();
-  const renderHeader = () => {
-    return (
-      <View style={styles.icon}>
-        <Icon name="close" size={30} color={"#fff"} />
-        <Text style={styles.txt}>Forgot password</Text>
-      </View>
-    );
+  const [email, setEmail] = useState("");
+
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
+
+  const handleCheckEmail = (text) => {
+    let re = /\S+@\S+\.S+/;
+    let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+    setEmail(text);
+    if (re.test(text) || regex.test(text)) {
+      setCheckValidEmail(false);
+    } else {
+      setCheckValidEmail(true);
+    }
   };
 
   return (
@@ -28,8 +32,16 @@ export default function Forget() {
         <TextInput
           style={styles.header}
           placeholder="Email Id"
+          maxLength={30}
           underlineColorAndroid={"transparent"}
+          value={email}
+          onChangeText={handleCheckEmail}
         />
+        {checkValidEmail ? (
+          <Text style={styles.textfailed}>Enter valid Email</Text>
+        ) : (
+          <Text style={styles.textfailed}></Text>
+        )}
         <TouchableOpacity
           onPress={() => navigation.navigate("Changepassword")}
           style={styles.btn}
@@ -56,7 +68,7 @@ const styles = StyleSheet.create({
     paddingLeft: 90,
     fontSize: 24,
     color: "#000000",
-    marginBottom: 50,
+    marginBottom: 10,
     borderBottomColor: "#000000",
     borderBottomWidth: 2,
   },
@@ -65,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     backgroundColor: "#000000",
-    marginTop: 0,
+    marginTop: 50,
   },
   btntxt: {
     color: "#fff",
@@ -83,5 +95,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#36454F",
     paddingTop: 60,
     marginTop: 0,
+  },
+  textfailed: {
+    color: "red",
+    paddingLeft: 150,
+    fontSize:17,
   },
 });

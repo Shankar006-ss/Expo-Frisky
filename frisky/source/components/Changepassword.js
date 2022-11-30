@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -20,6 +20,40 @@ import Icon from "react-native-vector-icons/AntDesign";
 
 export default function Change() {
   const navigation = useNavigation();
+  const [password, setPassword] = useState("");
+
+  const checkPasswordValidity = (value) => {
+    const isNonWhiteSpace = /^\S*$/;
+    if (!isNonWhiteSpace.test(value)) {
+      return "password must not contain whitespace.";
+    }
+    const isContainsLowercase = /^(?=.*[a-z]).*$/;
+    if (!isContainsLowercase.test(value)) {
+      return "password must have at least one lowercase character.";
+    }
+    const isContainsUppercase = /^(?=.*[A-Z]).*$/;
+    if (!isContainsUppercase.test(value)) {
+      return "password must have at least one uppercase character.";
+    }
+    const isContainsNumber = /^(?=.*[0-9]).*$/;
+    if (!isContainsNumber.test(value)) {
+      return "password must contain atleast one degit .";
+    }
+    const isValidLength = /^.{8,16}$/;
+    if (!isValidLength.test(value)) {
+      return "password must be 8-16 character long .";
+    }
+    return null;
+  };
+
+  const handleLogin = () => {
+    const checkPassword = checkPasswordValidity(password);
+    if (!checkPassword) {
+      alert("Success Login");
+    } else {
+      alert(checkPassword);
+    }
+  };
   const renderHeader = () => {
     return (
       <View style={styles.icon}>
@@ -31,32 +65,34 @@ export default function Change() {
 
   return (
     <View style={styles.otp}>
-      
       <View style={styles.cen}>
         <TextInput
           style={styles.enterotp}
           placeholder="Enter OTP"
           keyboardType="numeric"
+          maxLength={4}
           underlineColorAndroid={"transparent"}
         />
         <TextInput
           style={styles.change}
           placeholder="Change Password"
           underlineColorAndroid={"transparent"}
+          value={password}
+          maxLength={6}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry={true}
         />
         <TextInput
           style={styles.confirm}
           placeholder="Confirm Password"
+          maxLength={6}
           underlineColorAndroid={"transparent"}
         />
-          <TouchableOpacity  onPress={() => navigation.navigate("Login")} style={styles.btn}>
-          <Text
-           
-            style={styles.btntxt}
-          >
-            Submit
-          </Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.btn} onPress={handleLogin}>
+            <Text style={styles.btntxt}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
