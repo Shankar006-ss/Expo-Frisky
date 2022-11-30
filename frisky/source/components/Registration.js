@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from 'react';
 import {
   StyleSheet,
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 export default function Regs() {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [checkValidEmail, setCheckValidateEmail] = useState(false)
@@ -17,6 +19,12 @@ export default function Regs() {
   const [Name, setname] = useState("")
   const [checkValidpass, setCheckValidpass] = useState(false)
   const [Confirm, setConfirmpass] = useState(false)
+
+
+
+
+
+  
   //name field validation
   const handlename = (text) => {
     let rule = /^[a-zA-Z]{8}$/;
@@ -78,7 +86,7 @@ export default function Regs() {
     const checkPassword = checkPasswordValidity(password)
     // const checkName =handlename(Name)
     if (!checkPassword) {
-      alert("Success registration")
+      navigation.navigate("Home");
     } else {
       alert(checkPassword)
     }
@@ -91,10 +99,16 @@ export default function Regs() {
       </View>
     )
   }
+
+
+    
+  
+
+
   return (
     <View>
       <View>
-        {renderHeader()}
+       
       </View>
       <Text style={styles.logo}>FRISKY</Text>
       <View style={styles.image}>
@@ -125,10 +139,10 @@ export default function Regs() {
           underlineColorAndroid={'transparent'} />
                 
                 {email ==""|| password == "" || Name =="" || checkValidEmail == true ?(
-        <TouchableOpacity
+        <TouchableOpacity onPress={() => this.functionCombined()}
         disabled
         style={styles.button}
-        onPress={handleregis}>
+        >
           <Text style={styles.btntext}>Register</Text>
         </TouchableOpacity>
         ): (
@@ -138,6 +152,7 @@ export default function Regs() {
         ) }
         <Text style={styles.bottom}>Already a user?Login here</Text>
       </View>
+      
     </View>
   );
 }

@@ -49,7 +49,7 @@ export default function Change() {
   const handleLogin = () => {
     const checkPassword = checkPasswordValidity(password);
     if (!checkPassword) {
-      alert("Success Login");
+      navigation.navigate("Registration");
     } else {
       alert(checkPassword);
     }
@@ -78,14 +78,14 @@ export default function Change() {
           placeholder="Change Password"
           underlineColorAndroid={"transparent"}
           value={password}
-          maxLength={6}
+          maxLength={16}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}
         />
         <TextInput
           style={styles.confirm}
           placeholder="Confirm Password"
-          maxLength={6}
+          maxLength={16}
           underlineColorAndroid={"transparent"}
         />
         <View>

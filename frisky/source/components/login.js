@@ -51,7 +51,7 @@ export default function Logform() {
     const handleLogin = () => {
         const checkPassword = checkPasswordValidity(password);
         if (!checkPassword) {
-            alert('Success Login');
+            navigation.navigate("Forgetpassword")
         } else {
             alert(checkPassword);
         }
@@ -64,6 +64,9 @@ export default function Logform() {
       </View>
     );
   };
+
+
+
   return (
     <View>
       <View>
@@ -78,7 +81,7 @@ export default function Logform() {
       <View style={styles.center}>
         <TextInput
           style={styles.textinput}
-          placeholder="Username or Email"
+          placeholder=" Email"
           underlineColorAndroid={"transparent"}
           value={email}
           onChangeText={handleCheckEmail}
@@ -95,10 +98,21 @@ export default function Logform() {
         />
       </View>
       <View style={styles.btn}>
+      {email ==""|| password == "" ||   checkValidEmail == true ?(
+        <TouchableOpacity onPress={() => this.functionCombined()}
+        disabled
+        style={styles.button}
+        >
+          <Text style={styles.btntext}>Sign in</Text>
+        </TouchableOpacity>
+        ): (
+      
         <TouchableOpacity onPress={handleLogin} style={styles.button}>
           <Text style={styles.btntext}>Sign In</Text>
         </TouchableOpacity>
+        )}
       </View>
+        
       <View style={styles.bottomtxt}>
         <View>
           <Text
