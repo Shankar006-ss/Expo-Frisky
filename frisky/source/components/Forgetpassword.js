@@ -26,6 +26,15 @@ export default function Forget() {
     }
   };
 
+  const handleregis = () => {
+    const checkPassword = handleCheckEmail(email);
+
+    if (!checkPassword) {
+      navigation.navigate("Changepassword");
+    } else {
+      alert(checkPassword);
+    }
+  };
   return (
     <View style={styles.fun}>
       <View style={styles.cen}>
@@ -42,12 +51,16 @@ export default function Forget() {
         ) : (
           <Text style={styles.textfailed}></Text>
         )}
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Changepassword")}
-          style={styles.btn}
-        >
-          <Text style={styles.btntxt}>Sent OTP</Text>
-        </TouchableOpacity>
+
+        {email == "" || checkValidEmail == true ? (
+          <TouchableOpacity disabled style={styles.btn} onPress={handleregis}>
+            <Text style={styles.btntxt}>Sent OTP</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.btn} onPress={handleregis}>
+            <Text style={styles.btntxt}>Sent OTP</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -99,6 +112,6 @@ const styles = StyleSheet.create({
   textfailed: {
     color: "red",
     paddingLeft: 150,
-    fontSize:17,
+    fontSize: 17,
   },
 });

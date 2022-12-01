@@ -10,57 +10,27 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
-/*export default function Header(){
-    return(
-            <View style={styles.head}>
-                <Text style={styles.txt}>Change Password</Text>
-            </View>
-    );
-}*/
+
 
 export default function Change() {
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
+  const [OTP, setOTP] = useState("");
+  const [checkValidpass, setCheckValidPass]=useState(false);
 
-  const checkPasswordValidity = (value) => {
-    const isNonWhiteSpace = /^\S*$/;
-    if (!isNonWhiteSpace.test(value)) {
-      return "password must not contain whitespace.";
-    }
-    const isContainsLowercase = /^(?=.*[a-z]).*$/;
-    if (!isContainsLowercase.test(value)) {
-      return "password must have at least one lowercase character.";
-    }
-    const isContainsUppercase = /^(?=.*[A-Z]).*$/;
-    if (!isContainsUppercase.test(value)) {
-      return "password must have at least one uppercase character.";
-    }
-    const isContainsNumber = /^(?=.*[0-9]).*$/;
-    if (!isContainsNumber.test(value)) {
-      return "password must contain atleast one degit .";
-    }
-    const isValidLength = /^.{8,16}$/;
-    if (!isValidLength.test(value)) {
-      return "password must be 8-16 character long .";
-    }
-    return null;
-  };
 
-  const handleLogin = () => {
-    const checkPassword = checkPasswordValidity(password);
-    if (!checkPassword) {
-      navigation.navigate("Login");
-    } else {
-      alert(checkPassword);
+  
+
+  
+  const checkPasswordValidity = (text) => {
+    let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    setPassword(text);
+    if (isNonWhiteSpace.test(text)) {
+      setCheckValidPass(false);
     }
-  };
-  const renderHeader = () => {
-    return (
-      <View style={styles.icon}>
-        <Icon name="close" size={30} color={"#fff"} />
-        <Text style={styles.txt}>Change password</Text>
-      </View>
-    );
+    else {
+      setCheckValidPass(true);
+    }
   };
 
   return (
@@ -71,6 +41,8 @@ export default function Change() {
           placeholder="Enter OTP"
           keyboardType="numeric"
           maxLength={4}
+          value={OTP}
+          onChangeText={(text) => setOTP(text)}
           underlineColorAndroid={"transparent"}
         />
         <TextInput
@@ -79,19 +51,37 @@ export default function Change() {
           underlineColorAndroid={"transparent"}
           value={password}
           maxLength={16}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text)=>checkPasswordValidity(text)}
+          onChange={(e) => setPassword(e.target.value)}
           secureTextEntry={true}
         />
+        {checkValidpass ? (
+          <Text style={styles.error}>password must be one upper,lowercase,& 8digit</Text>
+        ) : (
+          <Text style={styles.error}></Text>
+        )}
         <TextInput
           style={styles.confirm}
+          
           placeholder="Confirm Password"
           maxLength={16}
           underlineColorAndroid={"transparent"}
+          secureTextEntry={true}
         />
         <View>
-          <TouchableOpacity style={styles.btn} onPress={handleLogin}>
-            <Text style={styles.btntxt}>Submit</Text>
-          </TouchableOpacity>
+          {OTP == "" || password == true ? (
+            <TouchableOpacity
+              disabled
+              style={styles.btn}
+              
+            >
+              <Text style={styles.btntxt}>Submit</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Login")}>
+              <Text style={styles.btntxt}>Submit</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
@@ -123,7 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: 20,
     color: "#000000",
-    marginBottom: 50,
+    marginBottom: 10,
     borderBottomColor: "#000000",
     borderBottomWidth: 2,
   },
@@ -133,6 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#000000",
     marginBottom: 50,
+    marginTop:30,
     borderBottomColor: "#000000",
     borderBottomWidth: 2,
   },
@@ -159,5 +150,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#36454F",
     paddingTop: 60,
     marginTop: 0,
+  },
+
+  error: {
+    color: "red",
+    paddingLeft: 5,
   },
 });

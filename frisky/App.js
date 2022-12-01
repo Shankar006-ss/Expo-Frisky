@@ -1,19 +1,33 @@
-import Change from "./source/components/Changepassword";
-import Forget from "./source/components/Forgetpassword";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { ImageBackground, StyleSheet } from "react-native";
+import Change from "./source/components/Changepassword";
+import Forget from "./source/components/Forgetpassword";
 import Logform from "./source/components/login";
-import Regs from "./source/components/Registration";
-import Home from "./source/components/Home";
-import Icon from "react-native-vector-icons/AntDesign";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
 import MainScreen from "./source/components/Main";
+import Regs from "./source/components/Registration";
+import HSB from "./source/components/Appbar";
 const Stack = createStackNavigator();
+
+
+
+function SplashScreenImage({navigation}){
+  setTimeout(()=>{
+    navigation.navigate('Login')
+  },2000);
+  return(
+    <ImageBackground style={{flex:1}} source={require('./assets/splash.png')} backgroundColor="#000000"/>
+    
+  );
+}
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator style={styles.container}>
+      <Stack.Navigator initialRouteName="SplashScreen" style={styles.container}>
+        <Stack.Screen name="Splashscreen" component={SplashScreenImage} options={{
+          headerShown:false
+        }}/>
         <Stack.Screen
           name="Login"
           component={Logform}
@@ -21,25 +35,26 @@ export default function App() {
             title: "Login",
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#000000", height: 100 },
+            headerStyle: { backgroundColor: "#121212", height: 100 },
           }}
-        />
+        /> 
+        {/* <Stack.Screen
+        name="Login"
+        component={Logform}
+        options={{
+          headerShown:false
+        }}
+
+        /> */}
         <Stack.Screen
           name="Registration"
           component={Regs}
           options={{
             name: "Registration",
-            headerRight: () => (
-              <View>
-                <TouchableOpacity style={{ marginRight: 550 }}>
-                  <Icon name="close" size={35} color={"#fff"} />
-                </TouchableOpacity>
-              </View>
-            ),
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
             headerTintColor: "#fff",
-            headerStyle: { backgroundColor: "#000000", height: 100 },
+            headerStyle: { backgroundColor: "#121212", height: 100 },
           }}
         />
         <Stack.Screen
@@ -50,7 +65,7 @@ export default function App() {
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
             headerTintColor: "#fff",
-            headerStyle: { backgroundColor: "#000000", height: 100 },
+            headerStyle: { backgroundColor: "#121212", height: 100 },
           }}
         />
         <Stack.Screen
@@ -61,11 +76,19 @@ export default function App() {
             headerTitleStyle: { color: "#fff" },
             headerTitleAlign: "center",
             headerTintColor: "#fff",
-            headerStyle: { backgroundColor: "#000000", height: 100 },
+            headerStyle: { backgroundColor: "#121212", height: 100 },
           }}
         />
+        <Stack.Screen
+          name="Main"
+          component={MainScreen}
+          options={{
+            title: "",
+            headerStyle: { backgroundColor: "#121212", height: 0 },
+          }}
+        />
+
         
-       <Stack.Screen name="Main" component={MainScreen} options={{title:"",headerStyle: { backgroundColor: "#000000", height: 0 },}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

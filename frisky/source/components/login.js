@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   Image,
   StatusBar,
@@ -7,65 +7,41 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 export default function Logform() {
   const navigation = useNavigation();
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [checkValidEmail, setCheckValidEmail] = useState(false)
-    const handleCheckEmail = (text) => {
-        let re = /\S+@\S+\.S+/;
-        let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
-        setEmail(text);
-        if (re.test(text) || regex.test(text)) {
-            setCheckValidEmail(false);
-        } else {
-            setCheckValidEmail(true);
-        }
-    };
-    const checkPasswordValidity = value => {
-        const isNonWhiteSpace = /^\S*$/;
-        if (!isNonWhiteSpace.test(value)) {
-            return 'password must not contain whitespace.';
-        }
-        const isContainsLowercase = /^(?=.*[a-z]).*$/;
-        if (!isContainsLowercase.test(value)) {
-            return 'password must have at least one lowercase character.';
-        }
-        const isContainsUppercase = /^(?=.*[A-Z]).*$/;
-        if (!isContainsUppercase.test(value)) {
-            return 'password must have at least one uppercase character.';
-        }
-        const isContainsNumber = /^(?=.*[0-9]).*$/;
-        if (!isContainsNumber.test(value)) {
-            return 'password must contain atleast one degit .';
-        }
-        const isValidLength = /^.{8,16}$/;
-        if (!isValidLength.test(value)) {
-            return 'password must be 8-16 character long .';
-        }
-        return null;
-    };
-    const handleLogin = () => {
-        const checkPassword = checkPasswordValidity(password);
-        if (!checkPassword) {
-            navigation.replace("Main")
-        } else {
-            alert(checkPassword);
-        }
-    }; 
-  const renderHeader = () => {
-    return (
-      <View style={styles.headercontainer}>
-        <Icon name="arrowleft" size={35} color={"white"} />
-        <Text style={styles.header}>Login</Text>
-      </View>
-    );
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
+  const [checkValidpass, setCheckValidPass]=useState(false);
+
+
+  const handleCheckEmail = (text) => {
+    let re = /\S+@\S+\.S+/;
+    let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+    setEmail(text);
+    if (re.test(text) || regex.test(text)) {
+      setCheckValidEmail(false);
+    } else {
+      setCheckValidEmail(true);
+    }
   };
 
+  const checkPasswordValidity = (text) => {
+    let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    setPassword(text);
+    if (isNonWhiteSpace.test(text)) {
+      setCheckValidPass(false);
+    }
+    else {
+      setCheckValidPass(true);
+    }
+  };
 
+  
+  
 
   return (
     <View>
@@ -73,46 +49,53 @@ export default function Logform() {
         <Text style={styles.logo}>FRISKY</Text>
       </View>
       <View style={styles.img1}>
-        <Image
-          style={styles.img}
-          source={require("./letter-f-logo-with-musical-note-vector-37337029-removebg-preview.png")}
-        />
+        <Image style={styles.img} source={require("./adaptive-icon.png")} />
       </View>
       <View style={styles.center}>
         <TextInput
           style={styles.textinput}
           placeholder=" Email"
           underlineColorAndroid={"transparent"}
-          value={email} 
-          onChangeText={handleCheckEmail} 
+          value={email}
+          onChangeText={handleCheckEmail}
         />
-          {checkValidEmail ?
-                    <Text style={styles.textfailed}>Enter valid email</Text> :
-                    <Text style={styles.textfailed}></Text>
-                }
+        {checkValidEmail ? (
+          <Text style={styles.textfailed}>Enter valid email</Text>
+        ) : (
+          <Text style={styles.textfailed}></Text>
+        )}
         <TextInput
           style={styles.textinput}
           placeholder="Password"
           underlineColorAndroid={"transparent"}
-          value={password} onChangeText={text => setPassword(text)} secureTextEntry={true}
+          value={password}
+          onChangeText={(text)=>checkPasswordValidity(text)}
+          onChange={(e) => setPassword(e.target.value)}
+          secureTextEntry={true}
         />
-      </View>
-      <View style={styles.btn}>
-      {email ==""|| password == "" ||   checkValidEmail == true ?(
-        <TouchableOpacity onPress={() => this.functionCombined()}
-        disabled
-        style={styles.button}
-        >
-          <Text style={styles.btntext}>Sign in</Text>
-        </TouchableOpacity>
-        ): (
-      
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-          <Text style={styles.btntext}>Sign In</Text>
-        </TouchableOpacity>
+        {checkValidpass ? (
+          <Text style={styles.error}>password must be one upper,lowercase,& 8digit</Text>
+        ) : (
+          <Text style={styles.error}></Text>
         )}
       </View>
-        
+
+      <View style={styles.btn}>
+        {email == "" || password == "" || checkValidEmail == true ? (
+          <TouchableOpacity
+            onPress={() => this.functionCombined()}
+            disabled
+            style={styles.button}
+          >
+            <Text style={styles.btntext}>Sign in</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => navigation.navigate("Main")} style={styles.button}>
+            <Text style={styles.btntext}>Sign In</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+
       <View style={styles.bottomtxt}>
         <View>
           <Text
@@ -214,8 +197,14 @@ const styles = StyleSheet.create({
     paddingTop: 60,
     marginTop: 0.1,
   },
-  textfailed:{
-    color:"red",
-    textAlign:"right"
-  }
+  textfailed: {
+    color: "red",
+    textAlign: "right",
+  },
+
+  error: {
+    color: "red",
+    paddingLeft: 10,
+  },
+
 });
