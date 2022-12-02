@@ -14,13 +14,14 @@ import Icon from "react-native-vector-icons/AntDesign";
 
 export default function Regs() {
   const navigation = useNavigation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [checkValidEmail, setCheckValidateEmail] = useState(false);
   const [checkValidName, setCheckValidateName] = useState(false);
   const [Name, setname] = useState("");
+  const [email, setEmail] = useState("");
+  const [checkValidEmail, setCheckValidateEmail] = useState(false);
+  const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm,setPass]=useState("");
+  const [checkValidConfirmPassword,setCheckValidConfirmPassword]=useState(false);
 
   //name field validation
   const handlename = (text) => {
@@ -56,6 +57,18 @@ export default function Regs() {
     }
   };
 
+  const checkConfirmPasswordValidity = (text) => {
+    let password={checkPasswordValidity};
+   let confirmPassword ={checkPasswordValidity};
+   setPass(text);
+    if (password==confirmPassword) {
+      setCheckValidConfirmPassword(false);
+    }
+    
+    else {
+      setCheckValidConfirmPassword(true);
+    }
+  };
   
   
 
@@ -67,7 +80,7 @@ export default function Regs() {
       <View></View>
       <Text style={styles.logo}>FRISKY</Text>
       <View style={styles.image}>
-        <Image style={styles.img} source={require("./adaptive-icon.png")} />
+        <Image style={styles.img} source={require("./image/adaptive-icon.png")} />
       </View>
 
       <View style={styles.line}>
@@ -117,14 +130,22 @@ export default function Regs() {
         <TextInput
           style={styles.text}
           placeholder="ConfirmPassword"
+          value={Confirm}
+          onChange={(e) => setPass(e.target.value)}
+          onChangeText={(text) => checkConfirmPasswordValidity(text)}
           secureTextEntry={true}
           underlineColorAndroid={"transparent"}
         />
+        {checkValidConfirmPassword&&password==Confirm ? (
+          <Text style={styles.error}></Text>
+        ) : (
+          <Text style={styles.error}>password must be same</Text>
+        )}
 
-        {email == "" ||
-        password == "" ||
-        Name == "" ||
-        checkValidEmail == true ? (
+        {checkValidName == true ||
+        checkValidpass == true ||
+        checkValidEmail == true ||
+        password==Confirm == false ? (
           <TouchableOpacity
             disabled
             style={styles.button}

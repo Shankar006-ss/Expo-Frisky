@@ -15,7 +15,7 @@ const HSB = () => (
    
     
     
-    <Image source={require("./adaptive-icon.png")} style={styles.img} />
+    <Image source={require("./image/adaptive-icon.png")} style={styles.img} />
   </Appbar.Header>
   );
 

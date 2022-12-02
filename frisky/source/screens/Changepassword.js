@@ -17,6 +17,9 @@ export default function Change() {
   const [password, setPassword] = useState("");
   const [OTP, setOTP] = useState("");
   const [checkValidpass, setCheckValidPass]=useState(false);
+  const [Confirm,setPass]=useState("");
+  const [checkValidConfirmPassword,setCheckValidConfirmPassword]=useState(false);
+
 
 
   
@@ -30,6 +33,19 @@ export default function Change() {
     }
     else {
       setCheckValidPass(true);
+    }
+  };
+
+  const checkConfirmPasswordValidity = (text) => {
+    let password={checkPasswordValidity};
+   let confirmPassword ={checkPasswordValidity};
+   setPass(text);
+    if (password==confirmPassword) {
+      setCheckValidConfirmPassword(false);
+    }
+    
+    else {
+      setCheckValidConfirmPassword(true);
     }
   };
 
@@ -65,11 +81,19 @@ export default function Change() {
           
           placeholder="Confirm Password"
           maxLength={16}
+          onChange={(e) => setPass(e.target.value)}
+          onChangeText={(text) => checkConfirmPasswordValidity(text)}
           underlineColorAndroid={"transparent"}
           secureTextEntry={true}
         />
+        {password==Confirm ? (
+          <Text style={styles.error}></Text>
+        ) : (
+          <Text style={styles.error}>password must be same</Text>
+        )}
+
         <View>
-          {OTP == "" || password == true ? (
+          {OTP == "" || checkValidpass ==true && password==Confirm== false ? (
             <TouchableOpacity
               disabled
               style={styles.btn}

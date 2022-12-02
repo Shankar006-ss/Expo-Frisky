@@ -49,7 +49,7 @@ export default function Logform() {
         <Text style={styles.logo}>FRISKY</Text>
       </View>
       <View style={styles.img1}>
-        <Image style={styles.img} source={require("./adaptive-icon.png")} />
+        <Image style={styles.img} source={require("./image/adaptive-icon.png")} />
       </View>
       <View style={styles.center}>
         <TextInput
@@ -90,7 +90,7 @@ export default function Logform() {
             <Text style={styles.btntext}>Sign in</Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={() => navigation.navigate("Main")} style={styles.button}>
+          <TouchableOpacity onPress={() => navigation.replace("Main")} style={styles.button}>
             <Text style={styles.btntext}>Sign In</Text>
           </TouchableOpacity>
         )}

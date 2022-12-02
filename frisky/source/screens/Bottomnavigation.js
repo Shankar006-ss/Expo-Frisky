@@ -12,7 +12,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Ionicons } from "@expo/vector-icons";
 // import Header from './source/components/Header';
-import Home from "./Home";
+import Home from "./Home"
 import Search from "./Search";
 import Library from "./Library";
 import Account from "./Account";

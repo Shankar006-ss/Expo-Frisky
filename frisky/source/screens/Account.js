@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 
-import { StyleSheet,View,Text,TouchableOpacity } from "react-native";
+import { StyleSheet,View,Text,TouchableOpacity,Button } from "react-native";
 import React from 'react';
 
 
@@ -8,7 +8,7 @@ export default function Account(){
     const navigation = useNavigation();
     return(
         <View>
-        <TouchableOpacity style={styles.button} onPress={()=>navigation.replace("Login")}>
+        <TouchableOpacity onPress={()=>navigation.replace('Login')} style={styles.button}>
             <Text style={styles.search}>Logout</Text>
             </TouchableOpacity>
         </View>
