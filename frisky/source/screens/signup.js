@@ -8,20 +8,22 @@ import {
   TouchableOpacity,
   Image,
   StatusBar,
+  ImageBackground,
 } from "react-native";
 
-import Icon from "react-native-vector-icons/AntDesign";
+
 
 export default function Regs() {
+  //const localImage=require("./image/bg-image.png");
   const navigation = useNavigation();
-  const [checkValidName, setCheckValidateName] = useState(false);
+  const [checkValidName, setCheckValidateName] = useState(true);
   const [Name, setname] = useState("");
   const [email, setEmail] = useState("");
-  const [checkValidEmail, setCheckValidateEmail] = useState(false);
+  const [checkValidEmail, setCheckValidateEmail] = useState(true);
   const [password, setPassword] = useState("");
-  const [checkValidpass, setCheckValidPass] = useState(false);
+  const [checkValidpass, setCheckValidPass] = useState(true);
   const [Confirm,setPass]=useState("");
-  const [checkValidConfirmPassword,setCheckValidConfirmPassword]=useState(false);
+ // const [checkValidConfirmPassword,setCheckValidConfirmPassword]=useState(false);
 
   //name field validation
   const handlename = (text) => {
@@ -45,7 +47,7 @@ export default function Regs() {
       setCheckValidateEmail(true);
     }
   };
-
+//password validation
   const checkPasswordValidity = (text) => {
     let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
@@ -57,17 +59,19 @@ export default function Regs() {
     }
   };
 
+//Confirm password validation
+
   const checkConfirmPasswordValidity = (text) => {
-    let password={checkPasswordValidity};
-   let confirmPassword ={checkPasswordValidity};
+  //   let password={checkPasswordValidity};
+  //  let confirmPassword ={checkPasswordValidity};
    setPass(text);
-    if (password==confirmPassword) {
-      setCheckValidConfirmPassword(false);
-    }
+    // if (password==confirmPassword) {
+    //   setCheckValidConfirmPassword(false);
+    // }
     
-    else {
-      setCheckValidConfirmPassword(true);
-    }
+    // else {
+    //   setCheckValidConfirmPassword(true);
+    // }
   };
   
   
@@ -76,12 +80,19 @@ export default function Regs() {
 
   
   return (
-    <View>
-      <View></View>
-      <Text style={styles.logo}>FRISKY</Text>
-      <View style={styles.image}>
-        <Image style={styles.img} source={require("./image/adaptive-icon.png")} />
+    
+    <ImageBackground source={require('../screens/image/background.jpg')} style={styles.back}>
+      
+      
+      <View>
+        <Text style={styles.logo}>Welcome To Frisky</Text>
       </View>
+      <View style={styles.img1}>
+        <Image style={styles.img} source={require("./image/music-note.png")} />
+      </View>
+        
+        
+      
 
       <View style={styles.line}>
         <TextInput
@@ -113,7 +124,7 @@ export default function Regs() {
         )}
 
         <TextInput
-          style={styles.pass}
+          style={styles.textinput}
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -128,7 +139,7 @@ export default function Regs() {
         )}
 
         <TextInput
-          style={styles.text}
+          style={styles.textinput}
           placeholder="ConfirmPassword"
           value={Confirm}
           onChange={(e) => setPass(e.target.value)}
@@ -136,26 +147,26 @@ export default function Regs() {
           secureTextEntry={true}
           underlineColorAndroid={"transparent"}
         />
-        {checkValidConfirmPassword&&password==Confirm ? (
-          <Text style={styles.error}></Text>
+        {password==Confirm ? (
+          <Text style={styles.errors}></Text>
         ) : (
-          <Text style={styles.error}>password must be same</Text>
+          <Text style={styles.errors}>password must be same</Text>
         )}
 
-        {checkValidName == true ||
-        checkValidpass == true ||
-        checkValidEmail == true ||
-        password==Confirm == false ? (
+        {(checkValidName) ||
+        (checkValidpass) ||
+        (checkValidEmail) ||
+        password!=Confirm ? (
           <TouchableOpacity
             disabled
             style={styles.button}
           
           >
-            <Text style={styles.btntext}>Register</Text>
+            <Text style={styles.btntext}>SignUp</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Main")}>
-            <Text style={styles.btntext}>Register</Text>
+            <Text style={styles.btntext}>SignUp</Text>
           </TouchableOpacity>
         )}
 
@@ -166,106 +177,105 @@ export default function Regs() {
           Already a user?Login here
         </Text>
       </View>
-    </View>
+      
+   </ImageBackground>
+    
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
+  // container: {
+  //   width: "100%",
+  //   height: 100,
+  //   marginTop: StatusBar.currentHeight,
+  //   justifyContent: "space-between",
+  //   alignItems: "center",
+  //   paddingLeft: 10,
+  //   flexDirection: "row",
+  //   backgroundColor: "black",
+  //   paddingTop: 60,
+  //   marginTop: 0.1,
+    
+  // },
+  img1: {
     height: 100,
-    marginTop: StatusBar.currentHeight,
-    justifyContent: "space-between",
+    width: 100,
     alignItems: "center",
-    paddingLeft: 10,
-    flexDirection: "row",
-    backgroundColor: "#36454F",
-    paddingTop: 60,
-    marginTop: 0.1,
+    paddingLeft: 200,
+    padding:20,
+    
   },
+  img: {
+    height: 80,
+    width: 80,
+    padding:20
+  },
+   
+  logo:{
+    color: "skyblue",
+    fontWeight: "bold",
+    fontSize: 30,
+    marginTop: 50,
+    paddingLeft: 80,
+  
+  },
+  
   header: {
     fontSize: 25,
     color: "white",
     paddingRight: 170,
   },
   line: {
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop:20
   },
-  text: {
-    fontSize: 18,
-    height: 60,
-    marginBottom: 10,
-    color: "black",
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-    alignContent: "center",
-    paddingLeft: 110,
-  },
-  pass: {
-    fontSize: 18,
-    height: 60,
-    marginBottom: 10,
-    color: "black",
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-    alignContent: "center",
-    paddingLeft: 140,
-  },
+  
   textinput: {
-    fontSize: 18,
-    height: 60,
-    marginBottom: 5,
-    color: "black",
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-    paddingTop: 20,
-    paddingBottom: 5,
-    paddingLeft: 20,
-    textAlign: "center",
+    
+        fontSize:20,
+        margin: 15,
+        height: 60,
+        borderColor: '#00ffff',
+        //borderWidth: 1,
+        borderLeftWidth:15,
+        //borderRightWidth:15,
+        paddingLeft: 20,
+        borderRadius:25,
+        backgroundColor:'white'
+
+        
+    
   },
   button: {
     alignItems: "center",
-    padding: 15,
-    
-    backgroundColor: "black",
-    marginTop: 40,
-    paddingEnd: 30,
+    padding:20,
+    backgroundColor: '#00ffff',
+    marginTop:10,
+    marginBottom:10,
+    borderRadius:60,
+    margin:70,
+    padding:15,
   },
   btntext: {
-    fontSize: 20,
+    fontSize: 30,
     color: "#fff",
     fontWeight: "bold",
-    paddingLeft: 40,
+    paddingLeft: 10,
+    
     
   },
   bottom: {
     fontSize: 20,
-    color: "black",
+    color: "skyblue",
     fontWeight: "bold",
     alignItems: "center",
-    paddingLeft: 60,
-    paddingTop: 30,
+    paddingLeft: 80,
+    paddingTop: 35,
+    
   },
-  logo: {
-    color: "black",
-    fontWeight: "bold",
-    fontSize: 50,
-    alignItems: "center",
-    marginTop: 30,
-    paddingLeft: 130,
-  },
-  image: {
-    height: 100,
-    width: 100,
-    alignItems: "center",
-    paddingLeft: 200,
-  },
-  img: {
-    height: 100,
-    width: 100,
-  },
-
+  
+  
   textFailed: {
     color: "red",
     paddingLeft: 220,
@@ -273,5 +283,12 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     paddingLeft: 50,
+  },
+  errors:{
+    color: "red",
+    paddingLeft: 180,
+  },
+  back:{
+    height:900,
   },
 });

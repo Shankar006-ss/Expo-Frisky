@@ -7,6 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
+  ImageBackground,
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -36,34 +38,34 @@ export default function Change() {
     }
   };
 
+  //Confirm password
   const checkConfirmPasswordValidity = (text) => {
-    let password={checkPasswordValidity};
-   let confirmPassword ={checkPasswordValidity};
+  //   let password={checkPasswordValidity};
+  //  let confirmPassword ={checkPasswordValidity};
    setPass(text);
-    if (password==confirmPassword) {
-      setCheckValidConfirmPassword(false);
-    }
+    // if (password==confirmPassword) {
+    //   setCheckValidConfirmPassword(false);
+    // }
     
-    else {
-      setCheckValidConfirmPassword(true);
-    }
+    // else {
+    //   setCheckValidConfirmPassword(true);
+    // }
   };
 
   return (
+    <ImageBackground source={require('../screens/image/background.jpg')} style={styles.back}>
     <View style={styles.otp}>
       <View style={styles.cen}>
-        <TextInput
-          style={styles.enterotp}
-          placeholder="Enter OTP"
-          keyboardType="numeric"
-          maxLength={4}
-          value={OTP}
-          onChangeText={(text) => setOTP(text)}
-          underlineColorAndroid={"transparent"}
-        />
+      <View style={styles.img1}>
+        <Image style={styles.img} source={require("./image/music-note.png")} />
+    <Text style={styles.name}>Frisky</Text>
+      </View>
+        <Text style={styles.para}>Change Password</Text>
+        <Text style={styles.under}>Enter your new password.</Text>
+        
         <TextInput
           style={styles.change}
-          placeholder="Change Password"
+          placeholder="New Password"
           underlineColorAndroid={"transparent"}
           value={password}
           maxLength={16}
@@ -79,7 +81,7 @@ export default function Change() {
         <TextInput
           style={styles.confirm}
           
-          placeholder="Confirm Password"
+          placeholder="Retype New Password"
           maxLength={16}
           onChange={(e) => setPass(e.target.value)}
           onChangeText={(text) => checkConfirmPasswordValidity(text)}
@@ -93,26 +95,59 @@ export default function Change() {
         )}
 
         <View>
-          {OTP == "" || checkValidpass ==true && password==Confirm== false ? (
+          { (checkValidpass)||  password!=Confirm ? (
             <TouchableOpacity
               disabled
               style={styles.btn}
               
             >
-              <Text style={styles.btntxt}>Submit</Text>
+              <Text style={styles.btntxt}>Save Changes</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Login")}>
-              <Text style={styles.btntxt}>Submit</Text>
+              <Text style={styles.btntxt}>Save Changes</Text>
             </TouchableOpacity>
           )}
         </View>
       </View>
     </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  
+
+  img1: {
+    height: 100,
+    width: 100,
+    alignItems: "center",
+    //paddingLeft: 200,
+    paddingTop:50,
+    paddingRight:30
+    
+  },
+  img: {
+    height: 80,
+    width: 80,
+    padding:20
+  },
+
+  para:{
+    fontSize:30,
+    fontWeight: "bold",
+    marginTop:100,
+    color:"skyblue"
+  },
+  under:{
+    fontSize:20,
+    color:"skyblue"
+  },
+  name:{
+    fontSize:25,
+    fontWeight:'bold',
+    color:"skyblue"
+  },
   txt: {
     fontSize: 25,
     color: "#fff",
@@ -120,48 +155,47 @@ const styles = StyleSheet.create({
   },
 
   cen: {
-    paddingLeft: 60,
-    paddingRight: 60,
+    paddingLeft: 30,
+    paddingRight: 50,
   },
-  enterotp: {
-    paddingTop: 40,
-    paddingLeft: 90,
-    fontSize: 20,
-    color: "#000000",
-    marginBottom: 50,
-    borderBottomColor: "#000000",
-    borderBottomWidth: 2,
-  },
+  
   change: {
-    paddingLeft: 60,
-    justifyContent: "center",
-    fontSize: 20,
-    color: "#000000",
-    marginBottom: 10,
-    borderBottomColor: "#000000",
-    borderBottomWidth: 2,
+    fontSize:20,
+    height: 60,
+    marginLeft:5,
+    borderColor: '#00ffff',
+    borderLeftWidth:15,
+    paddingLeft: 20,
+    borderRadius:25,
+    backgroundColor:'white',
+    marginTop:100
   },
   confirm: {
-    paddingLeft: 60,
-    justifyContent: "center",
-    fontSize: 20,
-    color: "#000000",
-    marginBottom: 50,
-    marginTop:30,
-    borderBottomColor: "#000000",
-    borderBottomWidth: 2,
+    fontSize:20,
+    height: 60,
+    marginLeft:5,
+    borderColor: '#00ffff',
+    borderLeftWidth:15,
+    paddingLeft: 20,
+    borderRadius:25,
+    backgroundColor:'white',
+    marginTop:20
+    
   },
   btn: {
-    alignSelf: "stretch",
     alignItems: "center",
-    padding: 20,
-    backgroundColor: "#000000",
-    marginTop: 0,
+    padding:20,
+    backgroundColor: '#00ffff',
+    marginTop:10,
+    marginBottom:10,
+    borderRadius:100,
+    paddingLeft:30
   },
   btntxt: {
+    fontSize: 30,
     color: "#fff",
     fontWeight: "bold",
-    fontSize: 20,
+    paddingLeft: 10,
   },
   icon: {
     width: "100%",
@@ -178,6 +212,10 @@ const styles = StyleSheet.create({
 
   error: {
     color: "red",
-    paddingLeft: 5,
+    paddingLeft: 10,
+  },
+  back:{
+    paddingTop:30,
+    height:900
   },
 });

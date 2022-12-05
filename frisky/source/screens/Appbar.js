@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { Image, StyleSheet,View} from "react-native";
+import { Image, StyleSheet} from "react-native";
 import { Appbar } from "react-native-paper";
 
 
@@ -15,7 +15,7 @@ const HSB = () => (
    
     
     
-    <Image source={require("./image/adaptive-icon.png")} style={styles.img} />
+    <Image source={require("./image/music-note.png")} style={styles.img} />
   </Appbar.Header>
   );
 
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: 0,
     paddingRight: 50,
     padding: 0,
-    height: 30,
+    height: 10,
   },
   conclr: {
    paddingLeft:120

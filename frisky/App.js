@@ -5,7 +5,7 @@ import Change from "./source/screens/Changepassword";
 import Forget from "./source/screens/Forgetpassword";
 import Logform from "./source/screens/login";
 import MainScreen from "./source/screens/Main";
-import Regs from "./source/screens/Registration";
+import Regs from "./source/screens/signup";
 
 const Stack = createStackNavigator();
 
@@ -16,7 +16,7 @@ function SplashScreenImage({navigation}){
     navigation.replace('Login');
   },2000);
   return(
-    <ImageBackground style={{flex:1}} source={require('./assets/splash.png')} backgroundColor="#000000"/>
+    <ImageBackground style={{flex:1}} source={require('./assets/adaptive-icon.png')} backgroundColor="#000000"/>
     
   );
 }
@@ -41,7 +41,7 @@ export default function App() {
 
         
         <Stack.Screen
-          name="Registration"
+          name="signup"
           component={Regs}
           options={{
            

@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   Image,
+  ImageBackground,
   StatusBar,
   StyleSheet,
   Text,
@@ -16,8 +17,6 @@ export default function Logform() {
   const [password, setPassword] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const [checkValidpass, setCheckValidPass]=useState(false);
-
-
   const handleCheckEmail = (text) => {
     let re = /\S+@\S+\.S+/;
     let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
@@ -28,7 +27,6 @@ export default function Logform() {
       setCheckValidEmail(true);
     }
   };
-
   const checkPasswordValidity = (text) => {
     let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
@@ -39,23 +37,19 @@ export default function Logform() {
       setCheckValidPass(true);
     }
   };
-
-  
-  
-
   return (
-    <View>
+    <View >
+      <ImageBackground  source={require("./image/background.jpg")} style={styles.bg}>
       <View>
-        <Text style={styles.logo}>FRISKY</Text>
+        <Text style={styles.logo}>Welcome To Frisky</Text>
       </View>
       <View style={styles.img1}>
-        <Image style={styles.img} source={require("./image/adaptive-icon.png")} />
+        <Image style={styles.img} source={require("./image/music-note.png")} />
       </View>
       <View style={styles.center}>
         <TextInput
           style={styles.textinput}
           placeholder=" Email"
-          underlineColorAndroid={"transparent"}
           value={email}
           onChangeText={handleCheckEmail}
         />
@@ -67,7 +61,6 @@ export default function Logform() {
         <TextInput
           style={styles.textinput}
           placeholder="Password"
-          underlineColorAndroid={"transparent"}
           value={password}
           onChangeText={(text)=>checkPasswordValidity(text)}
           onChange={(e) => setPassword(e.target.value)}
@@ -79,25 +72,7 @@ export default function Logform() {
           <Text style={styles.error}></Text>
         )}
       </View>
-
-      <View style={styles.btn}>
-        {email == "" || password == "" || checkValidEmail == true ? (
-          <TouchableOpacity
-            onPress={() => this.functionCombined()}
-            disabled
-            style={styles.button}
-          >
-            <Text style={styles.btntext}>Sign in</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => navigation.replace("Main")} style={styles.button}>
-            <Text style={styles.btntext}>Sign In</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-
-      <View style={styles.bottomtxt}>
-        <View>
+      <View style={styles.forget}>
           <Text
             onPress={() => navigation.navigate("Forgetpassword")}
             style={styles.fp}
@@ -105,21 +80,45 @@ export default function Logform() {
             Forget Password?
           </Text>
         </View>
+      <View style={styles.btn}>
+        {email == "" || password == "" || checkValidEmail == true ? (
+          <TouchableOpacity
+            onPress={() => this.functionCombined()}
+            disabled
+            style={styles.button}
+          >
+            <Text style={styles.btntext}>Login</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => navigation.replace("Main")} style={styles.button}>
+            <Text style={styles.btntext}>Login</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+      <View style={styles.bottomtxt}>
         <Text
           onPress={() => navigation.navigate("Registration")}
-          style={styles.fp}
+          style={styles.cr}
         >
-          Not Registered? Register here
+          Create a new Account?
         </Text>
       </View>
+      </ImageBackground>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {},
   fp: {
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: "bold",
+    color:'skyblue',
+    paddingLeft:200,
+  },
+  cr:{
+    fontSize: 20,
+    fontWeight: "bold",
+    color:'skyblue',
   },
   bottomtxt: {
     paddingTop: 20,
@@ -131,8 +130,9 @@ const styles = StyleSheet.create({
     paddingLeft: 50,
   },
   center: {
-    paddingRight: 50,
-    paddingLeft: 50,
+    marginTop:50,
+    paddingLeft:30,
+    paddingRight:30,
   },
   header: {
     fontSize: 25,
@@ -150,61 +150,61 @@ const styles = StyleSheet.create({
     paddingLeft: 200,
   },
   img: {
-    height: 150,
-    width: 150,
+    height: 100,
+    width: 100,
+    marginTop:30
   },
   textinput: {
     fontSize: 20,
-    height: 50,
+    height: 70,
     color: "black",
-    marginBottom: 5,
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-    paddingTop: 20,
-    paddingBottom: 5,
-    paddingLeft: 50,
+    marginBottom: 10,
+    backgroundColor:'white',
+    borderRadius:25,
+    borderLeftWidth:15,
+    borderLeftColor:'#00BFFF',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 30,
     paddingRight: 50,
-    textAlign: "center",
     marginTop: 40,
   },
   button: {
     alignItems: "center",
     padding: 20,
-    backgroundColor: "black",
-    marginTop: 20,
+    backgroundColor: '#00BFFF',
+    borderRadius:50,
+    marginTop: 5,
+  },
+  btn:{
+    marginLeft:60,
+    marginRight:60,
+    marginTop:50
   },
   btntext: {
     color: "#fff",
     fontWeight: "bold",
+    fontSize:25,
   },
   logo: {
-    color: "black",
+    color: "skyblue",
     fontWeight: "bold",
-    fontSize: 60,
-    alignItems: "center",
-    marginTop: 50,
-    paddingLeft: 110,
+    fontSize: 35,
+    marginTop: 120,
+    paddingLeft: 50,
+    paddingRight:50
   },
-  headercontainer: {
-    width: "100%",
-    height: 100,
-    marginTop: StatusBar.currentHeight,
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingLeft: 10,
-    flexDirection: "row",
-    backgroundColor: "#36454F",
-    paddingTop: 60,
-    marginTop: 0.1,
-  },
+  
   textfailed: {
     color: "red",
     textAlign: "right",
   },
-
   error: {
     color: "red",
     paddingLeft: 10,
   },
-
+  bg:{
+    width:'100%',
+    height:"100%"
+  }
 });
