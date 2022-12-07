@@ -45,14 +45,14 @@ export default function Forget() {
     >
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
-        source={require("../Image/background.jpg")}
+        source={require("../../../Image/background.jpg")}
         style={{ height: "100%", width: "100%" }}
       >
         <View style={{ alignItems: "center", marginTop: 100, margin: 50 }}>
           <View>
             <Image
               style={styles.img}
-              source={require("../Image/music-note.png")}
+              source={require("../../../Image/music-note.png")}
             />
           </View>
           <View style={{ marginTop: 50 }}>

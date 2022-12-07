@@ -17,7 +17,7 @@ function SplashScreenImage({ navigation }) {
   return (
     <ImageBackground
       style={{ flex: 1 }}
-      source={require("../Screens/Image/splash.png")}
+      source={require('../../Image/splash.png')}
       backgroundColor="#000000"
     />
   );

@@ -13,7 +13,7 @@ const HSB = () => (
   <Appbar.Header style={styles.headerColor} activeColor="white">
     <Appbar.Action icon="menu"/>
     <Appbar.Content style={styles.conClr} title="Frisky"/>
-    <Image source={require("../Header/Image/music-note.png")} style={styles.img} />
+    <Image source={require('../../../../Image/music-note.png')} style={styles.img} />
   </Appbar.Header>
   </View>
   );

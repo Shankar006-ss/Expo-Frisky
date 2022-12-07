@@ -39,7 +39,7 @@ export default function Change() {
     // }
   };
   return (
-    <ImageBackground source={require('../Image/background.jpg')} style={{ height: "100%", width: "100%" }} resizeMode='cover'>
+    <ImageBackground source={require("../../../Image/background.jpg")} style={{ height: "100%", width: "100%" }} resizeMode='cover'>
     <View style={{
       height: "100%",
       width: "100%",
@@ -48,7 +48,7 @@ export default function Change() {
     }}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
             <View style={styles.img1}>
-              <Image style={styles.img} source={require("../Image/music-note.png")} />
+              <Image style={styles.img} source={require("../../../Image/music-note.png")} />
             </View>
             <Text style={styles.para}>Change Password</Text>
             <View>

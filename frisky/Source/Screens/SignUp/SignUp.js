@@ -52,7 +52,7 @@ export default function Reg() {
     setPass(text);
   };
   return (
-    <ImageBackground source={require('../Image/background.jpg')} style={{ height: "100%", width: "100%", flex: 1 }} resizeMode='cover'>
+    <ImageBackground source={require('../../../Image/background.jpg')} style={{ height: "100%", width: "100%", flex: 1 }} resizeMode='cover'>
       <View style={{
         height: "100%",
         width: "100%",
@@ -63,7 +63,7 @@ export default function Reg() {
         <StatusBar translucent backgroundColor="black" barStyle="light-content" />
         <Text style={styles.logo}>Welcome To Frisky</Text>
         <View style={styles.img1}>
-          <Image style={styles.img} source={require("../Image/music-note.png")} />
+          <Image style={styles.img} source={require("../../../Image/music-note.png")} />
         </View>
         <View style={styles.line}>
           <TextInput
