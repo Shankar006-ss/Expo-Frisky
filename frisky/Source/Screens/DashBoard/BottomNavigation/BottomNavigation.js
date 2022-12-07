@@ -1,49 +1,20 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SectionList,
-  SafeAreaView,
-  Image,
-} from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { Ionicons } from "@expo/vector-icons";
-// import Header from './source/components/Header';
-import Home from "./Home"
-import Search from "./Search";
-import Library from "./Library";
-import Account from "./Account";
-import HSB from "./Appbar";
-// const ListItem = ({ item}) => {
-//   return(
-//     <View style = {styles.item}>
-//       <image source = {{
-//         uri: item.uri,
-//       }}
-//       style={styles.ItemPhoto}
-//       resizeMode="cover"/>
-//       <Text style={styles.itemText}>{item.text}</Text>
-//       <Header/>
-//     </View>
-//   )
-// }
-{
-  /* <Header
-  placement="left"
-  leftComponent={{ icon: 'menu', color: '#fff' }}
-  centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-  rightComponent={{ icon: 'home', color: '#fff' }}
-/> */
-}
+import Account from "../SubScreen/Account";
+import Library from "../SubScreen/Library";
+import Search from "../SubScreen/Search";
+import Home from "../Home/Home";
+
 const Tab = createMaterialBottomTabNavigator();
-export default function Navbar() {
+export default function NavBar() {
   return (
-    <Tab.Navigator activeColor="white" barStyle={{ backgroundColor: "#121212" }}>
+    <Tab.Navigator
+      activeColor="white"
+      barStyle={{ backgroundColor: "#121212" }}
+    >
       <Tab.Screen
-        name="home"
+        name="Home"
         component={Home}
         options={{
           tabBarLabel: "Home",
@@ -72,7 +43,7 @@ export default function Navbar() {
           ),
         }}
       />
-       <Tab.Screen
+      <Tab.Screen
         name="Account"
         component={Account}
         options={{
@@ -83,16 +54,8 @@ export default function Navbar() {
         }}
       />
     </Tab.Navigator>
-
-    // </View>
   );
 }
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-  Navbar: {},
+  NavBar: {},
 });

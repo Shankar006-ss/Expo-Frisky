@@ -2,16 +2,14 @@ import { StatusBar } from "expo-status-bar";
 
 import React from "react";
 import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  SectionList,
   StyleSheet,
   Text,
   View,
-  SectionList,
-  SafeAreaView,
-  Image,
-  FlatList,
 } from "react-native";
-
-
 
 const ListItem = ({ item }) => {
   return (
@@ -72,32 +70,32 @@ const SECTIONS = [
         key: "1",
         text: "Dazzling Dusty",
         tex: "123445 Followers",
-        uri: "https://rukminim1.flixcart.com/image/832/832/l55nekw0/laptop-skin-decal/7/e/n/exclusive-high-quality-print-laptop-decal-skin-sticker-for-15-6-original-imagfwchkjtgwzk5.jpeg?q=70",
+        uri: "https://a10.gaanacdn.com/gn_pl_img/playlists/ZaP37OR3Dy/P374pvevWD/size_m_1606805633.webp",
       },
       {
         key: "2",
         text: "New Music Friday UK",
         tex: "5945734 Followers",
-        uri: "https://c-fa.cdn.smule.com/smule-gg-uw1-s-7/arr/50/30/d256cca3-a985-417f-9a34-33cec5169c9d.jpg",
+        uri: "https://m.media-amazon.com/images/I/61-DP+EXhHL._SX355_.jpg",
       },
 
       {
         key: "3",
         text: "Hits",
         tex: "5945734 Followers",
-        uri: "https://img.freepik.com/premium-photo/classic-sheets-with-music-notes-sign_488220-9925.jpg?w=2000",
+        uri: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1130637b-ff57-48b5-b8d6-bfe756c7af58/ddfyqy1-3657f3ec-c511-47e9-b5a4-470fb40076e1.jpg/v1/fill/w_1024,h_1024,q_75,strp/hiphop_tamizha_fanmade__by_kajandra_ddfyqy1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAyNCIsInBhdGgiOiJcL2ZcLzExMzA2MzdiLWZmNTctNDhiNS1iOGQ2LWJmZTc1NmM3YWY1OFwvZGRmeXF5MS0zNjU3ZjNlYy1jNTExLTQ3ZTktYjVhNC00NzBmYjQwMDc2ZTEuanBnIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.SwN4OGq6LkjOT2C9uoNldWQuv5sIwF9FLPpxxTf1YpA",
       },
       {
         key: "4",
         text: "Melody",
         tex: "5945734 Followers",
-        uri: "https://picsum.photos/id/1006/200",
+        uri: "https://a10.gaanacdn.com/gn_pl_img/playlists/XzVWRyL3dq/VWRv5pMeWd/size_m_1515081240.webp",
       },
       {
         key: "5",
         text: "Pep",
         tex: "5945734 Followers",
-        uri: "https://picsum.photos/id/1008/200",
+        uri: "https://1601606126.rsc.cdn77.org/raagaimg/r_img/250/t/tc0000508-1.jpg",
       },
     ],
   },
@@ -109,13 +107,13 @@ const SECTIONS = [
         key: "1",
         text: "Dazzling Dusty",
         tex: "123445 Followers",
-        uri: "https://rukminim1.flixcart.com/image/832/832/l55nekw0/laptop-skin-decal/7/e/n/exclusive-high-quality-print-laptop-decal-skin-sticker-for-15-6-original-imagfwchkjtgwzk5.jpeg?q=70",
+        uri: "https://raaga.gumlet.io/raagaimg/r_img/250/t/tc0001224-2.jpg?w=240&dpr=2.6",
       },
       {
         key: "2",
         text: "Campfire",
         tex: "123445 Followers",
-        uri: "https://c4.wallpaperflare.com/wallpaper/218/298/563/headphones-minimalism-pastel-pink-wallpaper-preview.jpg",
+        uri: "https://i.scdn.co/image/ab67706c0000bebbd275d0f7c811dfd6d911cf2d",
       },
 
       {
@@ -138,44 +136,13 @@ const SECTIONS = [
       },
     ],
   },
-  //   {
-  //     title: 'Based on your recent listening',
-  //     horizontal: true,
-  //     data: [
-  //       {
-  //         key: '1',
-  //         text: 'Item text 1',
-  //         uri: 'https://picsum.photos/id/1020/200',
-  //       },
-  //       {
-  //         key: '2',
-  //         text: 'Item text 2',
-  //         uri: 'https://picsum.photos/id/1024/200',
-  //       },
-
-  //       {
-  //         key: '3',
-  //         text: 'Item text 3',
-  //         uri: 'https://picsum.photos/id/1027/200',
-  //       },
-  //       {
-  //         key: '4',
-  //         text: 'Item text 4',
-  //         uri: 'https://picsum.photos/id/1035/200',
-  //       },
-  //       {
-  //         key: '5',
-  //         text: 'Item text 5',
-  //         uri: 'https://picsum.photos/id/1038/200',
-  //       },
-  //     ],
-  //   },
 ];
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#121212",
+    
   },
   sectionHeader: {
     fontWeight: "800",
@@ -184,7 +151,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 5,
     alignItems: "center",
-    // marginLeft:120
+
     textAlign: "center",
   },
   item: {
@@ -197,14 +164,15 @@ const styles = StyleSheet.create({
   itemText: {
     color: "white",
     marginTop: 5,
-    textAlign:"center",
+    textAlign: "center",
   },
   itemTex: {
     color: "rgba(255, 255, 255, 0.5)",
     marginTop: 5,
-    textAlign:"center",
+    textAlign: "center",
   },
   title: {
     alignItems: "center",
+    
   },
 });
