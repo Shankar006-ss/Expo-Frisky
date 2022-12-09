@@ -9,53 +9,51 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Signup } from '../../Utility/Constants';
-import { ErrorMessage } from '../../Utility/Constants';
-import { color } from '../../Utility/Constants';
+import { Signup,ErrorMessage,color,placeholder} from '../../Utility/Constants';
 
-export default function Reg({ navigation }) {
-  const [CheckValidName, SetCheckValidateName] = useState(false);
-  const [Name, SetName] = useState("");
-  const [Email, SetEmail] = useState("");
-  const [CheckValidEmail, SetCheckValidateEmail] = useState(false);
-  const [Password, SetPassword] = useState("");
-  const [CheckValidPass, SetCheckValidPass] = useState(false);
-  const [Confirm, SetPass] = useState("");
+
+export default function SignUp({ navigation }) {
+  const [checkValidName, setCheckValidateName] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [checkValidEmail, setCheckValidateEmail] = useState(false);
+  const [password, setPassword] = useState("");
+  const [checkValidPass, setCheckValidPass] = useState(false);
+  const [confirm, setPass] = useState("");
   //name field validation
   const NameValid = (text) => {
     let rule = /^[a-zA-Z]{2,11}$/;
-    SetName(text);
+    setName(text);
     if (rule.test(text) || rule == 0) {
-      SetCheckValidateName(false);
+      setCheckValidateName(false);
     } else {
-      SetCheckValidateName(true);
+      setCheckValidateName(true);
     }
   };
   //Email field validation
-  const CheckEmail = (text) => {
-    
-    let email= /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    SetEmail(text);
-    if ( email.test(text)) {
-      SetCheckValidateEmail(false);
+  const checkEmail = (text) => {
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    setEmail(text);
+    if (email.test(text)) {
+      setCheckValidateEmail(false);
     } else {
-      SetCheckValidateEmail(true);
+      setCheckValidateEmail(true);
     }
   };
   //password validation
-  const CheckPasswordValidity = (text) => {
+  const checkPasswordValidity = (text) => {
     let password =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    SetPassword(text);
+    setPassword(text);
     if (password.test(text)) {
-      SetCheckValidPass(false);
+      setCheckValidPass(false);
     } else {
-      SetCheckValidPass(true);
+      setCheckValidPass(true);
     }
   };
   //Confirm password validation
-  const CheckConfirmPasswordValidity = (text) => {
-    SetPass(text);
+  const checkConfirmPasswordValidity = (text) => {
+    setPass(text);
   };
   return (
     <ImageBackground
@@ -77,7 +75,7 @@ export default function Reg({ navigation }) {
           barStyle="light-content"
         />
         <Text style={styles.logo}>{Signup.WELCOME}</Text>
-        <View style={styles.img1}>
+        <View style={styles.image}>
           <Image
             style={styles.img}
             source={require("../../../Image/music-note.png")}
@@ -86,39 +84,39 @@ export default function Reg({ navigation }) {
         <View style={styles.line}>
           <TextInput
             style={styles.textInput}
-            placeholder="Name"
-            value={Name}
-            onChange={(e) => SetName(e.target.value)}
+            placeholder={placeholder.NAME}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             onChangeText={(text) => NameValid(text)}
             underlineColorAndroid={"transparent"}
           />
-          {CheckValidName ? (
+          {checkValidName ? (
             <Text style={styles.textFailed}>{ErrorMessage.NAME}</Text>
           ) : (
             <Text style={styles.textFailed}></Text>
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Email"
-            value={Email}
-            onChangeText={(text) => CheckEmail(text)}
+            placeholder={placeholder.EMAIL}
+            value={email}
+            onChangeText={(text) => checkEmail(text)}
             underlineColorAndroid={"transparent"}
           />
-          {CheckValidEmail ? (
+          {checkValidEmail ? (
             <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
           ) : (
             <Text style={styles.textFailed}></Text>
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Password"
-            value={Password}
-            onChange={(e) => SetPassword(e.target.value)}
-            onChangeText={(text) => CheckPasswordValidity(text)}
+            placeholder={placeholder.PASSWORD}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onChangeText={(text) => checkPasswordValidity(text)}
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
-          {CheckValidPass ? (
+          {checkValidPass ? (
             <Text style={styles.error}>
               {ErrorMessage.PASSWORD}
             </Text>
@@ -127,26 +125,26 @@ export default function Reg({ navigation }) {
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Confirm Password"
-            value={Confirm}
-            onChange={(e) => SetPass(e.target.value)}
-            onChangeText={(text) => CheckConfirmPasswordValidity(text)}
+            placeholder={placeholder.CONFIRM}
+            value={confirm}
+            onChange={(e) => setPass(e.target.value)}
+            onChangeText={(text) => checkConfirmPasswordValidity(text)}
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
-          {Password == Confirm ? (
+          {password == confirm ? (
             <Text style={styles.errors}></Text>
           ) : (
             <Text style={styles.errors}>{ErrorMessage.CONFIRMPASSWORD}</Text>
           )}
-          {CheckValidName ||
-            CheckValidPass ||
-            CheckValidEmail ||
-            Password != Confirm ||
-            Password == "" ||
-            Email == "" ||
-            Name == "" ||
-            Confirm == "" ? (
+          {checkValidName ||
+            checkValidPass ||
+            checkValidEmail ||
+            password != confirm ||
+            password == "" ||
+            email == "" ||
+            name == "" ||
+            confirm == "" ? (
             <TouchableOpacity disabled style={styles.button}>
               <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
@@ -170,7 +168,7 @@ export default function Reg({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  img1: {
+  image: {
     marginTop: 20,
   },
   img: {

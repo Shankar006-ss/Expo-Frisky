@@ -10,11 +10,11 @@ import {
   View,
 } from "react-native";
 
-import {WELCOME_TO_FRISKY} from "../../Utility/Constants";
+import {placeholder, WELCOME_TO_FRISKY} from "../../Utility/Constants";
 
 
 
-console.log(WELCOME_TO_FRISKY);
+
 
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
@@ -22,10 +22,9 @@ export default function LogForm({ navigation }) {
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const [checkValidPass, setCheckValidPass] = useState(false);
   const handleCheckEmail = (text) => {
-    let re = /\S+@\S+\.S+/;
-    let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     setEmail(text);
-    if (re.test(text) || regex.test(text)) {
+    if (email.test(text)) {
       setCheckValidEmail(false);
     } else {
       setCheckValidEmail(true);
@@ -64,7 +63,7 @@ export default function LogForm({ navigation }) {
           <View style={{ marginTop: 50 }}>
             <TextInput
               style={styles.textInput}
-              placeholder=" Email"
+              placeholder={placeholder.EMAIL}
               value={email}
               onChangeText={handleCheckEmail}
             />
@@ -75,7 +74,7 @@ export default function LogForm({ navigation }) {
             )}
             <TextInput
               style={styles.textInput}
-              placeholder="Password"
+              placeholder={placeholder.PASSWORD}
               value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
               onChange={(e) => setPassword(e.target.value)}

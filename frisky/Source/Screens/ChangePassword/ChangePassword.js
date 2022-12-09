@@ -9,9 +9,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { screenText } from "../../Utility/Constants";
-import { color } from "../../Utility/Constants";
-import { ErrorMessage } from "../../Utility/Constants";
+import { screenText,color,ErrorMessage,placeholder } from "../../Utility/Constants";
+
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
@@ -53,7 +52,7 @@ export default function Change({ navigation }) {
         <View>
           <TextInput
             style={styles.textInput}
-            placeholder="New Password"
+            placeholder={placeholder.NEW}
             underlineColorAndroid={"transparent"}
             value={password}
             maxLength={16}
@@ -70,7 +69,7 @@ export default function Change({ navigation }) {
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Retype New Password"
+            placeholder={placeholder.CHANGE}
             maxLength={16}
             onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}

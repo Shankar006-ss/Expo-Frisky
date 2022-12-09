@@ -9,17 +9,17 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { screenText } from "../../Utility/Constants";
-import { color } from "../../Utility/Constants";
-import { ErrorMessage } from "../../Utility/Constants";
+
+import { color,ErrorMessage,placeholder,screenText } from "../../Utility/Constants";
+
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
+  //Email field validation
   const handleCheckEmail = (text) => {
-    let re = /\S+@\S+\.S+/;
-    let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     setEmail(text);
-    if (re.test(text) || regex.test(text)) {
+    if (email.test(text)) {
       setCheckValidEmail(false);
     } else {
       setCheckValidEmail(true);
@@ -61,7 +61,7 @@ export default function Forget({ navigation }) {
           <View>
             <TextInput
               style={styles.header}
-              placeholder="Email Id"
+              placeholder={placeholder.EMAIL}
               maxLength={30}
               underlineColorAndroid={"transparent"}
               value={email}
