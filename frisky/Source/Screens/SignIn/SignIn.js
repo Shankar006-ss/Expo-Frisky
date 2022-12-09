@@ -10,9 +10,8 @@ import {
   View,
 } from "react-native";
 
-import {WELCOME_TO_FRISKY} from "../../Utility/Constants";
+import {constant} from "../../Utility/Constants";
 
-console.log(WELCOME_TO_FRISKY);
 
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
@@ -40,24 +39,17 @@ export default function LogForm({ navigation }) {
     }
   };
   return (
-    <View
-      style={{
-        height: "100%",
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <View style={styles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={{ height: "100%", width: "100%" }}
+        style={styles.imageBackground}
       >
-        <View style={{ alignItems: "center", marginTop: 100, margin: 50 }}>
+        <View style={styles.itemContainer}>
           <View>
          
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 30 }}>
-           { WELCOME_TO_FRISKY}
+           {constant.Welcome}
             </Text>
           </View>
           <View style={{ marginTop: 20 }}>
@@ -134,6 +126,21 @@ export default function LogForm({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
+  container:{
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageBackground:{
+    height: "100%", 
+    width: "100%"
+  },
+  itemContainer:{
+    alignItems: "center", 
+    marginTop: 100, 
+    margin: 50
+  },
   fp: {
     fontSize: 20,
     fontWeight: "bold",
