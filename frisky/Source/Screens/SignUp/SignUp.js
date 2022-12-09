@@ -7,12 +7,9 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
-
-
-import { Signup,ErrorMessage,color,placeholder,navigations} from '../../Utility/Constants';
-
+import { color, ErrorMessage, navigations, placeholder, Signup } from '../../Utility/Constants';
 
 export default function SignUp({ navigation }) {
   const [checkValidName, setCheckValidateName] = useState(false);
@@ -173,27 +170,25 @@ const styles = StyleSheet.create({
      height: "100%", 
      width: "100%"
   },
-  
   image: {
     height: 100,
     width: 100,
-    marginTop: 10,
-
+    marginTop: 20,
   },
   header: {
     color: color.WHITE,
     fontWeight: "bold",
     fontSize: 30,
-    marginTop: 30,
   },
   inputText: {
-    marginTop: 10,
+    marginTop: 20,
   },
   textInput: {
     color: color.BLACK,
     fontSize: 20,
-    height: 70,
+    height: 60,
     marginTop: 20,
+    marginBottom:15,
     borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
@@ -222,11 +217,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
-  
   //password and confirmpassword error message
   errorMsg: {
     color: color.RED,
     paddingLeft: 10,
   }
-  
 });

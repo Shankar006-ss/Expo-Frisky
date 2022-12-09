@@ -7,9 +7,7 @@ import MainScreen from "../Screens/DashBoard/MainHome/Main";
 import Forget from "../Screens/ForgetPassword/ForgetPassword";
 import LogForm from "../Screens/SignIn/SignIn";
 import Reg from "../Screens/SignUp/SignUp";
-
 const Stack = createStackNavigator();
-
 function SplashScreenImage({ navigation }) {
   setTimeout(() => {
     navigation.replace("SignIn");
@@ -17,7 +15,7 @@ function SplashScreenImage({ navigation }) {
   return (
     <ImageBackground
       style={{ flex: 1 }}
-      source={require('../../Image/splash.png')}
+      source={require("../../Image/splash.png")}
       backgroundColor="#000000"
     />
   );
@@ -42,7 +40,6 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-
         <Stack.Screen
           name="SignUp"
           component={Reg}
@@ -51,7 +48,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        <Stack.Screen //change password screen
           name="ChangePassword"
           component={Change}
           options={{
