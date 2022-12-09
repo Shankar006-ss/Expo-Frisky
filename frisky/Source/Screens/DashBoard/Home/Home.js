@@ -11,6 +11,11 @@ import {
   View,
 } from "react-native";
 
+import { color,homescreen } from '../../../Utility/Constants';
+
+
+
+
 const ListItem = ({ item }) => {
   return (
     <View style={styles.item}>
@@ -63,7 +68,7 @@ export default () => {
 
 const SECTIONS = [
   {
-    title: "Trending Now Tamil",
+    title: homescreen.TRENDING,
     horizontal: true,
     data: [
       {
@@ -100,7 +105,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: "Recently played",
+    title:homescreen.TITLE ,
     horizontal: true,
     data: [
       {
@@ -141,12 +146,12 @@ const SECTIONS = [
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#121212",
+    backgroundColor: color.BLACK,
   },
   sectionHeader: {
     fontWeight: "800",
     fontSize: 25,
-    color: "#f4f4f4",
+    color: color.WHITE,
     marginTop: 5,
     marginBottom: 5,
     alignItems: "center",
@@ -162,10 +167,9 @@ const styles = StyleSheet.create({
     borderRadius:10
   },
   itemText: {
-    color: "#C0C0C0",
+    color: color.SILVER,
     marginTop: 5,
     fontSize: 20,
-    
     textAlign: "center",
   },
   

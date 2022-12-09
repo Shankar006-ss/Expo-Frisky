@@ -11,14 +11,16 @@ import {
 } from "react-native";
 import { ErrorMessage, Signup } from "../../Utility/Constants";
 
+import { color,ErrorMessage,placeholder,screenText } from "../../Utility/Constants";
+
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
+  //Email field validation
   const handleCheckEmail = (text) => {
-    let re = /\S+@\S+\.S+/;
-    let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     setEmail(text);
-    if (re.test(text) || regex.test(text)) {
+    if (email.test(text)) {
       setCheckValidEmail(false);
     } else {
       setCheckValidEmail(true);
@@ -48,13 +50,13 @@ export default function Forget({ navigation }) {
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View >
-            <Text style={styles.title}>{Signup.FORGOTPASSWORD}</Text>
+          <View style={{ marginTop: 50 }}>
+            <Text style={styles.para}>{screenText.FORGOT_TEXT}</Text>
           </View>
           <View style={styles.input}>
             <TextInput
-              style={styles.textInput}
-              placeholder="Email Id"
+              style={styles.header}
+              placeholder={placeholder.EMAIL}
               maxLength={30}
               underlineColorAndroid={"transparent"}
               value={email}
@@ -71,11 +73,11 @@ export default function Forget({ navigation }) {
                 style={styles.button}
                 onPress={handleRegis}
               >
-                <Text style={styles.buttonText}>Send </Text>
+                <Text style={styles.buttonText}>{screenText.SEND_TEXT} </Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity style={styles.button} onPress={handleRegis}>
-                <Text style={styles.buttonText}>Send</Text>
+                <Text style={styles.buttonText}>{screenText.SEND_TEXT}</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 50,
-    color: "#fff",
+    color:color.WHITE ,
   },
   input: {
     margin: 30
@@ -114,26 +116,27 @@ const styles = StyleSheet.create({
     fontSize: 20,
     height: 70,
     marginLeft: 5,
-    borderColor: "#00BFFF",
+    borderColor:color.BLUE,
+
     borderLeftWidth: 15,
     paddingLeft: 20,
     borderRadius: 25,
-    backgroundColor: "white",
+    backgroundColor: color.WHITE,
     marginTop: 50,
     width: 300,
   },
   button: {
     alignItems: "center",
     padding: 15,
-    backgroundColor: "#00BFFF",
     marginTop: 50,
+    backgroundColor: color.BLUE,
     marginBottom: 10,
     borderRadius: 100,
     height: 70,
   },
   buttonText: {
     fontSize: 30,
-    color: "#fff",
+    color: color.WHITE,
     fontWeight: "bold",
     paddingLeft: 10,
   },
@@ -144,7 +147,7 @@ const styles = StyleSheet.create({
   },
 
   emailErrormsg: {
-    color: "red",
+    color: color.RED,
     textAlign: "left",
     fontSize: 17,
     paddingTop: 5,
