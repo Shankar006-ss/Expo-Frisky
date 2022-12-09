@@ -1,19 +1,10 @@
-import { Dimensions } from "react-native";
-
-export const deviceHeight = Dimensions.get("window").height;
-export const deviceWidth = Dimensions.get("window").width;
-
-
 
 export const Signup={
     WELCOME:"Welcome To Frisky",
     SIGNUP:"SignUp",
     SIGNIN:" Already a user?Login here"
-
-    
 }
 export const ErrorMessage={
-   
    NAME:"Name is required",
    EMAIL:"Enter Valid Email",
    PASSWORD:"password must be one upper,lowercase,& 8digit",
@@ -22,12 +13,13 @@ export const ErrorMessage={
 export const color={
    WHITE:"#fff",
    BLUE:"#00BFFF",
-   RED:"#ff0000",
-   BLACK:"#000000",
-   GRAY:'#121212',
-   SILVER:"#C0C0C0"
-   
-   
-   
+   RED:"#FF0000",
+   BLACK:"#000000"
 }
 
+export const screenText={
+    FORGOT_TEXT:"Forgot Password ?",
+    SEND_TEXT:"Send",
+    CHANGE_TEXT:"Change Password",
+    SAVE_TEXT:"Save Changes"
+}

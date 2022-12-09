@@ -9,7 +9,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import { screenText } from "../../Utility/Constants";
+import { color } from "../../Utility/Constants";
+import { ErrorMessage } from "../../Utility/Constants";
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
@@ -54,7 +56,7 @@ export default function Forget({ navigation }) {
             />
           </View>
           <View style={{ marginTop: 50 }}>
-            <Text style={styles.para}>Forgot Password ?</Text>
+            <Text style={styles.para}>{screenText.FORGOT_TEXT}</Text>
           </View>
           <View>
             <TextInput
@@ -66,7 +68,7 @@ export default function Forget({ navigation }) {
               onChangeText={handleCheckEmail}
             />
             {checkValidEmail ? (
-              <Text style={styles.textFailed}>Enter valid Email</Text>
+              <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
             ) : (
               <Text style={styles.textFailed}></Text>
             )}
@@ -76,11 +78,11 @@ export default function Forget({ navigation }) {
                 style={styles.btn}
                 onPress={handleRegis}
               >
-                <Text style={styles.btnTxt}>Send </Text>
+                <Text style={styles.btnTxt}>{screenText.SEND_TEXT} </Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity style={styles.btn} onPress={handleRegis}>
-                <Text style={styles.btnTxt}>Send</Text>
+                <Text style={styles.btnTxt}>{screenText.SEND_TEXT}</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -93,8 +95,7 @@ const styles = StyleSheet.create({
   para: {
     fontSize: 30,
     fontWeight: "bold",
-
-    color: "#fff",
+    color:color.WHITE ,
   },
 
   header: {
@@ -102,20 +103,20 @@ const styles = StyleSheet.create({
 
     height: 70,
     marginLeft: 5,
-    borderColor: "#00BFFF",
+    borderColor:color.BLUE,
 
     borderLeftWidth: 15,
 
     paddingLeft: 20,
     borderRadius: 25,
-    backgroundColor: "white",
+    backgroundColor: color.WHITE,
     marginTop: 50,
     width: 300,
   },
   btn: {
     alignItems: "center",
     padding: 15,
-    backgroundColor: "#00BFFF",
+    backgroundColor: color.BLUE,
     marginTop: 30,
     marginBottom: 10,
     borderRadius: 100,
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
   },
   btnTxt: {
     fontSize: 30,
-    color: "#fff",
+    color: color.WHITE,
     fontWeight: "bold",
     paddingLeft: 10,
   },
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
   },
 
   textFailed: {
-    color: "red",
+    color: color.RED,
     textAlign: "left",
     fontSize: 17,
     paddingTop: 5,
