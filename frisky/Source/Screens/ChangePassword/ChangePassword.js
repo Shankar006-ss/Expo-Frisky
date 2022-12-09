@@ -9,16 +9,19 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { screenText } from "../../Utility/Constants";
+import { color } from "../../Utility/Constants";
+import { ErrorMessage } from "../../Utility/Constants";
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
   const checkPasswordValidity = (text) => {
-    let isNonWhiteSpace =
+    let password =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
-    if (isNonWhiteSpace.test(text)) {
+    if (password.test(text)) {
       setCheckValidPass(false);
     } else {
       setCheckValidPass(true);
@@ -46,7 +49,7 @@ export default function Change({ navigation }) {
             source={require("../../../Image/music-note.png")}
           />
         </View>
-        <Text style={styles.title}>Change Password</Text>
+        <Text style={styles.title}>{screenText.CHANGE_TEXT}</Text>
         <View>
           <TextInput
             style={styles.textInput}
@@ -60,7 +63,7 @@ export default function Change({ navigation }) {
           />
           {checkValidpass ? (
             <Text style={styles.passwordErrormsg}>
-              password must be one upper,lowercase,& 8digit
+              {ErrorMessage.PASSWORD}
             </Text>
           ) : (
             null
@@ -77,7 +80,9 @@ export default function Change({ navigation }) {
           {password == Confirm ? (
             null
           ) : (
-            <Text style={styles.confirmPasswordErrormsg}>password must be same</Text>
+            <Text style={styles.confirmPasswordErrormsg}>
+              {ErrorMessage.CONFIRMPASSWORD}
+            </Text>
           )}
         </View>
         <View>
@@ -86,14 +91,14 @@ export default function Change({ navigation }) {
           password == "" ||
           Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button} >
-              <Text style={styles.buttontext}>Save Changes</Text>
+              <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate("SignIn")}
             >
-              <Text style={styles.buttontext}>Save Changes</Text>
+              <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -120,13 +125,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#fff",
+    color: color.WHITE,
     margin: 40,
   },
   textInput: {
     fontSize: 20,
     height: 70,
-    borderColor: "#00BFFF",
+    borderColor:color.BLUE,
     borderLeftWidth: 15,
     paddingLeft: 30,
     borderRadius: 25,
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
     width: 300,
   },
   button: {
-    backgroundColor: "#00BFFF",
+    backgroundColor:color.BLUE,
     margin: 30,
     height: 70,
     borderRadius: 60,
@@ -144,17 +149,17 @@ const styles = StyleSheet.create({
   },
   buttontext: {
     fontSize: 25,
-    color: "#fff",
+    color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
   },
   passwordErrormsg: {
-    color: "red",
+    color: color.RED,
     paddingLeft: 30,
     textAlign: "left",
   },
   confirmPasswordErrormsg: {
-    color: "red",
+    color: color.RED,
     paddingLeft: 30,
   },
 });
