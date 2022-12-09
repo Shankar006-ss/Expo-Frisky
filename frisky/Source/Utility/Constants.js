@@ -26,7 +26,7 @@ export const color={
 }
 
 export const screenText={
-    FORGOT_TEXT:"Forgot Password ?",
+    FORGOT_TEXT:"Forgot Password",
     SEND_TEXT:"Send",
     CHANGE_TEXT:"Change Password",
     SAVE_TEXT:"Save Changes",

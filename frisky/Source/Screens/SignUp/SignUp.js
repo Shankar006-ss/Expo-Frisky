@@ -9,10 +9,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {Signup} from '../../Utility/Constants';
-import {ErrorMessage} from '../../Utility/Constants';
-import {color,navigations} from '../../Utility/Constants';
-import { Signup,ErrorMessage,color,placeholder} from '../../Utility/Constants';
+
+
+import { Signup,ErrorMessage,color,placeholder,navigations} from '../../Utility/Constants';
 
 
 export default function SignUp({ navigation }) {
@@ -87,7 +86,7 @@ export default function SignUp({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidName ? (
-            <Text style={styles.textFailed}>{ErrorMessage.NAME}</Text>
+            <Text style={styles.errorMsg}>{ErrorMessage.NAME}</Text>
           ) : (
             null
           )}
@@ -99,7 +98,7 @@ export default function SignUp({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidEmail ? (
-            <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
+            <Text style={styles.errorMsg}>{ErrorMessage.EMAIL}</Text>
           ) : (
             null
           )}
@@ -128,7 +127,7 @@ export default function SignUp({ navigation }) {
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
-          {password == Confirm ? (
+          {password == confirm ? (
             null
           ) : (
             <Text style={styles.errorMsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
-    marginTop: 20,
+    marginTop: 10,
 
   },
   header: {
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   inputText: {
-    marginTop: 20,
+    marginTop: 10,
   },
   textInput: {
     color: color.BLACK,
@@ -205,7 +204,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: color.BLUE,
-    marginTop: 30,
+    marginTop: 20,
     borderRadius: 60,
     padding: 15,
   },
@@ -223,11 +222,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
-  //name and email error message
-  textFailed: {
-    color: color.RED,
-    paddingLeft: 20,
-  },
+  
   //password and confirmpassword error message
   errorMsg: {
     color: color.RED,

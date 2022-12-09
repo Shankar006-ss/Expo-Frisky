@@ -105,7 +105,7 @@ const SECTIONS = [
     ],
   },
   {
-    title:homescreen.TITLE ,
+    title:homescreen.RECENT ,
     horizontal: true,
     data: [
       {

@@ -9,14 +9,13 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { screenText } from "../../Utility/Constants";
-import { color } from "../../Utility/Constants";
-import { ErrorMessage,navigations } from "../../Utility/Constants";
 
-import { TextBox } from "../../Common/Style";
-import { ErrorMessage, Signup } from "../../Utility/Constants";
+import { ErrorMessage,navigations,placeholder,color,screenText} from "../../Utility/Constants";
 
-import { color,ErrorMessage,placeholder,screenText } from "../../Utility/Constants";
+
+
+
+
 
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
@@ -55,12 +54,12 @@ export default function Forget({ navigation }) {
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View style={{ marginTop: 50 }}>
-            <Text style={styles.para}>{screenText.FORGOT_TEXT}</Text>
+          <View style={{ marginTop: 0 }}>
+            <Text style={styles.title}>{screenText.FORGOT_TEXT}</Text>
           </View>
           <View style={styles.input}>
             <TextInput
-              style={styles.header}
+              style={styles.textInput}
               placeholder={placeholder.EMAIL}
               maxLength={30}
               underlineColorAndroid={"transparent"}
@@ -104,17 +103,17 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 130,
     margin: 50
   },
   title: {
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 50,
+    marginTop: 30,
     color:color.WHITE ,
   },
   input: {
-    margin: 30
+    margin: 10
   },
 
   textInput: {
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 25,
     backgroundColor: color.WHITE,
-    marginTop: 50,
+    marginTop: 30,
     width: 300,
   },
   button: {
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: 50,
     backgroundColor: color.BLUE,
-    marginBottom: 10,
+  
     borderRadius: 100,
     height: 70,
   },

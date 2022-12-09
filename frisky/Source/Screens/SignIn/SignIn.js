@@ -9,13 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-import { ErrorMessage, Signup,placeholder} from "../../Utility/Constants";
-
-
-
-
-
+import { ErrorMessage, Signup,placeholder,color,navigations} from "../../Utility/Constants";
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,8 +45,7 @@ export default function LogForm({ navigation }) {
           <View>
             <Text style={styles.header}>
            {Signup.WELCOME}
-          
-            </Text>
+          </Text>
           </View>
           <View>
             <Image
@@ -60,7 +53,7 @@ export default function LogForm({ navigation }) {
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View style={styles.inputText}>
+          <View style={styles.inputText1}>
             <TextInput
               style={styles.textInput}
               placeholder={placeholder.EMAIL}
@@ -71,7 +64,8 @@ export default function LogForm({ navigation }) {
               <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
             ) : (
               null
-            )}
+            )}</View>
+            <View style={styles.inputText1}>
             <TextInput
               style={styles.textInput}
               placeholder={placeholder.PASSWORD}
@@ -99,7 +93,7 @@ export default function LogForm({ navigation }) {
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
-                onPress={() => navigation.replace(navigations.HOME_SCREEN)}
+                onPress={() => navigation.replace("Main")}
                 style={styles.button}
               >
                 <Text style={styles.buttonText}>Login</Text>
@@ -108,13 +102,13 @@ export default function LogForm({ navigation }) {
           </View>
           <View style={styles.footer}>
             <Text
-              onPress={() => navigation.navigate(navigations.FORGOT_SCREEN)}
-              style={styles.fp}
+              onPress={() => navigation.navigate("ForgetPassword")}
+              style={styles.footer1}
             >
              {Signup.FORGOT_PASSWORD}
             </Text>
             <Text
-              onPress={() => navigation.navigate(navigations.SIGNUP_SCREEN)}
+              onPress={() => navigation.navigate("SignUp")}
               style={styles.footer2}
             >
               {Signup.CREATE_ACCOUNT}
@@ -125,7 +119,6 @@ export default function LogForm({ navigation }) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container:{
     height: "100%",
@@ -134,40 +127,40 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageBackground:{
-    height: "100%", 
+    height: "100%",
     width: "100%"
   },
   itemContainer:{
-    alignItems: "center", 
-    marginTop: 100, 
+    alignItems: "center",
+    marginTop: 100,
     margin: 50
   },
   header:{
-    color: "#fff", 
-    fontWeight: "bold", 
-    fontSize: 30
+    color: color.WHITE,
+    fontWeight: "bold",
+    fontSize: 30,
+    
   },
-  inputText:{
-    marginTop: 50
+  inputText1:{
+    marginTop: 40
   },
+ 
   footer:{
-   paddingTop:40,
+   paddingTop:20,
    alignItems:'center'
   },
-
   footer1: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#fff",
-    paddingTop:40,
+    color: color.WHITE,
+    paddingTop:20,
   },
   footer2: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#fff",
+    color: color.WHITE,
     paddingTop: 10,
   },
-
   image: {
     height: 100,
     width: 100,
@@ -176,41 +169,39 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 20,
     height: 70,
-    color: "black",
-    marginBottom: 30,
-    backgroundColor: "white",
+    color: color.BLACK,
+    backgroundColor: color.WHITE,
     borderRadius: 25,
     borderLeftWidth: 15,
-    borderLeftColor: "#00BFFF",
+    borderLeftColor: color.BLUE,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 30,
     width: 300,
-    
+
   },
   button: {
     alignItems: "center",
     padding: 10,
-    backgroundColor: "#00BFFF",
+    backgroundColor: color.BLUE,
     borderRadius: 50,
-    marginTop: 5,
+    marginTop: 30,
     width: 300,
     height: 60,
   },
-
   buttonText: {
-    color: "#fff",
+    color: color.WHITE,
     fontWeight: "bold",
     fontSize: 25,
   },
   emailErrormsg: {
-    color: "red",
+    color: color.RED,
     textAlign: "left",
     paddingBottom: 10,
     paddingRight: 10,
   },
   passwordErrormsg: {
-    color: "red",
+    color: color.RED,
     paddingBottom: 10,
     textAlign: "left",
   },
