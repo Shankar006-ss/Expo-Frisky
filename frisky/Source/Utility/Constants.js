@@ -23,8 +23,11 @@ export const color={
    WHITE:"#fff",
    BLUE:"#00BFFF",
    RED:"#ff0000",
-   BLACK:"#000000"
+   BLACK:"#000000",
+   GRAY:'#121212',
+   SILVER:"#C0C0C0"
    
    
    
 }
+

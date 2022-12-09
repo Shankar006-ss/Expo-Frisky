@@ -9,53 +9,53 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {Signup} from '../../Utility/Constants';
-import {ErrorMessage} from '../../Utility/Constants';
-import {color} from '../../Utility/Constants';
+import { Signup } from '../../Utility/Constants';
+import { ErrorMessage } from '../../Utility/Constants';
+import { color } from '../../Utility/Constants';
 
 export default function Reg({ navigation }) {
-  const [checkValidName, setCheckValidateName] = useState(false);
-  const [Name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [checkValidEmail, setCheckValidateEmail] = useState(false);
-  const [password, setPassword] = useState("");
-  const [checkValidPass, setCheckValidPass] = useState(false);
-  const [Confirm, setPass] = useState("");
+  const [CheckValidName, SetCheckValidateName] = useState(false);
+  const [Name, SetName] = useState("");
+  const [Email, SetEmail] = useState("");
+  const [CheckValidEmail, SetCheckValidateEmail] = useState(false);
+  const [Password, SetPassword] = useState("");
+  const [CheckValidPass, SetCheckValidPass] = useState(false);
+  const [Confirm, SetPass] = useState("");
   //name field validation
-  const handleName = (text) => {
+  const NameValid = (text) => {
     let rule = /^[a-zA-Z]{2,11}$/;
-    setName(text);
+    SetName(text);
     if (rule.test(text) || rule == 0) {
-      setCheckValidateName(false);
+      SetCheckValidateName(false);
     } else {
-      setCheckValidateName(true);
+      SetCheckValidateName(true);
     }
   };
   //Email field validation
-  const handleCheckEmail = (text) => {
-    let re = /\S+@\S+\.\S+/;
-    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    setEmail(text);
-    if (re.test(text) || regex.test(text)) {
-      setCheckValidateEmail(false);
+  const CheckEmail = (text) => {
+    
+    let email= /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    SetEmail(text);
+    if ( email.test(text)) {
+      SetCheckValidateEmail(false);
     } else {
-      setCheckValidateEmail(true);
+      SetCheckValidateEmail(true);
     }
   };
   //password validation
-  const checkPasswordValidity = (text) => {
-    let isNonWhiteSpace =
+  const CheckPasswordValidity = (text) => {
+    let password =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    setPassword(text);
-    if (isNonWhiteSpace.test(text)) {
-      setCheckValidPass(false);
+    SetPassword(text);
+    if (password.test(text)) {
+      SetCheckValidPass(false);
     } else {
-      setCheckValidPass(true);
+      SetCheckValidPass(true);
     }
   };
   //Confirm password validation
-  const checkConfirmPasswordValidity = (text) => {
-    setPass(text);
+  const CheckConfirmPasswordValidity = (text) => {
+    SetPass(text);
   };
   return (
     <ImageBackground
@@ -88,11 +88,11 @@ export default function Reg({ navigation }) {
             style={styles.textInput}
             placeholder="Name"
             value={Name}
-            onChange={(e) => setName(e.target.value)}
-            onChangeText={(text) => handleName(text)}
+            onChange={(e) => SetName(e.target.value)}
+            onChangeText={(text) => NameValid(text)}
             underlineColorAndroid={"transparent"}
           />
-          {checkValidName ? (
+          {CheckValidName ? (
             <Text style={styles.textFailed}>{ErrorMessage.NAME}</Text>
           ) : (
             <Text style={styles.textFailed}></Text>
@@ -100,11 +100,11 @@ export default function Reg({ navigation }) {
           <TextInput
             style={styles.textInput}
             placeholder="Email"
-            value={email}
-            onChangeText={(text) => handleCheckEmail(text)}
+            value={Email}
+            onChangeText={(text) => CheckEmail(text)}
             underlineColorAndroid={"transparent"}
           />
-          {checkValidEmail ? (
+          {CheckValidEmail ? (
             <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
           ) : (
             <Text style={styles.textFailed}></Text>
@@ -112,13 +112,13 @@ export default function Reg({ navigation }) {
           <TextInput
             style={styles.textInput}
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onChangeText={(text) => checkPasswordValidity(text)}
+            value={Password}
+            onChange={(e) => SetPassword(e.target.value)}
+            onChangeText={(text) => CheckPasswordValidity(text)}
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
-          {checkValidPass ? (
+          {CheckValidPass ? (
             <Text style={styles.error}>
               {ErrorMessage.PASSWORD}
             </Text>
@@ -129,24 +129,24 @@ export default function Reg({ navigation }) {
             style={styles.textInput}
             placeholder="Confirm Password"
             value={Confirm}
-            onChange={(e) => setPass(e.target.value)}
-            onChangeText={(text) => checkConfirmPasswordValidity(text)}
+            onChange={(e) => SetPass(e.target.value)}
+            onChangeText={(text) => CheckConfirmPasswordValidity(text)}
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
-          {password == Confirm ? (
+          {Password == Confirm ? (
             <Text style={styles.errors}></Text>
           ) : (
             <Text style={styles.errors}>{ErrorMessage.CONFIRMPASSWORD}</Text>
           )}
-          {checkValidName ||
-          checkValidPass ||
-          checkValidEmail ||
-          password != Confirm ||
-          password == "" ||
-          email == "" ||
-          Name == "" ||
-          Confirm == "" ? (
+          {CheckValidName ||
+            CheckValidPass ||
+            CheckValidEmail ||
+            Password != Confirm ||
+            Password == "" ||
+            Email == "" ||
+            Name == "" ||
+            Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button}>
               <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
