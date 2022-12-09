@@ -60,30 +60,23 @@ export default function Reg({ navigation }) {
   return (
     <ImageBackground
       source={require("../../../Image/background.jpg")}
-      style={{ height: "100%", width: "100%", flex: 1 }}
+      style={styles.imageBackground}
       resizeMode="cover"
     >
-      <View
-        style={{
-          height: "100%",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.container}>
         <StatusBar
           translucent
           backgroundColor="black"
           barStyle="light-content"
         />
-        <Text style={styles.logo}>{Signup.WELCOME}</Text>
-        <View style={styles.img1}>
+        <Text style={styles.header}>{Signup.WELCOME}</Text>
+        <View>
           <Image
-            style={styles.img}
+            style={styles.image}
             source={require("../../../Image/music-note.png")}
           />
         </View>
-        <View style={styles.line}>
+        <View style={styles.inputText}>
           <TextInput
             style={styles.textInput}
             placeholder="Name"
@@ -95,7 +88,7 @@ export default function Reg({ navigation }) {
           {checkValidName ? (
             <Text style={styles.textFailed}>{ErrorMessage.NAME}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
           <TextInput
             style={styles.textInput}
@@ -107,7 +100,7 @@ export default function Reg({ navigation }) {
           {checkValidEmail ? (
             <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
           <TextInput
             style={styles.textInput}
@@ -119,11 +112,11 @@ export default function Reg({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidPass ? (
-            <Text style={styles.error}>
+            <Text style={styles.errorMsg}>
               {ErrorMessage.PASSWORD}
             </Text>
           ) : (
-            <Text style={styles.error}></Text>
+            null
           )}
           <TextInput
             style={styles.textInput}
@@ -135,9 +128,9 @@ export default function Reg({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {password == Confirm ? (
-            <Text style={styles.errors}></Text>
+            null
           ) : (
-            <Text style={styles.errors}>{ErrorMessage.CONFIRMPASSWORD}</Text>
+            <Text style={styles.errorMsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
           )}
           {checkValidName ||
           checkValidPass ||
@@ -148,19 +141,19 @@ export default function Reg({ navigation }) {
           Name == "" ||
           Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button}>
-              <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
+              <Text style={styles.buttonText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate("Main")}
             >
-              <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
+              <Text style={styles.buttonText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           )}
           <Text
             onPress={() => navigation.navigate("SignIn")}
-            style={styles.bottom}
+            style={styles.footer}
           >
             {Signup.SIGNIN}
           </Text>
@@ -170,27 +163,37 @@ export default function Reg({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  img1: {
-    marginTop: 20,
+  container:{
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  img: {
+  imageBackground:{
+     height: "100%", 
+     width: "100%"
+  },
+  
+  image: {
     height: 100,
     width: 100,
+    marginTop: 20,
+
   },
-  logo: {
+  header: {
     color: color.WHITE,
     fontWeight: "bold",
     fontSize: 30,
     marginTop: 30,
   },
-  line: {
-    marginTop: 10,
+  inputText: {
+    marginTop: 20,
   },
   textInput: {
     color: color.BLACK,
     fontSize: 20,
     height: 70,
-    marginTop: 10,
+    marginTop: 20,
     borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
@@ -205,13 +208,13 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     padding: 15,
   },
-  btnText: {
+  buttonText: {
     fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
   },
-  bottom: {
+  footer: {
     fontSize: 20,
     color: color.WHITE,
     fontWeight: "bold",
@@ -219,16 +222,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
+  //name and email error message
   textFailed: {
     color: color.RED,
     paddingLeft: 20,
   },
-  error: {
+  //password and confirmpassword error message
+  errorMsg: {
     color: color.RED,
     paddingLeft: 10,
-  },
-  errors: {
-    color: color.RED,
-    paddingLeft: 10,
-  },
+  }
+  
 });

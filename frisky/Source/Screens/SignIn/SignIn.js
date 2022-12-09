@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 
-import {constant} from "../../Utility/Constants";
+import { ErrorMessage, Signup} from "../../Utility/Constants";
 
 
 export default function LogForm({ navigation }) {
@@ -47,18 +47,17 @@ export default function LogForm({ navigation }) {
       >
         <View style={styles.itemContainer}>
           <View>
-         
-            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 30 }}>
-           {constant.Welcome}
+            <Text style={styles.header}>
+           {Signup.WELCOME}
             </Text>
           </View>
-          <View style={{ marginTop: 20 }}>
+          <View>
             <Image
-              style={styles.img}
+              style={styles.image}
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View style={{ marginTop: 50 }}>
+          <View style={styles.inputText}>
             <TextInput
               style={styles.textInput}
               placeholder=" Email"
@@ -66,9 +65,9 @@ export default function LogForm({ navigation }) {
               onChangeText={handleCheckEmail}
             />
             {checkValidEmail ? (
-              <Text style={styles.textFailed}>Enter valid email</Text>
+              <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
             ) : (
-              <Text style={styles.textFailed}></Text>
+              null
             )}
             <TextInput
               style={styles.textInput}
@@ -79,45 +78,43 @@ export default function LogForm({ navigation }) {
               secureTextEntry={true}
             />
             {checkValidPass ? (
-              <Text style={styles.error}>
-                password must be one upper,lowercase,& 8digit
+              <Text style={styles.passwordErrormsg}>
+              {ErrorMessage.PASSWORD}
               </Text>
             ) : (
-              <Text style={styles.error}></Text>
+              null
             )}
           </View>
-          <View style={{}}>
+          <View>
             {email == "" || password == "" || checkValidEmail == true ? (
               <TouchableOpacity
                 onPress={() => this.functionCombined()}
                 disabled
                 style={styles.button}
               >
-                <Text style={styles.btnText}>Login</Text>
+                <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
                 onPress={() => navigation.replace("Main")}
                 style={styles.button}
               >
-                <Text style={styles.btnText}>Login</Text>
+                <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
             )}
           </View>
-          <View style={{ paddingTop: 50 }}>
+          <View style={styles.footer}>
             <Text
               onPress={() => navigation.navigate("ForgetPassword")}
-              style={styles.fp}
+              style={styles.footer1}
             >
-              Forgot Password?
+             {Signup.FORGOT_PASSWORD}
             </Text>
-          </View>
-          <View style={styles.line}>
             <Text
               onPress={() => navigation.navigate("SignUp")}
-              style={styles.cr}
+              style={styles.footer2}
             >
-              Create a new Account?
+              {Signup.CREATE_ACCOUNT}
             </Text>
           </View>
         </View>
@@ -125,6 +122,7 @@ export default function LogForm({ navigation }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container:{
     height: "100%",
@@ -141,27 +139,42 @@ const styles = StyleSheet.create({
     marginTop: 100, 
     margin: 50
   },
-  fp: {
+  header:{
+    color: "#fff", 
+    fontWeight: "bold", 
+    fontSize: 30
+  },
+  inputText:{
+    marginTop: 50
+  },
+  footer:{
+   paddingTop:40,
+   alignItems:'center'
+  },
+
+  footer1: {
     fontSize: 20,
     fontWeight: "bold",
     color: "#fff",
+    paddingTop:40,
   },
-  cr: {
+  footer2: {
     fontSize: 20,
     fontWeight: "bold",
     color: "#fff",
     paddingTop: 10,
   },
 
-  img: {
+  image: {
     height: 100,
     width: 100,
+    marginTop: 20
   },
   textInput: {
     fontSize: 20,
     height: 70,
     color: "black",
-    marginBottom: 10,
+    marginBottom: 30,
     backgroundColor: "white",
     borderRadius: 25,
     borderLeftWidth: 15,
@@ -170,6 +183,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 30,
     width: 300,
+    
   },
   button: {
     alignItems: "center",
@@ -181,25 +195,18 @@ const styles = StyleSheet.create({
     height: 60,
   },
 
-  btnText: {
+  buttonText: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 25,
   },
-  logo: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 25,
-    textAlign: "center",
-  },
-
-  textFailed: {
+  emailErrormsg: {
     color: "red",
     textAlign: "left",
     paddingBottom: 10,
     paddingRight: 10,
   },
-  error: {
+  passwordErrormsg: {
     color: "red",
     paddingBottom: 10,
     textAlign: "left",

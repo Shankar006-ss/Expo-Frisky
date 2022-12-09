@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Signup } from "../../Utility/Constants";
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
@@ -46,7 +47,7 @@ export default function Change({ navigation }) {
             source={require("../../../Image/music-note.png")}
           />
         </View>
-        <Text style={styles.title}>Change Password</Text>
+        <Text style={styles.title}>{Signup.CHANGE_PASSWORD}</Text>
         <View>
           <TextInput
             style={styles.textInput}
@@ -86,14 +87,14 @@ export default function Change({ navigation }) {
           password == "" ||
           Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button} >
-              <Text style={styles.buttontext}>Save Changes</Text>
+              <Text style={styles.buttonText}>Save Changes</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate("SignIn")}
             >
-              <Text style={styles.buttontext}>Save Changes</Text>
+              <Text style={styles.buttonText}>Save Changes</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     width: 300,
     padding: 15,
   },
-  buttontext: {
+  buttonText: {
     fontSize: 25,
     color: "#fff",
     fontWeight: "bold",
