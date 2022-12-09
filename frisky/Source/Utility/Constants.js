@@ -21,5 +21,15 @@ export const screenText={
     FORGOT_TEXT:"Forgot Password ?",
     SEND_TEXT:"Send",
     CHANGE_TEXT:"Change Password",
-    SAVE_TEXT:"Save Changes"
+    SAVE_TEXT:"Save Changes",
+}
+
+export const navigations={
+    HOME_SCREEN:"Main",
+    SIGNIN_SCREEN:"SignIn",
+    SIGNUP_SCREEN:"SignUp",
+    FORGOT_SCREEN:"ForgetPassword",
+    CHANGE_SCREEN:"ChangePassword",
+
+
 }

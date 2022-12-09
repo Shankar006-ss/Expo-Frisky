@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import {Signup} from '../../Utility/Constants';
 import {ErrorMessage} from '../../Utility/Constants';
-import {color} from '../../Utility/Constants';
+import {color,navigations} from '../../Utility/Constants';
 
 export default function Reg({ navigation }) {
   const [checkValidName, setCheckValidateName] = useState(false);
@@ -153,13 +153,13 @@ export default function Reg({ navigation }) {
           ) : (
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("Main")}
+              onPress={() => navigation.navigate(navigations.HOME_SCREEN)}
             >
               <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           )}
           <Text
-            onPress={() => navigation.navigate("SignIn")}
+            onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
             style={styles.bottom}
           >
             {Signup.SIGNIN}

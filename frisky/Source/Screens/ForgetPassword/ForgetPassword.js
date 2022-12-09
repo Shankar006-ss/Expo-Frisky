@@ -11,7 +11,9 @@ import {
 } from "react-native";
 import { screenText } from "../../Utility/Constants";
 import { color } from "../../Utility/Constants";
-import { ErrorMessage } from "../../Utility/Constants";
+import { ErrorMessage,navigations } from "../../Utility/Constants";
+
+import { TextBox } from "../../Common/Style";
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
@@ -28,7 +30,7 @@ export default function Forget({ navigation }) {
   const handleRegis = () => {
     const checkPassword = handleCheckEmail(email);
     if (!checkPassword) {
-      navigation.navigate("ChangePassword");
+      navigation.navigate(navigations.CHANGE_SCREEN);
     } else {
       alert(checkPassword);
     }
@@ -95,18 +97,15 @@ const styles = StyleSheet.create({
   para: {
     fontSize: 30,
     fontWeight: "bold",
-    color:color.WHITE ,
+    color: color.WHITE,
   },
 
   header: {
     fontSize: 20,
-
     height: 70,
     marginLeft: 5,
-    borderColor:color.BLUE,
-
+    borderColor: color.BLUE,
     borderLeftWidth: 15,
-
     paddingLeft: 20,
     borderRadius: 25,
     backgroundColor: color.WHITE,

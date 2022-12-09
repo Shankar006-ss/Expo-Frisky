@@ -1,6 +1,7 @@
 
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { navigations } from "../../../Utility/Constants";
 
 export default function Account({navigation}) {
   
@@ -8,7 +9,7 @@ export default function Account({navigation}) {
     <View style={{backgroundColor:'#121212',height:'100%',width:'100%'}}>
     <View>
       <TouchableOpacity
-        onPress={() => navigation.replace("SignIn")}
+        onPress={() => navigation.replace(navigations.SIGNIN_SCREEN)}
         style={styles.button}
       >
         <Text style={styles.search}>Logout</Text>

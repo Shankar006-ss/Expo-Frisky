@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 import {WELCOME_TO_FRISKY} from "../../Utility/Constants";
-
+import { navigations } from "../../Utility/Constants";
 
 
 console.log(WELCOME_TO_FRISKY);
@@ -100,7 +100,7 @@ export default function LogForm({ navigation }) {
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
-                onPress={() => navigation.replace("Main")}
+                onPress={() => navigation.replace(navigations.HOME_SCREEN)}
                 style={styles.button}
               >
                 <Text style={styles.btnText}>Login</Text>
@@ -109,7 +109,7 @@ export default function LogForm({ navigation }) {
           </View>
           <View style={{ paddingTop: 50 }}>
             <Text
-              onPress={() => navigation.navigate("ForgetPassword")}
+              onPress={() => navigation.navigate(navigations.FORGOT_SCREEN)}
               style={styles.fp}
             >
               Forgot Password?
@@ -117,7 +117,7 @@ export default function LogForm({ navigation }) {
           </View>
           <View style={styles.line}>
             <Text
-              onPress={() => navigation.navigate("SignUp")}
+              onPress={() => navigation.navigate(navigations.SIGNUP_SCREEN)}
               style={styles.cr}
             >
               Create a new Account?

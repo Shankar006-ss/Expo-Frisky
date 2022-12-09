@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export default function () {
+export default function TextBox() {
   return StyleSheet.create({
     inputField: {
       fontSize: 20,

@@ -12,6 +12,7 @@ import {
 import { screenText } from "../../Utility/Constants";
 import { color } from "../../Utility/Constants";
 import { ErrorMessage } from "../../Utility/Constants";
+import { navigations } from "../../Utility/Constants";
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
@@ -96,7 +97,7 @@ export default function Change({ navigation }) {
           ) : (
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("SignIn")}
+              onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
             >
               <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
