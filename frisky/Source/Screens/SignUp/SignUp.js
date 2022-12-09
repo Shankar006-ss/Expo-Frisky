@@ -9,6 +9,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import {Signup} from '../../Utility/Constants';
+import {ErrorMessage} from '../../Utility/Constants';
+import {color} from '../../Utility/Constants';
+
 export default function Reg({ navigation }) {
   const [checkValidName, setCheckValidateName] = useState(false);
   const [Name, setName] = useState("");
@@ -72,7 +76,7 @@ export default function Reg({ navigation }) {
           backgroundColor="black"
           barStyle="light-content"
         />
-        <Text style={styles.logo}>Welcome To Frisky</Text>
+        <Text style={styles.logo}>{Signup.WELCOME}</Text>
         <View style={styles.img1}>
           <Image
             style={styles.img}
@@ -89,7 +93,7 @@ export default function Reg({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidName ? (
-            <Text style={styles.textFailed}>Name is required</Text>
+            <Text style={styles.textFailed}>{ErrorMessage.NAME}</Text>
           ) : (
             <Text style={styles.textFailed}></Text>
           )}
@@ -101,7 +105,7 @@ export default function Reg({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidEmail ? (
-            <Text style={styles.textFailed}>Enter valid Email</Text>
+            <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
           ) : (
             <Text style={styles.textFailed}></Text>
           )}
@@ -116,7 +120,7 @@ export default function Reg({ navigation }) {
           />
           {checkValidPass ? (
             <Text style={styles.error}>
-              password must be one upper,lowercase,& 8digit
+              {ErrorMessage.PASSWORD}
             </Text>
           ) : (
             <Text style={styles.error}></Text>
@@ -133,7 +137,7 @@ export default function Reg({ navigation }) {
           {password == Confirm ? (
             <Text style={styles.errors}></Text>
           ) : (
-            <Text style={styles.errors}>password must be same</Text>
+            <Text style={styles.errors}>{ErrorMessage.CONFIRMPASSWORD}</Text>
           )}
           {checkValidName ||
           checkValidPass ||
@@ -144,21 +148,21 @@ export default function Reg({ navigation }) {
           Name == "" ||
           Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button}>
-              <Text style={styles.btnText}>SignUp</Text>
+              <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate("Main")}
             >
-              <Text style={styles.btnText}>SignUp</Text>
+              <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           )}
           <Text
             onPress={() => navigation.navigate("SignIn")}
             style={styles.bottom}
           >
-            Already a user? Login here
+            {Signup.SIGNIN}
           </Text>
         </View>
       </View>
@@ -174,7 +178,7 @@ const styles = StyleSheet.create({
     width: 100,
   },
   logo: {
-    color: "#fff",
+    color: color.WHITE,
     fontWeight: "bold",
     fontSize: 30,
     marginTop: 30,
@@ -183,48 +187,48 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   textInput: {
-    color: "black",
+    color: color.BLACK,
     fontSize: 20,
     height: 70,
     marginTop: 10,
-    borderColor: "#00BFFF",
+    borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
     paddingLeft: 30,
     borderRadius: 25,
-    backgroundColor: "white",
+    backgroundColor: color.WHITE,
     width: 300,
   },
   button: {
-    backgroundColor: "#00BFFF",
+    backgroundColor: color.BLUE,
     marginTop: 30,
     borderRadius: 60,
     padding: 15,
   },
   btnText: {
     fontSize: 25,
-    color: "#fff",
+    color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
   },
   bottom: {
     fontSize: 20,
-    color: "white",
+    color: color.WHITE,
     fontWeight: "bold",
     alignItems: "center",
     textAlign: "center",
     paddingTop: 20,
   },
   textFailed: {
-    color: "red",
+    color: color.RED,
     paddingLeft: 20,
   },
   error: {
-    color: "red",
+    color: color.RED,
     paddingLeft: 10,
   },
   errors: {
-    color: "red",
+    color: color.RED,
     paddingLeft: 10,
   },
 });
