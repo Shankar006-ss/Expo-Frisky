@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   Image,
@@ -11,8 +10,11 @@ import {
   View,
 } from "react-native";
 
-export default function LogForm() {
-  const navigation = useNavigation();
+import {WELCOME_TO_FRISKY} from "../../Utility/Constants";
+
+console.log(WELCOME_TO_FRISKY);
+
+export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
@@ -53,8 +55,9 @@ export default function LogForm() {
       >
         <View style={{ alignItems: "center", marginTop: 100, margin: 50 }}>
           <View>
+         
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 30 }}>
-              Welcome To Frisky
+           { WELCOME_TO_FRISKY}
             </Text>
           </View>
           <View style={{ marginTop: 20 }}>
@@ -114,7 +117,7 @@ export default function LogForm() {
               onPress={() => navigation.navigate("ForgetPassword")}
               style={styles.fp}
             >
-              Forget Password?
+              Forgot Password?
             </Text>
           </View>
           <View style={styles.line}>

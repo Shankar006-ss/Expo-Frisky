@@ -1,10 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
+
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Account() {
-  const navigation = useNavigation();
+export default function Account({navigation}) {
+  
   return (
+    <View style={{backgroundColor:'#121212',height:'100%',width:'100%'}}>
     <View>
       <TouchableOpacity
         onPress={() => navigation.replace("SignIn")}
@@ -12,6 +13,7 @@ export default function Account() {
       >
         <Text style={styles.search}>Logout</Text>
       </TouchableOpacity>
+    </View>
     </View>
   );
 }
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
 
   button: {
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "#121212",
     marginTop: 300,
     margin: 110,
     padding: 15,

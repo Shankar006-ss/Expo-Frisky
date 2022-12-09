@@ -1,19 +1,21 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
-  Image, ImageBackground, StatusBar, StyleSheet,
+  Image,
+  ImageBackground,
+  StatusBar,
+  StyleSheet,
   Text,
-  TextInput, TouchableOpacity, View
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
-export default function Reg() {
- 
-  const navigation = useNavigation();
-  const [checkValidName, setCheckValidateName] = useState(true);
+export default function Reg({ navigation }) {
+  const [checkValidName, setCheckValidateName] = useState(false);
   const [Name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [checkValidEmail, setCheckValidateEmail] = useState(true);
+  const [checkValidEmail, setCheckValidateEmail] = useState(false);
   const [password, setPassword] = useState("");
-  const [checkValidPass, setCheckValidPass] = useState(true);
+  const [checkValidPass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
   //name field validation
   const handleName = (text) => {
@@ -38,12 +40,12 @@ export default function Reg() {
   };
   //password validation
   const checkPasswordValidity = (text) => {
-    let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    let isNonWhiteSpace =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
     if (isNonWhiteSpace.test(text)) {
       setCheckValidPass(false);
-    }
-    else {
+    } else {
       setCheckValidPass(true);
     }
   };
@@ -52,18 +54,30 @@ export default function Reg() {
     setPass(text);
   };
   return (
-    <ImageBackground source={require('../../../Image/background.jpg')} style={{ height: "100%", width: "100%", flex: 1 }} resizeMode='cover'>
-      <View style={{
-        height: "100%",
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        
-      }}>
-        <StatusBar translucent backgroundColor="black" barStyle="light-content" />
+    <ImageBackground
+      source={require("../../../Image/background.jpg")}
+      style={{ height: "100%", width: "100%", flex: 1 }}
+      resizeMode="cover"
+    >
+      <View
+        style={{
+          height: "100%",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <StatusBar
+          translucent
+          backgroundColor="black"
+          barStyle="light-content"
+        />
         <Text style={styles.logo}>Welcome To Frisky</Text>
         <View style={styles.img1}>
-          <Image style={styles.img} source={require("../../../Image/music-note.png")} />
+          <Image
+            style={styles.img}
+            source={require("../../../Image/music-note.png")}
+          />
         </View>
         <View style={styles.line}>
           <TextInput
@@ -101,13 +115,15 @@ export default function Reg() {
             underlineColorAndroid={"transparent"}
           />
           {checkValidPass ? (
-            <Text style={styles.error}>password must be one upper,lowercase,& 8digit</Text>
+            <Text style={styles.error}>
+              password must be one upper,lowercase,& 8digit
+            </Text>
           ) : (
             <Text style={styles.error}></Text>
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="ConfirmPassword"
+            placeholder="Confirm Password"
             value={Confirm}
             onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}
@@ -119,18 +135,22 @@ export default function Reg() {
           ) : (
             <Text style={styles.errors}>password must be same</Text>
           )}
-          {(checkValidName) ||
-            (checkValidPass) ||
-            (checkValidEmail) ||
-            password != Confirm ? (
-            <TouchableOpacity
-              disabled
-              style={styles.button}
-            >
+          {checkValidName ||
+          checkValidPass ||
+          checkValidEmail ||
+          password != Confirm ||
+          password == "" ||
+          email == "" ||
+          Name == "" ||
+          Confirm == "" ? (
+            <TouchableOpacity disabled style={styles.button}>
               <Text style={styles.btnText}>SignUp</Text>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Main")}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("Main")}
+            >
               <Text style={styles.btnText}>SignUp</Text>
             </TouchableOpacity>
           )}
@@ -138,7 +158,7 @@ export default function Reg() {
             onPress={() => navigation.navigate("SignIn")}
             style={styles.bottom}
           >
-            Already a user?Login here
+            Already a user? Login here
           </Text>
         </View>
       </View>
@@ -147,7 +167,7 @@ export default function Reg() {
 }
 const styles = StyleSheet.create({
   img1: {
-    marginTop: 20
+    marginTop: 20,
   },
   img: {
     height: 100,
@@ -157,23 +177,23 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 30,
-    marginTop: 30
+    marginTop: 30,
   },
   line: {
-    marginTop: 10
+    marginTop: 10,
   },
   textInput: {
     color: "black",
     fontSize: 20,
     height: 70,
     marginTop: 10,
-    borderColor: '#00BFFF',
+    borderColor: "#00BFFF",
     borderWidth: 1,
     borderLeftWidth: 15,
     paddingLeft: 30,
     borderRadius: 25,
-    backgroundColor: 'white',
-    width: 300
+    backgroundColor: "white",
+    width: 300,
   },
   button: {
     backgroundColor: "#00BFFF",
@@ -185,14 +205,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "#fff",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   bottom: {
     fontSize: 20,
     color: "white",
     fontWeight: "bold",
     alignItems: "center",
-    textAlign: 'center',
+    textAlign: "center",
     paddingTop: 20,
   },
   textFailed: {

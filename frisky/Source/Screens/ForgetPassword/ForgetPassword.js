@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   Image,
@@ -11,8 +10,7 @@ import {
   View,
 } from "react-native";
 
-export default function Forget() {
-  const navigation = useNavigation();
+export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const handleCheckEmail = (text) => {
@@ -56,7 +54,7 @@ export default function Forget() {
             />
           </View>
           <View style={{ marginTop: 50 }}>
-            <Text style={styles.para}>Forget Password ?</Text>
+            <Text style={styles.para}>Forgot Password ?</Text>
           </View>
           <View>
             <TextInput
