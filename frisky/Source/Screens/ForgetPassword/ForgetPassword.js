@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import { forgotScreenText } from "../../Utility/Constants";
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
@@ -54,7 +54,7 @@ export default function Forget({ navigation }) {
             />
           </View>
           <View style={{ marginTop: 50 }}>
-            <Text style={styles.para}>Forgot Password ?</Text>
+            <Text style={styles.para}>{forgotScreenText.FORGOT_TEXT}</Text>
           </View>
           <View>
             <TextInput
@@ -76,11 +76,11 @@ export default function Forget({ navigation }) {
                 style={styles.btn}
                 onPress={handleRegis}
               >
-                <Text style={styles.btnTxt}>Send </Text>
+                <Text style={styles.btnTxt}>{forgotScreenText.SEND_TEXT} </Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity style={styles.btn} onPress={handleRegis}>
-                <Text style={styles.btnTxt}>Send</Text>
+                <Text style={styles.btnTxt}>{forgotScreenText.SEND_TEXT}</Text>
               </TouchableOpacity>
             )}
           </View>

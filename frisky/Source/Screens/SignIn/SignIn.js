@@ -10,9 +10,10 @@ import {
   View,
 } from "react-native";
 
-import {WELCOME_TO_FRISKY} from "../../Utility/Constants";
 
 
+
+console.log(WELCOME_TO_FRISKY);
 
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
@@ -57,7 +58,7 @@ export default function LogForm({ navigation }) {
           <View>
          
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 30 }}>
-           { WELCOME_TO_FRISKY}
+          Welcome to Frisky
             </Text>
           </View>
           <View style={{ marginTop: 20 }}>
