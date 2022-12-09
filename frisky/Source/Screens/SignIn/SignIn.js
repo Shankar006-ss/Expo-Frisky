@@ -12,7 +12,7 @@ import {
 
 import {WELCOME_TO_FRISKY} from "../../Utility/Constants";
 
-console.log(WELCOME_TO_FRISKY);
+
 
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
