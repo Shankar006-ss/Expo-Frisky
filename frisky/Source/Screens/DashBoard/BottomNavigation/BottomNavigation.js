@@ -1,5 +1,4 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { StyleSheet } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Account from "../SubScreen/Account";
 import Library from "../SubScreen/Library";
@@ -56,6 +55,4 @@ export default function NavBar() {
     </Tab.Navigator>
   );
 }
-const styles = StyleSheet.create({
-  NavBar: {},
-});
+

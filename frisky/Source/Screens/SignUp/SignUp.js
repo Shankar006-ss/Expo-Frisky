@@ -12,17 +12,19 @@ import {
 import {Signup} from '../../Utility/Constants';
 import {ErrorMessage} from '../../Utility/Constants';
 import {color,navigations} from '../../Utility/Constants';
+import { Signup,ErrorMessage,color,placeholder} from '../../Utility/Constants';
 
-export default function Reg({ navigation }) {
+
+export default function SignUp({ navigation }) {
   const [checkValidName, setCheckValidateName] = useState(false);
-  const [Name, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidateEmail] = useState(false);
   const [password, setPassword] = useState("");
   const [checkValidPass, setCheckValidPass] = useState(false);
-  const [Confirm, setPass] = useState("");
+  const [confirm, setPass] = useState("");
   //name field validation
-  const handleName = (text) => {
+  const NameValid = (text) => {
     let rule = /^[a-zA-Z]{2,11}$/;
     setName(text);
     if (rule.test(text) || rule == 0) {
@@ -32,11 +34,10 @@ export default function Reg({ navigation }) {
     }
   };
   //Email field validation
-  const handleCheckEmail = (text) => {
-    let re = /\S+@\S+\.\S+/;
-    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  const checkEmail = (text) => {
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     setEmail(text);
-    if (re.test(text) || regex.test(text)) {
+    if (email.test(text)) {
       setCheckValidateEmail(false);
     } else {
       setCheckValidateEmail(true);
@@ -44,10 +45,10 @@ export default function Reg({ navigation }) {
   };
   //password validation
   const checkPasswordValidity = (text) => {
-    let isNonWhiteSpace =
+    let password =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
-    if (isNonWhiteSpace.test(text)) {
+    if (password.test(text)) {
       setCheckValidPass(false);
     } else {
       setCheckValidPass(true);
@@ -60,58 +61,51 @@ export default function Reg({ navigation }) {
   return (
     <ImageBackground
       source={require("../../../Image/background.jpg")}
-      style={{ height: "100%", width: "100%", flex: 1 }}
+      style={styles.imageBackground}
       resizeMode="cover"
     >
-      <View
-        style={{
-          height: "100%",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.container}>
         <StatusBar
           translucent
           backgroundColor="black"
           barStyle="light-content"
         />
-        <Text style={styles.logo}>{Signup.WELCOME}</Text>
-        <View style={styles.img1}>
+        <Text style={styles.header}>{Signup.WELCOME}</Text>
+        <View>
           <Image
-            style={styles.img}
+            style={styles.image}
             source={require("../../../Image/music-note.png")}
           />
         </View>
-        <View style={styles.line}>
+        <View style={styles.inputText}>
           <TextInput
             style={styles.textInput}
-            placeholder="Name"
-            value={Name}
+            placeholder={placeholder.NAME}
+            value={name}
             onChange={(e) => setName(e.target.value)}
-            onChangeText={(text) => handleName(text)}
+            onChangeText={(text) => NameValid(text)}
             underlineColorAndroid={"transparent"}
           />
           {checkValidName ? (
             <Text style={styles.textFailed}>{ErrorMessage.NAME}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Email"
+            placeholder={placeholder.EMAIL}
             value={email}
-            onChangeText={(text) => handleCheckEmail(text)}
+            onChangeText={(text) => checkEmail(text)}
             underlineColorAndroid={"transparent"}
           />
           {checkValidEmail ? (
             <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Password"
+            placeholder={placeholder.PASSWORD}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onChangeText={(text) => checkPasswordValidity(text)}
@@ -119,48 +113,48 @@ export default function Reg({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidPass ? (
-            <Text style={styles.error}>
+            <Text style={styles.errorMsg}>
               {ErrorMessage.PASSWORD}
             </Text>
           ) : (
-            <Text style={styles.error}></Text>
+            null
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Confirm Password"
-            value={Confirm}
+            placeholder={placeholder.CONFIRM}
+            value={confirm}
             onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
           {password == Confirm ? (
-            <Text style={styles.errors}></Text>
+            null
           ) : (
-            <Text style={styles.errors}>{ErrorMessage.CONFIRMPASSWORD}</Text>
+            <Text style={styles.errorMsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
           )}
           {checkValidName ||
-          checkValidPass ||
-          checkValidEmail ||
-          password != Confirm ||
-          password == "" ||
-          email == "" ||
-          Name == "" ||
-          Confirm == "" ? (
+            checkValidPass ||
+            checkValidEmail ||
+            password != confirm ||
+            password == "" ||
+            email == "" ||
+            name == "" ||
+            confirm == "" ? (
             <TouchableOpacity disabled style={styles.button}>
-              <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
+              <Text style={styles.buttonText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate(navigations.HOME_SCREEN)}
             >
-              <Text style={styles.btnText}>{Signup.SIGNUP}</Text>
+              <Text style={styles.buttonText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           )}
           <Text
             onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
-            style={styles.bottom}
+            style={styles.footer}
           >
             {Signup.SIGNIN}
           </Text>
@@ -170,27 +164,37 @@ export default function Reg({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  img1: {
-    marginTop: 20,
+  container:{
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  img: {
+  imageBackground:{
+     height: "100%", 
+     width: "100%"
+  },
+  
+  image: {
     height: 100,
     width: 100,
+    marginTop: 20,
+
   },
-  logo: {
+  header: {
     color: color.WHITE,
     fontWeight: "bold",
     fontSize: 30,
     marginTop: 30,
   },
-  line: {
-    marginTop: 10,
+  inputText: {
+    marginTop: 20,
   },
   textInput: {
     color: color.BLACK,
     fontSize: 20,
     height: 70,
-    marginTop: 10,
+    marginTop: 20,
     borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
@@ -205,13 +209,13 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     padding: 15,
   },
-  btnText: {
+  buttonText: {
     fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
   },
-  bottom: {
+  footer: {
     fontSize: 20,
     color: color.WHITE,
     fontWeight: "bold",
@@ -219,16 +223,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
+  //name and email error message
   textFailed: {
     color: color.RED,
     paddingLeft: 20,
   },
-  error: {
+  //password and confirmpassword error message
+  errorMsg: {
     color: color.RED,
     paddingLeft: 10,
-  },
-  errors: {
-    color: color.RED,
-    paddingLeft: 10,
-  },
+  }
+  
 });

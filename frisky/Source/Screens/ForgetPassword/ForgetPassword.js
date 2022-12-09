@@ -14,14 +14,18 @@ import { color } from "../../Utility/Constants";
 import { ErrorMessage,navigations } from "../../Utility/Constants";
 
 import { TextBox } from "../../Common/Style";
+import { ErrorMessage, Signup } from "../../Utility/Constants";
+
+import { color,ErrorMessage,placeholder,screenText } from "../../Utility/Constants";
+
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
+  //Email field validation
   const handleCheckEmail = (text) => {
-    let re = /\S+@\S+\.S+/;
-    let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     setEmail(text);
-    if (re.test(text) || regex.test(text)) {
+    if (email.test(text)) {
       setCheckValidEmail(false);
     } else {
       setCheckValidEmail(true);
@@ -38,53 +42,47 @@ export default function Forget({ navigation }) {
 
   return (
     <View
-      style={{
-        height: "100%",
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+      style={styles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={{ height: "100%", width: "100%" }}
+        style={styles.imageBackground}
       >
-        <View style={{ alignItems: "center", marginTop: 100, margin: 50 }}>
+        <View style={styles.header}>
           <View>
             <Image
-              style={styles.img}
+              style={styles.image}
               source={require("../../../Image/music-note.png")}
             />
           </View>
           <View style={{ marginTop: 50 }}>
             <Text style={styles.para}>{screenText.FORGOT_TEXT}</Text>
           </View>
-          <View>
+          <View style={styles.input}>
             <TextInput
               style={styles.header}
-              placeholder="Email Id"
+              placeholder={placeholder.EMAIL}
               maxLength={30}
               underlineColorAndroid={"transparent"}
               value={email}
               onChangeText={handleCheckEmail}
             />
             {checkValidEmail ? (
-              <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
+              <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
             ) : (
-              <Text style={styles.textFailed}></Text>
+              null
             )}
             {email == "" || checkValidEmail == true ? (
               <TouchableOpacity
                 disabled
-                style={styles.btn}
+                style={styles.button}
                 onPress={handleRegis}
               >
-                <Text style={styles.btnTxt}>{screenText.SEND_TEXT} </Text>
+                <Text style={styles.buttonText}>{screenText.SEND_TEXT} </Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity style={styles.btn} onPress={handleRegis}>
-                <Text style={styles.btnTxt}>{screenText.SEND_TEXT}</Text>
+              <TouchableOpacity style={styles.button} onPress={handleRegis}>
+                <Text style={styles.buttonText}>{screenText.SEND_TEXT}</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -94,13 +92,32 @@ export default function Forget({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  para: {
+  container: {
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageBackground: {
+    height: "100%",
+    width: "100%"
+  },
+  header: {
+    alignItems: "center",
+    marginTop: 100,
+    margin: 50
+  },
+  title: {
     fontSize: 30,
     fontWeight: "bold",
-    color: color.WHITE,
+    marginTop: 50,
+    color:color.WHITE ,
+  },
+  input: {
+    margin: 30
   },
 
-  header: {
+  textInput: {
     fontSize: 20,
     height: 70,
     marginLeft: 5,
@@ -112,28 +129,28 @@ const styles = StyleSheet.create({
     marginTop: 50,
     width: 300,
   },
-  btn: {
+  button: {
     alignItems: "center",
     padding: 15,
+    marginTop: 50,
     backgroundColor: color.BLUE,
-    marginTop: 30,
     marginBottom: 10,
     borderRadius: 100,
     height: 70,
   },
-  btnTxt: {
+  buttonText: {
     fontSize: 30,
     color: color.WHITE,
     fontWeight: "bold",
     paddingLeft: 10,
   },
 
-  img: {
+  image: {
     height: 100,
     width: 100,
   },
 
-  textFailed: {
+  emailErrormsg: {
     color: color.RED,
     textAlign: "left",
     fontSize: 17,

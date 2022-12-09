@@ -14,6 +14,9 @@ import { color } from "../../Utility/Constants";
 import { ErrorMessage } from "../../Utility/Constants";
 import { navigations } from "../../Utility/Constants";
 
+import { screenText,color,ErrorMessage,placeholder,Signup } from "../../Utility/Constants";
+
+
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
@@ -50,11 +53,12 @@ export default function Change({ navigation }) {
             source={require("../../../Image/music-note.png")}
           />
         </View>
+       
         <Text style={styles.title}>{screenText.CHANGE_TEXT}</Text>
         <View>
           <TextInput
             style={styles.textInput}
-            placeholder="New Password"
+            placeholder={placeholder.NEW}
             underlineColorAndroid={"transparent"}
             value={password}
             maxLength={16}
@@ -71,7 +75,7 @@ export default function Change({ navigation }) {
           )}
           <TextInput
             style={styles.textInput}
-            placeholder="Retype New Password"
+            placeholder={placeholder.CHANGE}
             maxLength={16}
             onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}
@@ -148,7 +152,7 @@ const styles = StyleSheet.create({
     width: 300,
     padding: 15,
   },
-  buttontext: {
+  buttonText: {
     fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
