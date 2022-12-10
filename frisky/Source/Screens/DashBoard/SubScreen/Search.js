@@ -1,15 +1,23 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Signup } from "../../../Utility/Constants";
+import SignUp from "../../SignUp/SignUp";
 const Search = () => {
   return (
-    <View style={{backgroundColor:'#121212',height:'100%',width:'100%',justifyContent:'center',alignItems:'center'}}>
-      <Text style={styles.search}>Coming soon</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{Signup.COMINGSOON}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  search: {
+  container:{
+    backgroundColor:'#121212',
+    height:'100%',width:'100%',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  text: {
     color:'#fff',
     fontSize: 50,
   },

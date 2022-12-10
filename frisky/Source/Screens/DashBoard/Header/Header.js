@@ -6,31 +6,34 @@ import { color, homescreen } from '../../../Utility/Constants';
 const HSB = () => (
   <View>
     <StatusBar translucent backgroundColor="black" barStyle="light-content" />
-    <Appbar.Header style={styles.headerColor} activeColor="white">
+    <Appbar.Header style={styles.header} activeColor="white">
 
       <Appbar.Action icon="menu" />
 
-      <Appbar.Content style={styles.conClr} title={homescreen.TITLE} />
+      <Appbar.Content style={styles.headerTitle} title={homescreen.TITLE} />
       <Image
         source={require("../../../../Image/music-note.png")}
-        style={styles.img}
+        style={styles.image}
       />
     </Appbar.Header>
   </View>
 );
 
 const styles = StyleSheet.create({
-  headerColor: {
+  // home header styles
+  header: {
     flexDirection: "row",
     margin: 15,
     marginTop: 50,
     backgroundColor: color.DARK,
   },
-  img: {
+  //logo image styles
+  image: {
     height: 40,
     width: 40,
   },
-  conClr: {
+  //header title styles
+  headerTitle: {
     alignItems: "center",
 
   },

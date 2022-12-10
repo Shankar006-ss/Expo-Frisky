@@ -12,7 +12,7 @@ export default function NavBar() {
       activeColor="white"
       barStyle={{ backgroundColor: "#121212" }}
     >
-      <Tab.Screen
+      <Tab.Screen //buttom home screen navigation
         name="Home"
         component={Home}
         options={{
@@ -22,7 +22,7 @@ export default function NavBar() {
           ),
         }}
       />
-      <Tab.Screen
+      <Tab.Screen //buttom search screen navigation
         name="Search"
         component={Search}
         options={{
@@ -32,7 +32,7 @@ export default function NavBar() {
           ),
         }}
       />
-      <Tab.Screen
+      <Tab.Screen //buttom library screen navigation
         name="Library"
         component={Library}
         options={{
@@ -42,7 +42,7 @@ export default function NavBar() {
           ),
         }}
       />
-      <Tab.Screen
+      <Tab.Screen //buttom account screen navigation
         name="Account"
         component={Account}
         options={{

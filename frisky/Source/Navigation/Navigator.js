@@ -16,7 +16,7 @@ function SplashScreenImage({ navigation }) {
   }, 2000);
   return (
     <ImageBackground
-      style={{ flex: 1 }}
+      style={ styles.imageBackground}
       source={require('../../Image/splash.png')}
       backgroundColor="#000000"
     />
@@ -27,14 +27,14 @@ export default function Nav() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen" style={styles.container}>
-        <Stack.Screen
+        <Stack.Screen //splash screen 
           name="Splashscreen"
           component={SplashScreenImage}
           options={{
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        <Stack.Screen //signin screen navigation
           name="SignIn"
           component={LogForm}
           options={{
@@ -42,8 +42,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-
-        <Stack.Screen
+        <Stack.Screen //signup screen navigation
           name="SignUp"
           component={Reg}
           options={{
@@ -51,7 +50,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        <Stack.Screen //changepassword screen navigation
           name="ChangePassword"
           component={Change}
           options={{
@@ -59,7 +58,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        <Stack.Screen //forgotpassword screen navigation
           name="ForgetPassword"
           component={Forget}
           options={{
@@ -67,7 +66,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        <Stack.Screen //main screen navigation
           name="Main"
           component={MainScreen}
           options={{
@@ -82,8 +81,13 @@ export default function Nav() {
 }
 
 const styles = StyleSheet.create({
+  //parent styles
   container: {
     alignItems: "center",
     justifyContent: "center",
   },
+  //imagebackground styles
+  imageBackground:{
+    flex:1
+  }
 });

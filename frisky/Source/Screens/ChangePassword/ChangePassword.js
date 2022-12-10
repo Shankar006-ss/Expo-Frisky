@@ -9,17 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-
-
 import { screenText,color,ErrorMessage,placeholder, navigations } from "../../Utility/Constants";
-
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
-  const checkPasswordValidity = (text) => {
+  // check password validity
+  const checkPasswordValidity = (text) => {     
     let password =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
@@ -29,29 +26,28 @@ export default function Change({ navigation }) {
       setCheckValidPass(true);
     }
   };
-  //Confirm password
-  const checkConfirmPasswordValidity = (text) => {
+  //Confirm password validity
+  const checkConfirmPasswordValidity = (text) => {   
     setPass(text);
   };
   return (
-    <ImageBackground
+    <ImageBackground                                 
       source={require("../../../Image/background.jpg")}
       style={styles.imageBackground}
       resizeMode="cover"
     >
-      <View style={styles.container}>
-        <StatusBar
+      <View style={styles.container}> 
+        <StatusBar                                  
           translucent
           backgroundColor="black"
           barStyle="light-content"
         />
         <View>
-          <Image
+          <Image  
             style={styles.image}
             source={require("../../../Image/music-note.png")}
           />
         </View>
-       
         <Text style={styles.title}>{screenText.CHANGE_TEXT}</Text>
           <View style={styles.inputtext1}>
           <TextInput
@@ -68,7 +64,6 @@ export default function Change({ navigation }) {
             <Text style={styles.Errormsg}>
               {ErrorMessage.PASSWORD}
             </Text>
-            
           ) : (
             null
           )}
@@ -114,26 +109,31 @@ export default function Change({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  //parent styles
   container:{
     height: "100%",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
+  //imagebackground styles
   imageBackground:{
     height: "100%", 
     width: "100%"
   },
+  //image logo styles
   image: {
     height: 100,
     width: 100,
   },
+  //page title styles
   title: {
     fontSize: 30,
     fontWeight: "bold",
     color: color.WHITE,
     margin: 40,
   },
+  //password and confirmpassword textinput styles
   textInput: {
     fontSize: 20,
     height: 70,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     margin: 20,
     width: 300,
   },
-
+  //savechanges button styles
   button: {
     backgroundColor:color.BLUE,
     margin: 30,
@@ -154,24 +154,22 @@ const styles = StyleSheet.create({
     width: 300,
     padding: 15,
   },
+  //savechanges button text styles
   buttonText: {
     fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
   },
-  
+  //password and confirmpassword error message styles
   Errormsg: {
     color: color.RED,
     paddingBottom: 10,
     textAlign: "left",
     paddingLeft:30
-    
   },
+  //inputtext style
   inputtext1:{
     marginTop: 40,
-    
   },
-  
- 
 });

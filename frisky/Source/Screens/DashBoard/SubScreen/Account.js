@@ -1,18 +1,18 @@
 
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { navigations } from "../../../Utility/Constants";
+import { navigations,Signup } from "../../../Utility/Constants";
 
 export default function Account({navigation}) {
   
   return (
-    <View style={{backgroundColor:'#121212',height:'100%',width:'100%'}}>
+    <View style={styles.container}>
     <View>
       <TouchableOpacity
         onPress={() => navigation.replace(navigations.SIGNIN_SCREEN)}
         style={styles.button}
       >
-        <Text style={styles.search}>Logout</Text>
+        <Text style={styles.buttontext}>{Signup.LOGOUT}</Text>
       </TouchableOpacity>
     </View>
     </View>
@@ -20,12 +20,19 @@ export default function Account({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  search: {
+  //parent styles
+  container:{
+    backgroundColor:'#121212',
+    height:'100%',
+    width:'100%'
+  },
+  //logout button text styles
+  buttonText: {
     color: "white",
     fontSize: 30,
     alignItems: "flex-end",
   },
-
+  //logout button styles
   button: {
     alignItems: "center",
     backgroundColor: "#121212",

@@ -12,6 +12,7 @@ export default function MainScreen() {
   );
 }
 const styles = StyleSheet.create({
+  //parent styles
   main: {
     flex: 1,
     backgroundColor: "#fff",

@@ -9,13 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
 import { ErrorMessage,navigations,placeholder,color,screenText} from "../../Utility/Constants";
-
-
-
-
-
 
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
@@ -30,6 +24,7 @@ export default function Forget({ navigation }) {
       setCheckValidEmail(true);
     }
   };
+  //navigate in changepassword screen
   const handleRegis = () => {
     const checkPassword = handleCheckEmail(email);
     if (!checkPassword) {
@@ -38,7 +33,6 @@ export default function Forget({ navigation }) {
       alert(checkPassword);
     }
   };
-
   return (
     <View
       style={styles.container}>
@@ -54,7 +48,7 @@ export default function Forget({ navigation }) {
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View style={{ marginTop: 0 }}>
+          <View>
             <Text style={styles.title}>{screenText.FORGOT_TEXT}</Text>
           </View>
           <View style={styles.input}>
@@ -91,31 +85,36 @@ export default function Forget({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
+  //parent styles
   container: {
     height: "100%",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
+  //imagebackground styles
   imageBackground: {
     height: "100%",
     width: "100%"
   },
+  //forgotpassword screen total styles
   header: {
     alignItems: "center",
     marginTop: 130,
     margin: 50
   },
+  //forgotpassword title styles
   title: {
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 30,
     color:color.WHITE ,
   },
+  //inputtext styles
   input: {
     margin: 10
   },
-
+  //email textinput styles
   textInput: {
     fontSize: 20,
     height: 70,
@@ -128,27 +127,28 @@ const styles = StyleSheet.create({
     marginTop: 30,
     width: 300,
   },
+  //send button styles
   button: {
     alignItems: "center",
     padding: 15,
     marginTop: 50,
     backgroundColor: color.BLUE,
-  
     borderRadius: 100,
     height: 70,
   },
+  //send buttontext styles
   buttonText: {
     fontSize: 30,
     color: color.WHITE,
     fontWeight: "bold",
     paddingLeft: 10,
   },
-
+  //image logo styles
   image: {
     height: 100,
     width: 100,
   },
-
+  //email error message styles
   emailErrormsg: {
     color: color.RED,
     textAlign: "left",

@@ -9,10 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-
 import { Signup,ErrorMessage,color,placeholder,navigations} from '../../Utility/Constants';
-
 
 export default function SignUp({ navigation }) {
   const [checkValidName, setCheckValidateName] = useState(false);
@@ -163,32 +160,36 @@ export default function SignUp({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
+  //parent styles
   container:{
     height: "100%",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
+  //imagebackground styles
   imageBackground:{
      height: "100%", 
      width: "100%"
   },
-  
+  //image logo styles
   image: {
     height: 100,
     width: 100,
     marginTop: 10,
-
   },
+  //page title styles
   header: {
     color: color.WHITE,
     fontWeight: "bold",
     fontSize: 30,
     marginTop: 30,
   },
+  //inputtext styles
   inputText: {
     marginTop: 10,
   },
+  //name,email,password and confirmpassword textinput styles
   textInput: {
     color: color.BLACK,
     fontSize: 20,
@@ -202,18 +203,21 @@ const styles = StyleSheet.create({
     backgroundColor: color.WHITE,
     width: 300,
   },
+  //signup button styles
   button: {
     backgroundColor: color.BLUE,
     marginTop: 20,
     borderRadius: 60,
     padding: 15,
   },
+  //signup button text styles
   buttonText: {
     fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
   },
+  //login user text styles
   footer: {
     fontSize: 20,
     color: color.WHITE,
@@ -222,11 +226,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
-  
   //password and confirmpassword error message
   errorMsg: {
     color: color.RED,
     paddingLeft: 10,
   }
-  
 });
