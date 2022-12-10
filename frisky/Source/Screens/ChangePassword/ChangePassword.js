@@ -9,20 +9,22 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-import { screenText,color,ErrorMessage,placeholder,navigations} from "../../Utility/Constants";
-import Validation from "../../Utility/Validation";
-
-
-
 import { globalstyles } from "../../Common/Style";
-
+import {
+  color,
+  ErrorMessage,
+  navigations,
+  placeholder,
+  screenText,
+} from "../../Utility/Constants";
+import Validation from "../../Utility/Validation";
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
-  const [Confirm, setPass] = useState("");
-  
+  const [confirm, setPass] = useState("");
+  const [checkValidConfirm, setCheckValidConfirm] = useState(false);
+
   //Password field validation
   const checkPasswordValidity = (text) => {
     setPassword(text);
@@ -33,11 +35,16 @@ export default function Change({ navigation }) {
     }
   };
   //Confirm password validity
-  const checkConfirmPasswordValidity = (text) => {   
+  const checkConfirmPasswordValidity = (text) => {
     setPass(text);
+    if (password == text) {
+      setCheckValidConfirm(false);
+    } else {
+      setCheckValidConfirm(true);
+    }
   };
   return (
-    <ImageBackground                                 
+    <ImageBackground
       source={require("../../../Image/background.jpg")}
       style={globalstyles.imageBackground}
       resizeMode="cover"
@@ -63,11 +70,10 @@ export default function Change({ navigation }) {
             value={password}
             maxLength={16}
             onChangeText={(text) => checkPasswordValidity(text)}
-            onChange={(e) => setPassword(e.target.value)}
             secureTextEntry={true}
           />
           {checkValidpass ? (
-            <Text style={styles.Errormsg}>{ErrorMessage.PASSWORD}</Text>
+            <Text style={globalstyles.Errormsg}>{ErrorMessage.PASSWORD}</Text>
           ) : null}
         </View>
         <View style={styles.inputtext2}>
@@ -75,29 +81,34 @@ export default function Change({ navigation }) {
             style={styles.textInput}
             placeholder={placeholder.CONFIRM}
             maxLength={16}
-            onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}
             underlineColorAndroid={"transparent"}
             secureTextEntry={true}
           />
-          {password == Confirm ? null : (
-            <Text style={styles.Errormsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
-          )}
+          {checkValidConfirm ? (
+            <Text style={globalstyles.Errormsg}>
+              {ErrorMessage.CONFIRMPASSWORD}
+            </Text>
+          ) : null}
         </View>
         <View>
           {checkValidpass ||
-          password != Confirm ||
+          checkValidConfirm ||
           password == "" ||
-          Confirm == "" ? (
-            <TouchableOpacity disabled style={styles.button} >
-              <Text style={globalstyles.buttonText}>{screenText.SAVE_TEXT}</Text>
+          confirm == "" ? (
+            <TouchableOpacity disabled style={styles.button}>
+              <Text style={globalstyles.buttonText}>
+                {screenText.SAVE_TEXT}
+              </Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
             >
-              <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
+              <Text style={globalstyles.buttonText}>
+                {screenText.SAVE_TEXT}
+              </Text>
             </TouchableOpacity>
           )}
         </View>
@@ -114,9 +125,13 @@ const styles = StyleSheet.create({
     color: color.WHITE,
     marginTop: 30,
   },
-  //input text styles
+  //input text box 1 styles
   inputtext1: {
-    marginTop: 40,
+    marginTop: 60,
+  },
+  //input text box 2 styles
+  inputtext2: {
+    paddingTop: 30,
   },
   //password and confirmpassword textinput styles
   textInput: {
@@ -132,24 +147,10 @@ const styles = StyleSheet.create({
   //savechanges button styles
   button: {
     backgroundColor: color.BLUE,
-    marginTop: 50,
+    marginTop: 60,
     height: 60,
     borderRadius: 25,
     width: 300,
-    padding: 15,
-  },
-  //savechanges button text styles
-  buttonText: {
-    fontSize: 25,
-    color: color.WHITE,
-    fontWeight: "bold",
-    textAlign: "center",
-    paddingTop: 11,
-  },
-  //password and confirmpassword error message styles
-  Errormsg: {
-    color: color.RED,
-    paddingTop: 5,
-    textAlign: "center",
+    paddingTop: 10,
   },
 });

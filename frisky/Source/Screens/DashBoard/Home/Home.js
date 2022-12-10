@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { color,homescreen } from '../../../Utility/Constants';
+import { color, homescreen } from "../../../Utility/Constants";
 
 const ListItem = ({ item }) => {
   return (

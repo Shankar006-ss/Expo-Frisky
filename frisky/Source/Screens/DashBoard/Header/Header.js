@@ -5,7 +5,11 @@ import { color, homescreen } from "../../../Utility/Constants";
 
 const HSB = () => (
   <View>
-    <StatusBar translucent backgroundColor={color.BLACK} barStyle="light-content" />
+    <StatusBar
+      translucent
+      backgroundColor={color.BLACK}
+      barStyle="light-content"
+    />
     <Appbar.Header style={styles.header} activeColor="white">
       <Appbar.Action icon="menu" />
       <Appbar.Content style={styles.headerTitle} title={homescreen.TITLE} />

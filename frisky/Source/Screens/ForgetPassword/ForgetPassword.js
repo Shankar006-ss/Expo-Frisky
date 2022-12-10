@@ -7,14 +7,17 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-import { ErrorMessage, navigations, placeholder, color, screenText } from "../../Utility/Constants";
+import {
+  color,
+  ErrorMessage,
+  navigations,
+  placeholder,
+  screenText,
+} from "../../Utility/Constants";
 import Validation from "../../Utility/Validation";
-
-
 import { globalstyles } from "../../Common/Style";
-
 
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
@@ -28,18 +31,9 @@ export default function Forget({ navigation }) {
       setCheckValidEmail(true);
     }
   };
-  //navigate in changepassword screen
-  const handleRegis = () => {
-    const checkPassword = handleCheckEmail(email);
-    if (!checkPassword) {
-      navigation.navigate(navigations.CHANGE_SCREEN);
-    } else {
-      alert(checkPassword);
-    }
-  };
+
   return (
-    <View
-      style={globalstyles.container}>
+    <View style={globalstyles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
@@ -65,19 +59,22 @@ export default function Forget({ navigation }) {
               onChangeText={handleCheckEmail}
             />
             {checkValidEmail ? (
-              <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
+              <Text style={globalstyles.Errormsg}>{ErrorMessage.EMAIL}</Text>
             ) : null}
             {email == "" || checkValidEmail == true ? (
-              <TouchableOpacity
-                disabled
-                style={styles.button}
-                onPress={handleRegis}
-              >
-                <Text style={styles.buttonText}>{screenText.SEND_TEXT} </Text>
+              <TouchableOpacity disabled style={styles.button}>
+                <Text style={globalstyles.buttonText}>
+                  {screenText.SEND_TEXT}{" "}
+                </Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity style={styles.button} onPress={handleRegis}>
-                <Text style={styles.buttonText}>{screenText.SEND_TEXT}</Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate(navigations.CHANGE_SCREEN)}
+              >
+                <Text style={globalstyles.buttonText}>
+                  {screenText.SEND_TEXT}
+                </Text>
               </TouchableOpacity>
             )}
           </View>
@@ -87,9 +84,7 @@ export default function Forget({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  
   //forgotpassword screen total styles
- 
   header: {
     alignItems: "center",
     marginTop: 100,
@@ -108,7 +103,6 @@ const styles = StyleSheet.create({
   },
   //email textinput styles
   textInput: {
-    
     fontSize: 20,
     height: 60,
     marginLeft: 5,
@@ -128,20 +122,5 @@ const styles = StyleSheet.create({
     backgroundColor: color.BLUE,
     borderRadius: 25,
     height: 60,
-  },
-  //send buttontext styles
-  buttonText: {
-    fontSize: 25,
-    color: color.WHITE,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-
-
-  emailErrormsg: {
-    color: color.RED,
-    textAlign: "center",
-    fontSize: 17,
-    paddingTop: 5,
   },
 });

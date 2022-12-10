@@ -14,8 +14,8 @@ function SplashScreenImage({ navigation }) {
   }, 2000);
   return (
     <ImageBackground
-      style={ styles.imageBackground}
-      source={require('../../Image/splash.png')}
+      style={styles.imageBackground}
+      source={require("../../Image/splash.png")}
       backgroundColor="#000000"
     />
   );
@@ -25,7 +25,7 @@ export default function Nav() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen" style={styles.container}>
-        <Stack.Screen //splash screen 
+        <Stack.Screen //splash screen
           name="Splashscreen"
           component={SplashScreenImage}
           options={{
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   //imagebackground styles
-  imageBackground:{
-    flex:1
-  }
+  imageBackground: {
+    flex: 1,
+  },
 });

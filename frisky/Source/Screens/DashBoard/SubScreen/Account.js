@@ -1,39 +1,39 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { navigations,Signup,color } from "../../../Utility/Constants";
+import { color, navigations, screenText } from "../../../Utility/Constants";
 
 export default function Account({ navigation }) {
   return (
     <View style={styles.container}>
-    <View>
-      <TouchableOpacity
-        onPress={() => navigation.replace(navigations.SIGNIN_SCREEN)}
-        style={styles.button}
-      >
-        <Text style={styles.buttontext}>{Signup.LOGOUT}</Text>
-      </TouchableOpacity>
-    </View>
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.replace(navigations.SIGNIN_SCREEN)}
+          style={styles.button}
+        >
+          <Text style={styles.buttontext}>{screenText.LOG_OUT}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   //parent styles
-  container:{
-    backgroundColor:'#121212',
-    height:'100%',
-    width:'100%'
+  container: {
+    backgroundColor: color.BLACK,
+    height: "100%",
+    width: "100%",
   },
   //logout button text styles
-  buttonText: {
-    color: "white",
-    fontSize: 30,
+  buttontext: {
+    color: color.WHITE,
+    fontSize: 40,
     alignItems: "flex-end",
   },
   //logout button styles
   button: {
     alignItems: "center",
-    backgroundColor: "#121212",
+
     marginTop: 300,
     margin: 110,
     padding: 15,

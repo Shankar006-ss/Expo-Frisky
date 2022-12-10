@@ -7,13 +7,16 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-import { Signup, ErrorMessage, color, placeholder, navigations } from '../../Utility/Constants';
+import {
+  color,
+  ErrorMessage,
+  navigations,
+  placeholder,
+  Signup,
+} from "../../Utility/Constants";
 import Validation from "../../Utility/Validation";
-
-
-
 import { globalstyles } from "../../Common/Style";
 
 export default function SignUp({ navigation }) {
@@ -24,6 +27,7 @@ export default function SignUp({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidPass, setCheckValidPass] = useState(false);
   const [confirm, setPass] = useState("");
+  const [checkValidConfirm, setCheckValidConfirm] = useState(false);
   //name field validation
   const NameValid = (text) => {
     setName(text);
@@ -54,6 +58,11 @@ export default function SignUp({ navigation }) {
   //Confirm password validation
   const checkConfirmPasswordValidity = (text) => {
     setPass(text);
+    if (password == text) {
+      setCheckValidConfirm(false);
+    } else {
+      setCheckValidConfirm(true);
+    }
   };
   return (
     <ImageBackground
@@ -83,10 +92,8 @@ export default function SignUp({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidName ? (
-            <Text style={styles.errorMsg}>{ErrorMessage.NAME}</Text>
-          ) : (
-            null
-          )}
+            <Text style={globalstyles.Errormsg}>{ErrorMessage.NAME}</Text>
+          ) : null}
           <TextInput
             style={styles.textInput}
             placeholder={placeholder.EMAIL}
@@ -95,48 +102,40 @@ export default function SignUp({ navigation }) {
             underlineColorAndroid={"transparent"}
           />
           {checkValidEmail ? (
-            <Text style={styles.errorMsg}>{ErrorMessage.EMAIL}</Text>
-          ) : (
-            null
-          )}
+            <Text style={globalstyles.Errormsg}>{ErrorMessage.EMAIL}</Text>
+          ) : null}
           <TextInput
             style={styles.textInput}
             placeholder={placeholder.PASSWORD}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
             onChangeText={(text) => checkPasswordValidity(text)}
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
           {checkValidPass ? (
-            <Text style={styles.errorMsg}>
-              {ErrorMessage.PASSWORD}
-            </Text>
-          ) : (
-            null
-          )}
+            <Text style={globalstyles.Errormsg}>{ErrorMessage.PASSWORD}</Text>
+          ) : null}
           <TextInput
             style={styles.textInput}
             placeholder={placeholder.CONFIRM}
             value={confirm}
-            onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}
             secureTextEntry={true}
             underlineColorAndroid={"transparent"}
           />
-          {password == confirm ? (
-            null
-          ) : (
-            <Text style={styles.errorMsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
-          )}
+          {checkValidConfirm ? (
+            <Text style={globalstyles.Errormsg}>
+              {ErrorMessage.CONFIRMPASSWORD}
+            </Text>
+          ) : null}
           {checkValidName ||
-            checkValidPass ||
-            checkValidEmail ||
-            password != confirm ||
-            password == "" ||
-            email == "" ||
-            name == "" ||
-            confirm == "" ? (
+          checkValidPass ||
+          checkValidEmail ||
+          checkValidConfirm ||
+          password == "" ||
+          email == "" ||
+          name == "" ||
+          confirm == "" ? (
             <TouchableOpacity disabled style={styles.button}>
               <Text style={globalstyles.buttonText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
@@ -151,7 +150,8 @@ export default function SignUp({ navigation }) {
           <Text
             onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
             style={styles.footer}
-          >{Signup.SIGNIN}
+          >
+            {Signup.SIGNIN}
           </Text>
         </View>
       </View>
@@ -161,7 +161,7 @@ export default function SignUp({ navigation }) {
 const styles = StyleSheet.create({
   //page title styles
   header: {
-    marginTop: 30,
+    marginTop: 20,
   },
   //inputtext styles
   inputText: {
@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
     color: color.BLACK,
     fontSize: 20,
     height: 60,
-    marginTop: 10,
-    marginBottom:5,
+    marginTop: 20,
+    marginBottom: 5,
     borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
@@ -186,8 +186,9 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: color.BLUE,
     marginTop: 20,
-    borderRadius: 60,
-    padding: 15,
+    borderRadius: 25,
+    paddingTop: 10,
+    height: 60,
   },
   //login user text styles
   footer: {
@@ -198,9 +199,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
-  //password and confirmpassword error message
-  errorMsg: {
-    color: color.RED,
-    textAlign:'center'
-  }
 });

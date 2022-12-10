@@ -1,10 +1,10 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { color } from "../../../Utility/Constants";
 import Home from "../Home/Home";
 import Account from "../SubScreen/Account";
 import Library from "../SubScreen/Library";
 import Search from "../SubScreen/Search";
-import { color } from "../../../Utility/Constants";
 
 const Tab = createMaterialBottomTabNavigator();
 export default function NavBar() {

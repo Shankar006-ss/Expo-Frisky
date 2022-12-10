@@ -1,27 +1,28 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Signup } from "../../../Utility/Constants";
+import { color, screenText } from "../../../Utility/Constants";
 
 const Library = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{Signup.COMINGSOON}</Text>
+      <Text style={styles.text}>{screenText.COMING_SOON}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   //parent styles
-  container:{
-    backgroundColor:'#121212',
-    height:'100%',width:'100%',
-    justifyContent:'center',
-    alignItems:'center'
+  container: {
+    backgroundColor: color.BLACK,
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   //library text styles
   text: {
     fontSize: 50,
-    color: "#fff",
+    color: color.WHITE,
   },
 });
 

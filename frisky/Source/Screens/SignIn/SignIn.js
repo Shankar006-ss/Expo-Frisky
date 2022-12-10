@@ -9,9 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ErrorMessage, Signup,placeholder,color} from "../../Utility/Constants";
+import {
+  ErrorMessage,
+  Signup,
+  placeholder,
+  color,
+  navigations,
+} from "../../Utility/Constants";
 import Validation from "../../Utility/Validation";
-
 
 import { globalstyles } from "../../Common/Style";
 export default function LogForm({ navigation }) {
@@ -21,7 +26,7 @@ export default function LogForm({ navigation }) {
   const [checkValidPass, setCheckValidPass] = useState(false);
   //check email validation
   const handleCheckEmail = (text) => {
-   setEmail(text);
+    setEmail(text);
     if (Validation.validateEmail(email)) {
       setCheckValidEmail(false);
     } else {
@@ -46,13 +51,11 @@ export default function LogForm({ navigation }) {
       >
         <View style={styles.itemContainer}>
           <View>
-            <Text style={globalstyles.header}>
-           {Signup.WELCOME}
-          </Text>
+            <Text style={globalstyles.header}>{Signup.WELCOME}</Text>
           </View>
           <View>
             <Image
-              style={styles.logo}
+              style={globalstyles.image}
               source={require("../../../Image/music-note.png")}
             />
           </View>
@@ -62,30 +65,24 @@ export default function LogForm({ navigation }) {
               placeholder={placeholder.EMAIL}
               value={email}
               onChangeText={handleCheckEmail}
-            /></View>
-            <View>
+            />
+          </View>
+          <View>
             {checkValidEmail ? (
-              <Text style={styles.Errormsg}>{ErrorMessage.EMAIL}</Text>
-            ) : (
-              null
-            )}
-            </View>
-            <View style={styles.inputText1}>
+              <Text style={globalstyles.Errormsg}>{ErrorMessage.EMAIL}</Text>
+            ) : null}
+          </View>
+          <View style={styles.inputText1}>
             <TextInput
               style={styles.textInput}
               placeholder={placeholder.PASSWORD}
               value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
-              onChange={(e) => setPassword(e.target.value)}
               secureTextEntry={true}
             />
             {checkValidPass ? (
-              <Text style={styles.Errormsg}>
-              {ErrorMessage.PASSWORD}
-              </Text>
-            ) : (
-              null
-            )}
+              <Text style={globalstyles.Errormsg}>{ErrorMessage.PASSWORD}</Text>
+            ) : null}
           </View>
           <View>
             {email == "" || password == "" || checkValidEmail == true ? (
@@ -110,7 +107,7 @@ export default function LogForm({ navigation }) {
               onPress={() => navigation.navigate(navigations.FORGOT_SCREEN)}
               style={styles.footer1}
             >
-             {Signup.FORGOT_PASSWORD}
+              {Signup.FORGOT_PASSWORD}
             </Text>
             <Text
               onPress={() => navigation.navigate(navigations.SIGNUP_SCREEN)}
@@ -126,32 +123,27 @@ export default function LogForm({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-   //screen total items styles
-  itemContainer:{
-    alignItems:'center',
+  //screen total items styles
+  itemContainer: {
+    alignItems: "center",
     marginTop: 80,
-    margin: 50
-  },
-  //screen title styles
-  header:{
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 30,
+    margin: 50,
   },
   //inputtext styles
-  inputText1:{
-    marginTop: 40
+  inputText1: {
+    marginTop: 40,
   },
- footer:{
-   paddingTop:10,
-   alignItems:'center'
+  //footer text styles
+  footer: {
+    paddingTop: 25,
+    alignItems: "center",
   },
   //forgotpassword text styles
   footer1: {
     fontSize: 20,
     fontWeight: "bold",
     color: color.WHITE,
-    paddingTop:30,
+    paddingTop: 30,
   },
   //create a new account text styles
   footer2: {
@@ -159,12 +151,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: color.WHITE,
     paddingTop: 10,
-  },
-  //image logo styles
-  image: {
-    height: 100,
-    width: 100,
-    marginTop: 20
   },
   //email and password textinput styles
   textInput: {
@@ -186,16 +172,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     backgroundColor: color.BLUE,
     borderRadius: 25,
-    marginTop: 70,
+    marginTop: 50,
     width: 300,
     height: 60,
   },
-  //email and password error message
-  Errormsg: {
-    color: color.RED,
-    marginTop:5,
-    alignItems:"center"
-  },
-
- 
 });
