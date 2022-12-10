@@ -9,19 +9,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-import { screenText,color,ErrorMessage,placeholder,navigations} from "../../Utility/Constants";
-import Validation from "../../Utility/Validation";
+import { screenText,color,ErrorMessage,placeholder } from "../../Utility/Constants";
 
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
-  //Password field validation
   const checkPasswordValidity = (text) => {
+    let password =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
-    if (Validation.validatePassword(password)) {
+    if (password.test(text)) {
       setCheckValidPass(false);
     } else {
       setCheckValidPass(true);
@@ -49,9 +48,8 @@ export default function Change({ navigation }) {
             source={require("../../../Image/music-note.png")}
           />
         </View>
-       
         <Text style={styles.title}>{screenText.CHANGE_TEXT}</Text>
-          <View style={styles.inputtext1}>
+        <View>
           <TextInput
             style={styles.textInput}
             placeholder={placeholder.NEW}
@@ -63,18 +61,15 @@ export default function Change({ navigation }) {
             secureTextEntry={true}
           />
           {checkValidpass ? (
-            <Text style={styles.Errormsg}>
+            <Text style={styles.passwordErrormsg}>
               {ErrorMessage.PASSWORD}
             </Text>
-            
           ) : (
             null
           )}
-          </View>
-          <View style={styles.inputtext1}>
           <TextInput
             style={styles.textInput}
-            placeholder={placeholder.CONFIRM}
+            placeholder={placeholder.CHANGE}
             maxLength={16}
             onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}
@@ -84,11 +79,11 @@ export default function Change({ navigation }) {
           {password == Confirm ? (
             null
           ) : (
-            <Text style={styles.Errormsg}>
+            <Text style={styles.confirmPasswordErrormsg}>
               {ErrorMessage.CONFIRMPASSWORD}
             </Text>
           )}
-          </View>
+        </View>
         <View>
           {checkValidpass ||
           password != Confirm ||
@@ -100,7 +95,7 @@ export default function Change({ navigation }) {
           ) : (
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
+              onPress={() => navigation.navigate("SignIn")}
             >
               <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
@@ -143,7 +138,6 @@ const styles = StyleSheet.create({
     margin: 20,
     width: 300,
   },
-
   button: {
     backgroundColor:color.BLUE,
     margin: 30,
@@ -158,18 +152,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  
-  Errormsg: {
+  passwordErrormsg: {
     color: color.RED,
-    paddingBottom: 10,
+    paddingLeft: 30,
     textAlign: "left",
-    paddingLeft:30
-    
   },
-  inputtext1:{
-    marginTop: 40,
-    
+  confirmPasswordErrormsg: {
+    color: color.RED,
+    paddingLeft: 30,
   },
-  
- 
 });

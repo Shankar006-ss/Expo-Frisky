@@ -9,8 +9,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ErrorMessage, Signup,placeholder,color} from "../../Utility/Constants";
-import Validation from "../../Utility/Validation";
+
+import {placeholder, WELCOME_TO_FRISKY} from "../../Utility/Constants";
+
+
+
+
 
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
@@ -18,16 +22,19 @@ export default function LogForm({ navigation }) {
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const [checkValidPass, setCheckValidPass] = useState(false);
   const handleCheckEmail = (text) => {
-   setEmail(text);
-    if (Validation.validateEmail(email)) {
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    setEmail(text);
+    if (email.test(text)) {
       setCheckValidEmail(false);
     } else {
       setCheckValidEmail(true);
     }
   };
   const checkPasswordValidity = (text) => {
+    let isNonWhiteSpace =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
-    if (Validation.validatePassword(password)) {
+    if (isNonWhiteSpace.test(text)) {
       setCheckValidPass(false);
     } else {
       setCheckValidPass(true);
@@ -42,17 +49,18 @@ export default function LogForm({ navigation }) {
       >
         <View style={styles.itemContainer}>
           <View>
-            <Text style={styles.header}>
-           {Signup.WELCOME}
-          </Text>
+         
+            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 30 }}>
+           { WELCOME_TO_FRISKY}
+            </Text>
           </View>
-          <View>
+          <View style={{ marginTop: 20 }}>
             <Image
-              style={styles.image}
+              style={styles.img}
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View style={styles.inputText1}>
+          <View style={{ marginTop: 50 }}>
             <TextInput
               style={styles.textInput}
               placeholder={placeholder.EMAIL}
@@ -60,11 +68,10 @@ export default function LogForm({ navigation }) {
               onChangeText={handleCheckEmail}
             />
             {checkValidEmail ? (
-              <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
+              <Text style={styles.textFailed}>Enter valid email</Text>
             ) : (
-              null
-            )}</View>
-            <View style={styles.inputText1}>
+              <Text style={styles.textFailed}></Text>
+            )}
             <TextInput
               style={styles.textInput}
               placeholder={placeholder.PASSWORD}
@@ -74,43 +81,45 @@ export default function LogForm({ navigation }) {
               secureTextEntry={true}
             />
             {checkValidPass ? (
-              <Text style={styles.passwordErrormsg}>
-              {ErrorMessage.PASSWORD}
+              <Text style={styles.error}>
+                password must be one upper,lowercase,& 8digit
               </Text>
             ) : (
-              null
+              <Text style={styles.error}></Text>
             )}
           </View>
-          <View>
+          <View style={{}}>
             {email == "" || password == "" || checkValidEmail == true ? (
               <TouchableOpacity
                 onPress={() => this.functionCombined()}
                 disabled
                 style={styles.button}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.btnText}>Login</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
                 onPress={() => navigation.replace("Main")}
                 style={styles.button}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.btnText}>Login</Text>
               </TouchableOpacity>
             )}
           </View>
-          <View style={styles.footer}>
+          <View style={{ paddingTop: 50 }}>
             <Text
               onPress={() => navigation.navigate("ForgetPassword")}
-              style={styles.footer1}
+              style={styles.fp}
             >
-             {Signup.FORGOT_PASSWORD}
+              Forgot Password?
             </Text>
+          </View>
+          <View style={styles.line}>
             <Text
               onPress={() => navigation.navigate("SignUp")}
-              style={styles.footer2}
+              style={styles.cr}
             >
-              {Signup.CREATE_ACCOUNT}
+              Create a new Account?
             </Text>
           </View>
         </View>
@@ -126,81 +135,75 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageBackground:{
-    height: "100%",
+    height: "100%", 
     width: "100%"
   },
   itemContainer:{
-    alignItems: "center",
-    marginTop: 100,
+    alignItems: "center", 
+    marginTop: 100, 
     margin: 50
   },
-  header:{
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 30,
-    
-  },
-  inputText1:{
-    marginTop: 40
-  },
- 
-  footer:{
-   paddingTop:20,
-   alignItems:'center'
-  },
-  footer1: {
+  fp: {
     fontSize: 20,
     fontWeight: "bold",
-    color: color.WHITE,
-    paddingTop:20,
+    color: "#fff",
   },
-  footer2: {
+  cr: {
     fontSize: 20,
     fontWeight: "bold",
-    color: color.WHITE,
+    color: "#fff",
     paddingTop: 10,
   },
-  image: {
+
+  img: {
     height: 100,
     width: 100,
-    marginTop: 20
   },
   textInput: {
     fontSize: 20,
     height: 70,
-    color: color.BLACK,
-    backgroundColor: color.WHITE,
+    color: "black",
+    marginBottom: 10,
+    backgroundColor: "white",
     borderRadius: 25,
     borderLeftWidth: 15,
-    borderLeftColor: color.BLUE,
+    borderLeftColor: "#00BFFF",
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 30,
     width: 300,
-
   },
   button: {
     alignItems: "center",
     padding: 10,
-    backgroundColor: color.BLUE,
+    backgroundColor: "#00BFFF",
     borderRadius: 50,
-    marginTop: 30,
+    marginTop: 5,
     width: 300,
     height: 60,
   },
-  buttonText: {
-    color: color.WHITE,
+
+  btnText: {
+    color: "#fff",
     fontWeight: "bold",
     fontSize: 25,
   },
-  emailErrormsg: {
+  logo: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+  },
+
+  textFailed: {
+    color: "red",
+    textAlign: "left",
+    paddingBottom: 10,
+    paddingRight: 10,
+  },
+  error: {
     color: "red",
     paddingBottom: 10,
     textAlign: "left",
-  },
-  passwordErrormsg: {
-    color: "red",
-    paddingLeft: 10,
-    
   },
 });

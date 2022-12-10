@@ -9,16 +9,17 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ErrorMessage, navigations, placeholder, color, screenText } from "../../Utility/Constants";
-import Validation from "../../Utility/Validation";
+
+import { color,ErrorMessage,placeholder,screenText } from "../../Utility/Constants";
 
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   //Email field validation
   const handleCheckEmail = (text) => {
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     setEmail(text);
-    if (Validation.validateEmail(email)) {
+    if (email.test(text)) {
       setCheckValidEmail(false);
     } else {
       setCheckValidEmail(true);
@@ -27,32 +28,39 @@ export default function Forget({ navigation }) {
   const handleRegis = () => {
     const checkPassword = handleCheckEmail(email);
     if (!checkPassword) {
-      navigation.navigate(navigations.CHANGE_SCREEN);
+      navigation.navigate("ChangePassword");
     } else {
       alert(checkPassword);
     }
   };
+
   return (
     <View
-      style={styles.container}>
+      style={{
+        height: "100%",
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={styles.imageBackground}
+        style={{ height: "100%", width: "100%" }}
       >
-        <View style={styles.header}>
+        <View style={{ alignItems: "center", marginTop: 100, margin: 50 }}>
           <View>
             <Image
-              style={styles.image}
+              style={styles.img}
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View style={{ marginTop: 0 }}>
-            <Text style={styles.title}>{screenText.FORGOT_TEXT}</Text>
+          <View style={{ marginTop: 50 }}>
+            <Text style={styles.para}>{screenText.FORGOT_TEXT}</Text>
           </View>
-          <View style={styles.input}>
+          <View>
             <TextInput
-              style={styles.textInput}
+              style={styles.header}
               placeholder={placeholder.EMAIL}
               maxLength={30}
               underlineColorAndroid={"transparent"}
@@ -60,21 +68,21 @@ export default function Forget({ navigation }) {
               onChangeText={handleCheckEmail}
             />
             {checkValidEmail ? (
-              <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
+              <Text style={styles.textFailed}>{ErrorMessage.EMAIL}</Text>
             ) : (
-              null
+              <Text style={styles.textFailed}></Text>
             )}
             {email == "" || checkValidEmail == true ? (
               <TouchableOpacity
                 disabled
-                style={styles.button}
+                style={styles.btn}
                 onPress={handleRegis}
               >
-                <Text style={styles.buttonText}>{screenText.SEND_TEXT} </Text>
+                <Text style={styles.btnTxt}>{screenText.SEND_TEXT} </Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity style={styles.button} onPress={handleRegis}>
-                <Text style={styles.buttonText}>{screenText.SEND_TEXT}</Text>
+              <TouchableOpacity style={styles.btn} onPress={handleRegis}>
+                <Text style={styles.btnTxt}>{screenText.SEND_TEXT}</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -84,61 +92,49 @@ export default function Forget({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground: {
-    height: "100%",
-    width: "100%"
-  },
-  header: {
-    alignItems: "center",
-    marginTop: 130,
-    margin: 50
-  },
-  title: {
+  para: {
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 30,
-    color: color.WHITE,
+    color:color.WHITE ,
   },
-  input: {
-    margin: 10
-  },
-  textInput: {
+
+  header: {
     fontSize: 20,
+
     height: 70,
     marginLeft: 5,
-    borderColor: color.BLUE,
+    borderColor:color.BLUE,
+
     borderLeftWidth: 15,
+
     paddingLeft: 20,
     borderRadius: 25,
     backgroundColor: color.WHITE,
-    marginTop: 30,
+    marginTop: 50,
     width: 300,
   },
-  button: {
+  btn: {
     alignItems: "center",
     padding: 15,
-    marginTop: 50,
     backgroundColor: color.BLUE,
+    marginTop: 30,
+    marginBottom: 10,
     borderRadius: 100,
     height: 70,
   },
-  buttonText: {
+  btnTxt: {
     fontSize: 30,
     color: color.WHITE,
     fontWeight: "bold",
     paddingLeft: 10,
   },
-  image: {
+
+  img: {
     height: 100,
     width: 100,
   },
-  emailErrormsg: {
+
+  textFailed: {
     color: color.RED,
     textAlign: "left",
     fontSize: 17,
