@@ -9,68 +9,69 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ErrorMessage, Signup,placeholder,color} from "../../Utility/Constants";
-import Validation from "../../Utility/Validation";
+
+import {placeholder, WELCOME_TO_FRISKY} from "../../Utility/Constants";
 
 
-import { globalstyles } from "../../Common/Style";
+
+
+
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const [checkValidPass, setCheckValidPass] = useState(false);
-  //check email validation
   const handleCheckEmail = (text) => {
-   setEmail(text);
-    if (Validation.validateEmail(email)) {
+    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    setEmail(text);
+    if (email.test(text)) {
       setCheckValidEmail(false);
     } else {
       setCheckValidEmail(true);
     }
   };
-  //check password validation
   const checkPasswordValidity = (text) => {
+    let isNonWhiteSpace =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
-    if (Validation.validatePassword(password)) {
+    if (isNonWhiteSpace.test(text)) {
       setCheckValidPass(false);
     } else {
       setCheckValidPass(true);
     }
   };
   return (
-    <View style={globalstyles.container}>
+    <View style={styles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={globalstyles.imageBackground}
+        style={styles.imageBackground}
       >
         <View style={styles.itemContainer}>
           <View>
-            <Text style={globalstyles.header}>
-           {Signup.WELCOME}
-          </Text>
+         
+            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 30 }}>
+           { WELCOME_TO_FRISKY}
+            </Text>
           </View>
-          <View>
+          <View style={{ marginTop: 20 }}>
             <Image
-              style={styles.logo}
+              style={styles.img}
               source={require("../../../Image/music-note.png")}
             />
           </View>
-          <View style={styles.inputText1}>
+          <View style={{ marginTop: 50 }}>
             <TextInput
               style={styles.textInput}
               placeholder={placeholder.EMAIL}
               value={email}
               onChangeText={handleCheckEmail}
-            /></View>
-            <View>
+            />
             {checkValidEmail ? (
-              <Text style={styles.Errormsg}>{ErrorMessage.EMAIL}</Text>
+              <Text style={styles.textFailed}>Enter valid email</Text>
             ) : (
-              null
+              <Text style={styles.textFailed}></Text>
             )}
-            </View>
-            <View style={styles.inputText1}>
             <TextInput
               style={styles.textInput}
               placeholder={placeholder.PASSWORD}
@@ -80,43 +81,45 @@ export default function LogForm({ navigation }) {
               secureTextEntry={true}
             />
             {checkValidPass ? (
-              <Text style={styles.Errormsg}>
-              {ErrorMessage.PASSWORD}
+              <Text style={styles.error}>
+                password must be one upper,lowercase,& 8digit
               </Text>
             ) : (
-              null
+              <Text style={styles.error}></Text>
             )}
           </View>
-          <View>
+          <View style={{}}>
             {email == "" || password == "" || checkValidEmail == true ? (
               <TouchableOpacity
                 onPress={() => this.functionCombined()}
                 disabled
                 style={styles.button}
               >
-                <Text style={globalstyles.buttonText}>Login</Text>
+                <Text style={styles.btnText}>Login</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
-                onPress={() => navigation.replace(navigations.HOME_SCREEN)}
+                onPress={() => navigation.replace("Main")}
                 style={styles.button}
               >
-                <Text style={globalstyles.buttonText}>Login</Text>
+                <Text style={styles.btnText}>Login</Text>
               </TouchableOpacity>
             )}
           </View>
-          <View style={styles.footer}>
+          <View style={{ paddingTop: 50 }}>
             <Text
-              onPress={() => navigation.navigate(navigations.FORGOT_SCREEN)}
-              style={styles.footer1}
+              onPress={() => navigation.navigate("ForgetPassword")}
+              style={styles.fp}
             >
-             {Signup.FORGOT_PASSWORD}
+              Forgot Password?
             </Text>
+          </View>
+          <View style={styles.line}>
             <Text
-              onPress={() => navigation.navigate(navigations.SIGNUP_SCREEN)}
-              style={styles.footer2}
+              onPress={() => navigation.navigate("SignUp")}
+              style={styles.cr}
             >
-              {Signup.CREATE_ACCOUNT}
+              Create a new Account?
             </Text>
           </View>
         </View>
@@ -124,77 +127,83 @@ export default function LogForm({ navigation }) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
-   //screen total items styles
+  container:{
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageBackground:{
+    height: "100%", 
+    width: "100%"
+  },
   itemContainer:{
-    alignItems:'center',
-    marginTop: 80,
+    alignItems: "center", 
+    marginTop: 100, 
     margin: 50
   },
-  //screen title styles
-  header:{
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 30,
-  },
-  //inputtext styles
-  inputText1:{
-    marginTop: 40
-  },
-  //screen navigation link total styles
-  footer:{
-   paddingTop:20,
-   alignItems:'center'
-  },
-  //forgotpassword text styles
-  footer1: {
+  fp: {
     fontSize: 20,
     fontWeight: "bold",
-    color: color.WHITE,
-    paddingTop:50,
+    color: "#fff",
   },
-  //create a new account text styles
-  footer2: {
+  cr: {
     fontSize: 20,
     fontWeight: "bold",
-    color: color.WHITE,
+    color: "#fff",
     paddingTop: 10,
   },
-  //image logo styles
-  image: {
+
+  img: {
     height: 100,
     width: 100,
-    marginTop: 20
   },
-  //email and password textinput styles
   textInput: {
     fontSize: 20,
-    height: 60,
-    color: color.BLACK,
-    backgroundColor: color.WHITE,
+    height: 70,
+    color: "black",
+    marginBottom: 10,
+    backgroundColor: "white",
     borderRadius: 25,
     borderLeftWidth: 15,
-    borderLeftColor: color.BLUE,
+    borderLeftColor: "#00BFFF",
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 30,
     width: 300,
   },
-  //login button styles
   button: {
     alignItems: "center",
-    paddingTop: 10,
-    backgroundColor: color.BLUE,
-    borderRadius: 25,
-    marginTop: 70,
+    padding: 10,
+    backgroundColor: "#00BFFF",
+    borderRadius: 50,
+    marginTop: 5,
     width: 300,
     height: 60,
   },
-  //email and password error message
-  Errormsg: {
-    color: color.RED,
-    marginTop:5
+
+  btnText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 25,
   },
- 
+  logo: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+  },
+
+  textFailed: {
+    color: "red",
+    textAlign: "left",
+    paddingBottom: 10,
+    paddingRight: 10,
+  },
+  error: {
+    color: "red",
+    paddingBottom: 10,
+    textAlign: "left",
+  },
 });

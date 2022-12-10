@@ -6,12 +6,12 @@ export default function MainScreen() {
   return (
     <View style={styles.main}>
       <HSB />
+
       <NavBar />
     </View>
   );
 }
 const styles = StyleSheet.create({
-  //parent styles
   main: {
     flex: 1,
     backgroundColor: "#fff",
