@@ -7,7 +7,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 import { ErrorMessage,navigations,placeholder,color,screenText} from "../../Utility/Constants";
@@ -19,7 +19,8 @@ export default function Forget({ navigation }) {
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   //Email field validation
   const handleCheckEmail = (text) => {
-    let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    let email =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     setEmail(text);
     if (email.test(text)) {
       setCheckValidEmail(false);
@@ -65,9 +66,7 @@ export default function Forget({ navigation }) {
             />
             {checkValidEmail ? (
               <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
-            ) : (
-              null
-            )}
+            ) : null}
             {email == "" || checkValidEmail == true ? (
               <TouchableOpacity
                 disabled
@@ -91,40 +90,38 @@ const styles = StyleSheet.create({
  
   header: {
     alignItems: "center",
-    marginTop: 130,
-    margin: 50
+    marginTop: 100,
+    margin: 50,
   },
   title: {
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 30,
-    color:color.WHITE ,
+    color: color.WHITE,
   },
   input: {
-    margin: 10
+    margin: 10,
   },
-
   textInput: {
     
     fontSize: 20,
-    height: 70,
+    height: 60,
     marginLeft: 5,
     borderColor: color.BLUE,
     borderLeftWidth: 15,
     paddingLeft: 20,
     borderRadius: 25,
     backgroundColor: color.WHITE,
-    marginTop: 30,
+    marginTop: 50,
     width: 300,
   },
   button: {
     alignItems: "center",
-    padding: 15,
+    padding: 10,
     marginTop: 50,
     backgroundColor: color.BLUE,
-  
-    borderRadius: 100,
-    height: 70,
+    borderRadius: 25,
+    height: 60,
   },
   buttonText: {
     fontSize: 25,
@@ -136,7 +133,7 @@ const styles = StyleSheet.create({
 
   emailErrormsg: {
     color: color.RED,
-    textAlign: "left",
+    textAlign: "center",
     fontSize: 17,
     paddingTop: 5,
   },

@@ -7,7 +7,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 
@@ -169,13 +169,14 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   inputText: {
-    marginTop: 10,
+    marginTop: 20,
   },
   textInput: {
     color: color.BLACK,
     fontSize: 20,
-    height: 70,
+    height: 60,
     marginTop: 20,
+    marginBottom:15,
     borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
@@ -199,11 +200,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
-  
   //password and confirmpassword error message
   errorMsg: {
     color: color.RED,
     paddingLeft: 10,
   }
-  
 });

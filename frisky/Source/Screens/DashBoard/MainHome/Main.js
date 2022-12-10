@@ -6,7 +6,6 @@ export default function MainScreen() {
   return (
     <View style={styles.main}>
       <HSB />
-
       <NavBar />
     </View>
   );

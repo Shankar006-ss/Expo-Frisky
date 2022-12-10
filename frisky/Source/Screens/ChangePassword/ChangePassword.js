@@ -53,9 +53,8 @@ export default function Change({ navigation }) {
             source={require("../../../Image/music-note.png")}
           />
         </View>
-       
         <Text style={styles.title}>{screenText.CHANGE_TEXT}</Text>
-          <View style={styles.inputtext1}>
+        <View style={styles.inputtext1}>
           <TextInput
             style={styles.textInput}
             placeholder={placeholder.NEW}
@@ -67,17 +66,12 @@ export default function Change({ navigation }) {
             secureTextEntry={true}
           />
           {checkValidpass ? (
-            <Text style={styles.Errormsg}>
-              {ErrorMessage.PASSWORD}
-            </Text>
-            
-          ) : (
-            null
-          )}
-          </View>
-          <View style={styles.inputtext1}>
+            <Text style={styles.Errormsg}>{ErrorMessage.PASSWORD}</Text>
+          ) : null}
+        </View>
+        <View style={styles.inputtext2}>
           <TextInput
-            style={styles.textInput}
+            style={styles.textInput2}
             placeholder={placeholder.CONFIRM}
             maxLength={16}
             onChange={(e) => setPass(e.target.value)}
@@ -85,14 +79,10 @@ export default function Change({ navigation }) {
             underlineColorAndroid={"transparent"}
             secureTextEntry={true}
           />
-          {password == Confirm ? (
-            null
-          ) : (
-            <Text style={styles.Errormsg}>
-              {ErrorMessage.CONFIRMPASSWORD}
-            </Text>
+          {password == Confirm ? null : (
+            <Text style={styles.Errormsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
           )}
-          </View>
+        </View>
         <View>
           {checkValidpass ||
           password != Confirm ||
@@ -116,45 +106,48 @@ export default function Change({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-
   title: {
     fontSize: 30,
     fontWeight: "bold",
     color: color.WHITE,
-    margin: 40,
+    marginTop: 30,
+  },
+  inputtext1: {
+    marginTop: 40,
   },
   textInput: {
     fontSize: 20,
-    height: 70,
-    borderColor:color.BLUE,
+    height: 60,
+    borderColor: color.BLUE,
     borderLeftWidth: 15,
     paddingLeft: 30,
     borderRadius: 25,
     backgroundColor: "white",
-    margin: 20,
     width: 300,
   },
-
-  button: {
-    backgroundColor:color.BLUE,
-    margin: 30,
-    height: 70,
-    borderRadius: 60,
+  textInput2: {
+    fontSize: 20,
+    height: 60,
+    borderColor: color.BLUE,
+    borderLeftWidth: 15,
+    paddingLeft: 30,
+    borderRadius: 25,
+    backgroundColor: "white",
+    marginTop: 40,
     width: 300,
-    padding: 15,
+  },
+  button: {
+    backgroundColor: color.BLUE,
+    marginTop: 50,
+    height: 60,
+    borderRadius: 25,
+    width: 300,
+    paddingTop: 11,
   },
   
   Errormsg: {
     color: color.RED,
-    paddingBottom: 10,
-    textAlign: "left",
-    paddingLeft:30
-    
+    paddingTop: 5,
+    textAlign: "center",
   },
-  inputtext1:{
-    marginTop: 40,
-    
-  },
-  
- 
 });
