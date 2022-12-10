@@ -7,14 +7,16 @@ import MainScreen from "../Screens/DashBoard/MainHome/Main";
 import Forget from "../Screens/ForgetPassword/ForgetPassword";
 import LogForm from "../Screens/SignIn/SignIn";
 import Reg from "../Screens/SignUp/SignUp";
+
 const Stack = createStackNavigator();
+
 function SplashScreenImage({ navigation }) {
   setTimeout(() => {
     navigation.replace("SignIn");
   }, 2000);
   return (
     <ImageBackground
-      style={ styles.imageBackground}
+      style={{ flex: 1 }}
       source={require('../../Image/splash.png')}
       backgroundColor="#000000"
     />
@@ -25,14 +27,14 @@ export default function Nav() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen" style={styles.container}>
-        <Stack.Screen //splash screen 
+        <Stack.Screen
           name="Splashscreen"
           component={SplashScreenImage}
           options={{
             headerShown: false,
           }}
         />
-        <Stack.Screen //signin screen navigation
+        <Stack.Screen
           name="SignIn"
           component={LogForm}
           options={{
@@ -40,7 +42,8 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen //signup screen navigation
+
+        <Stack.Screen
           name="SignUp"
           component={Reg}
           options={{
@@ -48,7 +51,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen //changepassword screen navigation
+        <Stack.Screen
           name="ChangePassword"
           component={Change}
           options={{
@@ -56,7 +59,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen //forgotpassword screen navigation
+        <Stack.Screen
           name="ForgetPassword"
           component={Forget}
           options={{
@@ -64,7 +67,7 @@ export default function Nav() {
             headerShown: false,
           }}
         />
-        <Stack.Screen //main screen navigation
+        <Stack.Screen
           name="Main"
           component={MainScreen}
           options={{
@@ -79,13 +82,8 @@ export default function Nav() {
 }
 
 const styles = StyleSheet.create({
-  //parent styles
   container: {
     alignItems: "center",
     justifyContent: "center",
   },
-  //imagebackground styles
-  imageBackground:{
-    flex:1
-  }
 });

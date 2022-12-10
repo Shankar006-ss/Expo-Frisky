@@ -9,40 +9,34 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-import { screenText,color,ErrorMessage,placeholder,navigations} from "../../Utility/Constants";
-import Validation from "../../Utility/Validation";
-
-
-
-import { globalstyles } from "../../Common/Style";
+import { screenText,color,ErrorMessage,placeholder } from "../../Utility/Constants";
 
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
-  
-  //Password field validation
   const checkPasswordValidity = (text) => {
+    let password =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     setPassword(text);
-    if (Validation.validatePassword(password)) {
+    if (password.test(text)) {
       setCheckValidPass(false);
     } else {
       setCheckValidPass(true);
     }
   };
-  //Confirm password validity
-  const checkConfirmPasswordValidity = (text) => {   
+  //Confirm password
+  const checkConfirmPasswordValidity = (text) => {
     setPass(text);
   };
   return (
-    <ImageBackground                                 
+    <ImageBackground
       source={require("../../../Image/background.jpg")}
-      style={globalstyles.imageBackground}
+      style={styles.imageBackground}
       resizeMode="cover"
     >
-      <View style={globalstyles.container}>
+      <View style={styles.container}>
         <StatusBar
           translucent
           backgroundColor="black"
@@ -50,12 +44,12 @@ export default function Change({ navigation }) {
         />
         <View>
           <Image
-            style={globalstyles.image}
+            style={styles.image}
             source={require("../../../Image/music-note.png")}
           />
         </View>
         <Text style={styles.title}>{screenText.CHANGE_TEXT}</Text>
-        <View style={styles.inputtext1}>
+        <View>
           <TextInput
             style={styles.textInput}
             placeholder={placeholder.NEW}
@@ -67,21 +61,27 @@ export default function Change({ navigation }) {
             secureTextEntry={true}
           />
           {checkValidpass ? (
-            <Text style={styles.Errormsg}>{ErrorMessage.PASSWORD}</Text>
-          ) : null}
-        </View>
-        <View style={styles.inputtext2}>
+            <Text style={styles.passwordErrormsg}>
+              {ErrorMessage.PASSWORD}
+            </Text>
+          ) : (
+            null
+          )}
           <TextInput
             style={styles.textInput}
-            placeholder={placeholder.CONFIRM}
+            placeholder={placeholder.CHANGE}
             maxLength={16}
             onChange={(e) => setPass(e.target.value)}
             onChangeText={(text) => checkConfirmPasswordValidity(text)}
             underlineColorAndroid={"transparent"}
             secureTextEntry={true}
           />
-          {password == Confirm ? null : (
-            <Text style={styles.Errormsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
+          {password == Confirm ? (
+            null
+          ) : (
+            <Text style={styles.confirmPasswordErrormsg}>
+              {ErrorMessage.CONFIRMPASSWORD}
+            </Text>
           )}
         </View>
         <View>
@@ -90,12 +90,12 @@ export default function Change({ navigation }) {
           password == "" ||
           Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button} >
-              <Text style={globalstyles.buttonText}>{screenText.SAVE_TEXT}</Text>
+              <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
+              onPress={() => navigation.navigate("SignIn")}
             >
               <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
@@ -107,49 +107,58 @@ export default function Change({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  //change password title styles
+  container:{
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageBackground:{
+    height: "100%", 
+    width: "100%"
+  },
+  image: {
+    height: 100,
+    width: 100,
+  },
   title: {
     fontSize: 30,
     fontWeight: "bold",
     color: color.WHITE,
-    marginTop: 30,
+    margin: 40,
   },
-  //input text styles
-  inputtext1: {
-    marginTop: 40,
-  },
-  //password and confirmpassword textinput styles
   textInput: {
     fontSize: 20,
-    height: 60,
-    borderColor: color.BLUE,
+    height: 70,
+    borderColor:color.BLUE,
     borderLeftWidth: 15,
     paddingLeft: 30,
     borderRadius: 25,
     backgroundColor: "white",
+    margin: 20,
     width: 300,
   },
-  //savechanges button styles
   button: {
-    backgroundColor: color.BLUE,
-    marginTop: 50,
-    height: 60,
-    borderRadius: 25,
+    backgroundColor:color.BLUE,
+    margin: 30,
+    height: 70,
+    borderRadius: 60,
     width: 300,
     padding: 15,
   },
-  //savechanges button text styles
-  buttonText: {
+  buttontext: {
     fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
-    paddingTop: 11,
   },
-  //password and confirmpassword error message styles
-  Errormsg: {
+  passwordErrormsg: {
     color: color.RED,
-    paddingTop: 5,
-    textAlign: "center",
+    paddingLeft: 30,
+    textAlign: "left",
+  },
+  confirmPasswordErrormsg: {
+    color: color.RED,
+    paddingLeft: 30,
   },
 });
