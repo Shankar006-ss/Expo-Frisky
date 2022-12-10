@@ -1,18 +1,32 @@
 import { StyleSheet } from "react-native";
+import { color } from "../Utility/Constants";
 
-export default function TextBox() {
-  return StyleSheet.create({
-    inputField: {
-      fontSize: 20,
-      height: 70,
-      marginLeft: 5,
-      borderColor: "#00BFFF",
-      borderLeftWidth: 15,
-      paddingLeft: 20,
-      borderRadius: 25,
-      backgroundColor: "white",
-      marginTop: 50,
-      width: 300,
-    },
-  });
-}
+export const globalstyles = StyleSheet.create({
+  container: {
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageBackground: {
+    height: "100%",
+    width: "100%"
+  },
+  header: {
+    color: color.WHITE,
+    fontWeight: "bold",
+    fontSize: 30,
+
+  },
+  image: {
+    height: 100,
+    width: 100,
+  },
+  buttonText: {
+    fontSize: 25,
+    color: color.WHITE,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
+});

@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import { ErrorMessage, Signup,placeholder,color,navigations} from "../../Utility/Constants";
+import { globalstyles } from "../../Common/Style";
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,15 +36,15 @@ export default function LogForm({ navigation }) {
     }
   };
   return (
-    <View style={styles.container}>
+    <View style={globalstyles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={styles.imageBackground}
+        style={globalstyles.imageBackground}
       >
         <View style={styles.itemContainer}>
           <View>
-            <Text style={styles.header}>
+            <Text style={globalstyles.header}>
            {Signup.WELCOME}
           </Text>
           </View>
@@ -89,14 +90,14 @@ export default function LogForm({ navigation }) {
                 disabled
                 style={styles.button}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={globalstyles.buttonText}>Login</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
                 onPress={() => navigation.replace("Main")}
                 style={styles.button}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={globalstyles.buttonText}>Login</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -120,27 +121,13 @@ export default function LogForm({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  container:{
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground:{
-    height: "100%",
-    width: "100%"
-  },
+
   itemContainer:{
     alignItems: "center",
     marginTop: 100,
     margin: 50
   },
-  header:{
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 30,
-    
-  },
+ 
   inputText1:{
     marginTop: 40
   },
@@ -188,11 +175,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
     width: 300,
     height: 60,
-  },
-  buttonText: {
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 25,
   },
   emailErrormsg: {
     color: color.RED,

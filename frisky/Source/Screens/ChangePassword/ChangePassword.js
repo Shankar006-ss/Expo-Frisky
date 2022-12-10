@@ -13,6 +13,8 @@ import {
 
 
 import { screenText,color,ErrorMessage,placeholder, navigations } from "../../Utility/Constants";
+import { globalstyles } from "../../Common/Style";
+
 
 
 export default function Change({ navigation }) {
@@ -36,10 +38,10 @@ export default function Change({ navigation }) {
   return (
     <ImageBackground
       source={require("../../../Image/background.jpg")}
-      style={styles.imageBackground}
+      style={globalstyles.imageBackground}
       resizeMode="cover"
     >
-      <View style={styles.container}>
+      <View style={globalstyles.container}>
         <StatusBar
           translucent
           backgroundColor="black"
@@ -47,7 +49,7 @@ export default function Change({ navigation }) {
         />
         <View>
           <Image
-            style={styles.image}
+            style={globalstyles.image}
             source={require("../../../Image/music-note.png")}
           />
         </View>
@@ -97,7 +99,7 @@ export default function Change({ navigation }) {
           password == "" ||
           Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button} >
-              <Text style={styles.buttonText}>{screenText.SAVE_TEXT}</Text>
+              <Text style={globalstyles.buttonText}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -114,20 +116,7 @@ export default function Change({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground:{
-    height: "100%", 
-    width: "100%"
-  },
-  image: {
-    height: 100,
-    width: 100,
-  },
+
   title: {
     fontSize: 30,
     fontWeight: "bold",
@@ -153,12 +142,6 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     width: 300,
     padding: 15,
-  },
-  buttonText: {
-    fontSize: 25,
-    color: color.WHITE,
-    fontWeight: "bold",
-    textAlign: "center",
   },
   
   Errormsg: {

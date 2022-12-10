@@ -13,9 +13,6 @@ import {
 
 import { color,homescreen } from '../../../Utility/Constants';
 
-
-
-
 const ListItem = ({ item }) => {
   return (
     <View style={styles.item}>

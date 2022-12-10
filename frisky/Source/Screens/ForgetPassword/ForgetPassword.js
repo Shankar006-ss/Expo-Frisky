@@ -11,10 +11,7 @@ import {
 } from "react-native";
 
 import { ErrorMessage,navigations,placeholder,color,screenText} from "../../Utility/Constants";
-
-
-
-
+import { globalstyles } from "../../Common/Style";
 
 
 export default function Forget({ navigation }) {
@@ -41,16 +38,16 @@ export default function Forget({ navigation }) {
 
   return (
     <View
-      style={styles.container}>
+      style={globalstyles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={styles.imageBackground}
+        style={globalstyles.imageBackground}
       >
         <View style={styles.header}>
           <View>
             <Image
-              style={styles.image}
+              style={globalstyles.image}
               source={require("../../../Image/music-note.png")}
             />
           </View>
@@ -91,16 +88,7 @@ export default function Forget({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground: {
-    height: "100%",
-    width: "100%"
-  },
+ 
   header: {
     alignItems: "center",
     marginTop: 130,
@@ -117,6 +105,7 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
+    
     fontSize: 20,
     height: 70,
     marginLeft: 5,
@@ -138,16 +127,12 @@ const styles = StyleSheet.create({
     height: 70,
   },
   buttonText: {
-    fontSize: 30,
+    fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
-    paddingLeft: 10,
+    textAlign: "center",
   },
 
-  image: {
-    height: 100,
-    width: 100,
-  },
 
   emailErrormsg: {
     color: color.RED,
