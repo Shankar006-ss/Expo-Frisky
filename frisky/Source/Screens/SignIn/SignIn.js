@@ -171,11 +171,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     backgroundColor: color.BLUE,
     borderRadius: 25,
-    marginTop: 70,
+    marginTop: 50,
     width: 300,
     height: 60,
   },
-  emailErrormsg: {
+  Errormsg: {
     color: color.RED,
     marginTop:5
   },
