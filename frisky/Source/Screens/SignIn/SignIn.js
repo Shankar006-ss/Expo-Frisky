@@ -145,14 +145,14 @@ const styles = StyleSheet.create({
     marginTop: 50
   },
  footer:{
-   paddingTop:20,
+   paddingTop:10,
    alignItems:'center'
   },
   footer1: {
     fontSize: 20,
     fontWeight: "bold",
     color: color.WHITE,
-    paddingTop:50,
+    paddingTop:30,
   },
   footer2: {
     fontSize: 20,
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     backgroundColor: color.BLUE,
     borderRadius: 25,
-    marginTop: 70,
+    marginTop: 30,
     width: 300,
     height: 60,
   },
@@ -195,7 +195,9 @@ const styles = StyleSheet.create({
   },
   Errormsg: {
     color: color.RED,
-    marginTop:5
+    marginTop:5,
+    alignItems:"center"
   },
+
  
 });

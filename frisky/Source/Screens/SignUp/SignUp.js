@@ -173,9 +173,10 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
-    marginTop: 20,
+    marginTop: 10,
   },
   header: {
+    marginTop:30,
     color: color.WHITE,
     fontWeight: "bold",
     fontSize: 30,
@@ -187,8 +188,8 @@ const styles = StyleSheet.create({
     color: color.BLACK,
     fontSize: 20,
     height: 60,
-    marginTop: 20,
-    marginBottom:15,
+    marginTop: 10,
+    marginBottom:5,
     borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
@@ -199,16 +200,16 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: color.BLUE,
-    marginTop: 20,
-    borderRadius: 60,
-    padding: 15,
-  },
+    borderRadius: 25,
+    
+ },
   buttonText: {
     fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
     textAlign: "center",
-  },
+   
+    },
   footer: {
     fontSize: 20,
     color: color.WHITE,
@@ -220,6 +221,6 @@ const styles = StyleSheet.create({
   //password and confirmpassword error message
   errorMsg: {
     color: color.RED,
-    paddingLeft: 10,
+    textAlign:'center'
   }
 });
