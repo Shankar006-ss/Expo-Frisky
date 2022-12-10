@@ -1,15 +1,13 @@
 import React from "react";
 import { Image, StatusBar, StyleSheet, View } from "react-native";
 import { Appbar } from "react-native-paper";
-import { color, homescreen } from '../../../Utility/Constants';
+import { color, homescreen } from "../../../Utility/Constants";
 
 const HSB = () => (
   <View>
-    <StatusBar translucent backgroundColor="black" barStyle="light-content" />
+    <StatusBar translucent backgroundColor={color.BLACK} barStyle="light-content" />
     <Appbar.Header style={styles.headerColor} activeColor="white">
-
       <Appbar.Action icon="menu" />
-
       <Appbar.Content style={styles.conClr} title={homescreen.TITLE} />
       <Image
         source={require("../../../../Image/music-note.png")}
@@ -24,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: 15,
     marginTop: 50,
-    backgroundColor: color.DARK,
+    backgroundColor: color.BLACK,
   },
   img: {
     height: 40,
@@ -32,7 +30,6 @@ const styles = StyleSheet.create({
   },
   conClr: {
     alignItems: "center",
-
   },
 });
 

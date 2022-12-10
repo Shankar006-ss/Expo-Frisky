@@ -12,6 +12,8 @@ import {
 import { ErrorMessage, Signup,placeholder,color} from "../../Utility/Constants";
 import Validation from "../../Utility/Validation";
 
+
+import { globalstyles } from "../../Common/Style";
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,21 +36,21 @@ export default function LogForm({ navigation }) {
     }
   };
   return (
-    <View style={styles.container}>
+    <View style={globalstyles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={styles.imageBackground}
+        style={globalstyles.imageBackground}
       >
         <View style={styles.itemContainer}>
           <View>
-            <Text style={styles.header}>
+            <Text style={globalstyles.header}>
            {Signup.WELCOME}
           </Text>
           </View>
           <View>
             <Image
-              style={styles.image}
+              style={styles.logo}
               source={require("../../../Image/music-note.png")}
             />
           </View>
@@ -58,9 +60,10 @@ export default function LogForm({ navigation }) {
               placeholder={placeholder.EMAIL}
               value={email}
               onChangeText={handleCheckEmail}
-            />
+            /></View>
+            <View>
             {checkValidEmail ? (
-              <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
+              <Text style={styles.Errormsg}>{ErrorMessage.EMAIL}</Text>
             ) : (
               null
             )}</View>
@@ -74,7 +77,7 @@ export default function LogForm({ navigation }) {
               secureTextEntry={true}
             />
             {checkValidPass ? (
-              <Text style={styles.passwordErrormsg}>
+              <Text style={styles.Errormsg}>
               {ErrorMessage.PASSWORD}
               </Text>
             ) : (
@@ -88,26 +91,26 @@ export default function LogForm({ navigation }) {
                 disabled
                 style={styles.button}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={globalstyles.buttonText}>Login</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
-                onPress={() => navigation.replace("Main")}
+                onPress={() => navigation.replace(navigations.HOME_SCREEN)}
                 style={styles.button}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={globalstyles.buttonText}>Login</Text>
               </TouchableOpacity>
             )}
           </View>
           <View style={styles.footer}>
             <Text
-              onPress={() => navigation.navigate("ForgetPassword")}
+              onPress={() => navigation.navigate(navigations.FORGOT_SCREEN)}
               style={styles.footer1}
             >
              {Signup.FORGOT_PASSWORD}
             </Text>
             <Text
-              onPress={() => navigation.navigate("SignUp")}
+              onPress={() => navigation.navigate(navigations.SIGNUP_SCREEN)}
               style={styles.footer2}
             >
               {Signup.CREATE_ACCOUNT}
@@ -119,32 +122,17 @@ export default function LogForm({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  container:{
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground:{
-    height: "100%",
-    width: "100%"
-  },
+
   itemContainer:{
-    alignItems: "center",
-    marginTop: 100,
+    alignItems:'center',
+    marginTop: 80,
     margin: 50
   },
-  header:{
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 30,
-    
-  },
-  inputText1:{
-    marginTop: 40
-  },
  
-  footer:{
+  inputText1:{
+    marginTop: 50
+  },
+ footer:{
    paddingTop:20,
    alignItems:'center'
   },
@@ -152,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: color.WHITE,
-    paddingTop:20,
+    paddingTop:50,
   },
   footer2: {
     fontSize: 20,
@@ -160,14 +148,14 @@ const styles = StyleSheet.create({
     color: color.WHITE,
     paddingTop: 10,
   },
-  image: {
+  logo: {
     height: 100,
     width: 100,
     marginTop: 20
   },
   textInput: {
     fontSize: 20,
-    height: 70,
+    height: 60,
     color: color.BLACK,
     backgroundColor: color.WHITE,
     borderRadius: 25,
@@ -177,30 +165,19 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 30,
     width: 300,
-
   },
   button: {
     alignItems: "center",
-    padding: 10,
+    paddingTop: 10,
     backgroundColor: color.BLUE,
-    borderRadius: 50,
-    marginTop: 30,
+    borderRadius: 25,
+    marginTop: 70,
     width: 300,
     height: 60,
   },
-  buttonText: {
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 25,
-  },
   emailErrormsg: {
-    color: "red",
-    paddingBottom: 10,
-    textAlign: "left",
+    color: color.RED,
+    marginTop:5
   },
-  passwordErrormsg: {
-    color: "red",
-    paddingLeft: 10,
-    
-  },
+ 
 });

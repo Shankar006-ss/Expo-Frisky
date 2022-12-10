@@ -14,6 +14,11 @@ import { screenText,color,ErrorMessage,placeholder,navigations} from "../../Util
 import Validation from "../../Utility/Validation";
 
 
+
+import { globalstyles } from "../../Common/Style";
+
+
+
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("");
   const [checkValidpass, setCheckValidPass] = useState(false);
@@ -34,10 +39,10 @@ export default function Change({ navigation }) {
   return (
     <ImageBackground
       source={require("../../../Image/background.jpg")}
-      style={styles.imageBackground}
+      style={globalstyles.imageBackground}
       resizeMode="cover"
     >
-      <View style={styles.container}>
+      <View style={globalstyles.container}>
         <StatusBar
           translucent
           backgroundColor="black"
@@ -45,13 +50,12 @@ export default function Change({ navigation }) {
         />
         <View>
           <Image
-            style={styles.image}
+            style={globalstyles.image}
             source={require("../../../Image/music-note.png")}
           />
         </View>
-       
         <Text style={styles.title}>{screenText.CHANGE_TEXT}</Text>
-          <View style={styles.inputtext1}>
+        <View style={styles.inputtext1}>
           <TextInput
             style={styles.textInput}
             placeholder={placeholder.NEW}
@@ -63,17 +67,12 @@ export default function Change({ navigation }) {
             secureTextEntry={true}
           />
           {checkValidpass ? (
-            <Text style={styles.Errormsg}>
-              {ErrorMessage.PASSWORD}
-            </Text>
-            
-          ) : (
-            null
-          )}
-          </View>
-          <View style={styles.inputtext1}>
+            <Text style={styles.Errormsg}>{ErrorMessage.PASSWORD}</Text>
+          ) : null}
+        </View>
+        <View style={styles.inputtext2}>
           <TextInput
-            style={styles.textInput}
+            style={styles.textInput2}
             placeholder={placeholder.CONFIRM}
             maxLength={16}
             onChange={(e) => setPass(e.target.value)}
@@ -81,21 +80,17 @@ export default function Change({ navigation }) {
             underlineColorAndroid={"transparent"}
             secureTextEntry={true}
           />
-          {password == Confirm ? (
-            null
-          ) : (
-            <Text style={styles.Errormsg}>
-              {ErrorMessage.CONFIRMPASSWORD}
-            </Text>
+          {password == Confirm ? null : (
+            <Text style={styles.Errormsg}>{ErrorMessage.CONFIRMPASSWORD}</Text>
           )}
-          </View>
+        </View>
         <View>
           {checkValidpass ||
           password != Confirm ||
           password == "" ||
           Confirm == "" ? (
             <TouchableOpacity disabled style={styles.button} >
-              <Text style={styles.buttontext}>{screenText.SAVE_TEXT}</Text>
+              <Text style={globalstyles.buttonText}>{screenText.SAVE_TEXT}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -112,64 +107,48 @@ export default function Change({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground:{
-    height: "100%", 
-    width: "100%"
-  },
-  image: {
-    height: 100,
-    width: 100,
-  },
   title: {
     fontSize: 30,
     fontWeight: "bold",
     color: color.WHITE,
-    margin: 40,
+    marginTop: 30,
+  },
+  inputtext1: {
+    marginTop: 40,
   },
   textInput: {
     fontSize: 20,
-    height: 70,
-    borderColor:color.BLUE,
+    height: 60,
+    borderColor: color.BLUE,
     borderLeftWidth: 15,
     paddingLeft: 30,
     borderRadius: 25,
     backgroundColor: "white",
-    margin: 20,
     width: 300,
   },
-
+  textInput2: {
+    fontSize: 20,
+    height: 60,
+    borderColor: color.BLUE,
+    borderLeftWidth: 15,
+    paddingLeft: 30,
+    borderRadius: 25,
+    backgroundColor: "white",
+    marginTop: 40,
+    width: 300,
+  },
   button: {
-    backgroundColor:color.BLUE,
-    margin: 30,
-    height: 70,
-    borderRadius: 60,
+    backgroundColor: color.BLUE,
+    marginTop: 50,
+    height: 60,
+    borderRadius: 25,
     width: 300,
-    padding: 15,
-  },
-  buttontext: {
-    fontSize: 25,
-    color: color.WHITE,
-    fontWeight: "bold",
-    textAlign: "center",
+    paddingTop: 11,
   },
   
   Errormsg: {
     color: color.RED,
-    paddingBottom: 10,
-    textAlign: "left",
-    paddingLeft:30
-    
+    paddingTop: 5,
+    textAlign: "center",
   },
-  inputtext1:{
-    marginTop: 40,
-    
-  },
-  
- 
 });

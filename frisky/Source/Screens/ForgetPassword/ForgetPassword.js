@@ -7,10 +7,14 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { ErrorMessage, navigations, placeholder, color, screenText } from "../../Utility/Constants";
 import Validation from "../../Utility/Validation";
+
+
+import { globalstyles } from "../../Common/Style";
+
 
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
@@ -34,16 +38,16 @@ export default function Forget({ navigation }) {
   };
   return (
     <View
-      style={styles.container}>
+      style={globalstyles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
       <ImageBackground
         source={require("../../../Image/background.jpg")}
-        style={styles.imageBackground}
+        style={globalstyles.imageBackground}
       >
         <View style={styles.header}>
           <View>
             <Image
-              style={styles.image}
+              style={globalstyles.image}
               source={require("../../../Image/music-note.png")}
             />
           </View>
@@ -61,9 +65,7 @@ export default function Forget({ navigation }) {
             />
             {checkValidEmail ? (
               <Text style={styles.emailErrormsg}>{ErrorMessage.EMAIL}</Text>
-            ) : (
-              null
-            )}
+            ) : null}
             {email == "" || checkValidEmail == true ? (
               <TouchableOpacity
                 disabled
@@ -84,20 +86,11 @@ export default function Forget({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground: {
-    height: "100%",
-    width: "100%"
-  },
+ 
   header: {
     alignItems: "center",
-    marginTop: 130,
-    margin: 50
+    marginTop: 100,
+    margin: 50,
   },
   title: {
     fontSize: 30,
@@ -106,41 +99,40 @@ const styles = StyleSheet.create({
     color: color.WHITE,
   },
   input: {
-    margin: 10
+    margin: 10,
   },
   textInput: {
+    
     fontSize: 20,
-    height: 70,
+    height: 60,
     marginLeft: 5,
     borderColor: color.BLUE,
     borderLeftWidth: 15,
     paddingLeft: 20,
     borderRadius: 25,
     backgroundColor: color.WHITE,
-    marginTop: 30,
+    marginTop: 50,
     width: 300,
   },
   button: {
     alignItems: "center",
-    padding: 15,
+    padding: 10,
     marginTop: 50,
     backgroundColor: color.BLUE,
-    borderRadius: 100,
-    height: 70,
+    borderRadius: 25,
+    height: 60,
   },
   buttonText: {
-    fontSize: 30,
+    fontSize: 25,
     color: color.WHITE,
     fontWeight: "bold",
-    paddingLeft: 10,
+    textAlign: "center",
   },
-  image: {
-    height: 100,
-    width: 100,
-  },
+
+
   emailErrormsg: {
     color: color.RED,
-    textAlign: "left",
+    textAlign: "center",
     fontSize: 17,
     paddingTop: 5,
   },

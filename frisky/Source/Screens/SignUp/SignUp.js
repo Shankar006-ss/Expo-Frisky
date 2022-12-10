@@ -7,10 +7,14 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { Signup, ErrorMessage, color, placeholder, navigations } from '../../Utility/Constants';
 import Validation from "../../Utility/Validation";
+
+
+
+import { globalstyles } from "../../Common/Style";
 
 
 export default function SignUp({ navigation }) {
@@ -55,19 +59,19 @@ export default function SignUp({ navigation }) {
   return (
     <ImageBackground
       source={require("../../../Image/background.jpg")}
-      style={styles.imageBackground}
+      style={globalstyles.imageBackground}
       resizeMode="cover"
     >
-      <View style={styles.container}>
+      <View style={globalstyles.container}>
         <StatusBar
           translucent
           backgroundColor="black"
           barStyle="light-content"
         />
-        <Text style={styles.header}>{Signup.WELCOME}</Text>
+        <Text style={globalstyles.header}>{Signup.WELCOME}</Text>
         <View>
           <Image
-            style={styles.image}
+            style={globalstyles.image}
             source={require("../../../Image/music-note.png")}
           />
         </View>
@@ -135,14 +139,14 @@ export default function SignUp({ navigation }) {
             name == "" ||
             confirm == "" ? (
             <TouchableOpacity disabled style={styles.button}>
-              <Text style={styles.buttonText}>{Signup.SIGNUP}</Text>
+              <Text style={globalstyles.buttonText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate(navigations.HOME_SCREEN)}
             >
-              <Text style={styles.buttonText}>{Signup.SIGNUP}</Text>
+              <Text style={globalstyles.buttonText}>{Signup.SIGNUP}</Text>
             </TouchableOpacity>
           )}
           <Text
@@ -156,37 +160,19 @@ export default function SignUp({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imageBackground: {
-    height: "100%",
-    width: "100%"
-  },
 
-  image: {
-    height: 100,
-    width: 100,
-    marginTop: 10,
-
-  },
   header: {
-    color: color.WHITE,
-    fontWeight: "bold",
-    fontSize: 30,
     marginTop: 30,
   },
   inputText: {
-    marginTop: 10,
+    marginTop: 20,
   },
   textInput: {
     color: color.BLACK,
     fontSize: 20,
-    height: 70,
+    height: 60,
     marginTop: 20,
+    marginBottom:15,
     borderColor: color.BLUE,
     borderWidth: 1,
     borderLeftWidth: 15,
@@ -201,12 +187,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     padding: 15,
   },
-  buttonText: {
-    fontSize: 25,
-    color: color.WHITE,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
+
   footer: {
     fontSize: 20,
     color: color.WHITE,
@@ -215,9 +196,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
   },
+  //password and confirmpassword error message
   errorMsg: {
     color: color.RED,
     paddingLeft: 10,
   }
-
 });
