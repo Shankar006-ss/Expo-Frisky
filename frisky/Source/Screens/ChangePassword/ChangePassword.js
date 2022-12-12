@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -24,7 +24,7 @@ export default function Change({ navigation }) {
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [confirm, setPass] = useState("");
   const [checkValidConfirm, setCheckValidConfirm] = useState(false);
-
+  const [checkbutton, setCheckbutton] = useState(true)
   //Password field validation
   const checkPasswordValidity = (text) => {
     setPassword(text);
@@ -43,6 +43,15 @@ export default function Change({ navigation }) {
       setCheckValidConfirm(true);
     }
   };
+  //button functionality
+  useEffect(() => {
+    if ((checkValidpass == false) && (checkValidConfirm == false) && !(password == '') && !(confirm == '')) {
+      setCheckbutton(false);
+    }
+    else {
+      setCheckbutton(true);
+    }
+  });
   return (
     <ImageBackground
       source={require("../../../Image/background.jpg")}
@@ -92,25 +101,18 @@ export default function Change({ navigation }) {
           ) : null}
         </View>
         <View>
-          {checkValidpass ||
-          checkValidConfirm ||
-          password == "" ||
-          confirm == "" ? (
-            <TouchableOpacity disabled style={styles.button}>
-              <Text style={globalstyles.buttonText}>
-                {screenText.SAVE_TEXT}
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
-            >
-              <Text style={globalstyles.buttonText}>
-                {screenText.SAVE_TEXT}
-              </Text>
-            </TouchableOpacity>
-          )}
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
+            disabled={checkbutton}
+          >
+
+            <Text style={globalstyles.buttonText}>
+              {screenText.SAVE_TEXT}
+            </Text>
+          </TouchableOpacity>
+
         </View>
       </View>
     </ImageBackground>

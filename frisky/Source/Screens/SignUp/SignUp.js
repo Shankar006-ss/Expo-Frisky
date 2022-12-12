@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -28,6 +28,7 @@ export default function SignUp({ navigation }) {
   const [checkValidPass, setCheckValidPass] = useState(false);
   const [confirm, setPass] = useState("");
   const [checkValidConfirm, setCheckValidConfirm] = useState(false);
+  const [checkbutton, setCheckbutton] = useState(true);
   //name field validation
   const NameValid = (text) => {
     setName(text);
@@ -64,6 +65,16 @@ export default function SignUp({ navigation }) {
       setCheckValidConfirm(true);
     }
   };
+  //button functionality
+  useEffect(() => {
+    if ((checkValidEmail == false) && (checkValidPass == false) && !(password == "") && !(email == "") &&
+      (checkValidName == false) && !(name == "") && (checkValidConfirm == false) && !(confirm == "")) {
+      setCheckbutton(false);
+    }
+    else {
+      setCheckbutton(true);
+    }
+  });
   return (
     <ImageBackground
       source={require("../../../Image/background.jpg")}
@@ -128,25 +139,14 @@ export default function SignUp({ navigation }) {
               {ErrorMessage.CONFIRMPASSWORD}
             </Text>
           ) : null}
-          {checkValidName ||
-          checkValidPass ||
-          checkValidEmail ||
-          checkValidConfirm ||
-          password == "" ||
-          email == "" ||
-          name == "" ||
-          confirm == "" ? (
-            <TouchableOpacity disabled style={styles.button}>
-              <Text style={globalstyles.buttonText}>{Signup.SIGNUP}</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate(navigations.HOME_SCREEN)}
-            >
-              <Text style={globalstyles.buttonText}>{Signup.SIGNUP}</Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate(navigations.HOME_SCREEN)}
+            disabled={checkbutton}
+          >
+            <Text style={globalstyles.buttonText}>{Signup.SIGNUP}
+            </Text>
+          </TouchableOpacity>
           <Text
             onPress={() => navigation.navigate(navigations.SIGNIN_SCREEN)}
             style={styles.footer}

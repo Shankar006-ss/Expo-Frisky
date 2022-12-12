@@ -27,6 +27,7 @@ export const screenText = {
   SAVE_TEXT: "Save Changes",
   COMING_SOON: "Coming soon",
   LOG_OUT: "Log out",
+  LOG_IN:"Login"
 };
 export const navigations = {
   HOME_SCREEN: "Main",

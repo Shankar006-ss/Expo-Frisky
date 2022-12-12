@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -15,15 +15,17 @@ import {
   placeholder,
   color,
   navigations,
+  screenText
 } from "../../Utility/Constants";
 import Validation from "../../Utility/Validation";
-
 import { globalstyles } from "../../Common/Style";
+
 export default function LogForm({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const [checkValidPass, setCheckValidPass] = useState(false);
+  const [checkbutton, setCheckbutton] = useState(true);
   //check email validation
   const handleCheckEmail = (text) => {
     setEmail(text);
@@ -42,6 +44,15 @@ export default function LogForm({ navigation }) {
       setCheckValidPass(true);
     }
   };
+  //button functionality
+  useEffect(() => {
+    if ((checkValidEmail == false) && (checkValidPass == false) && !(password == "") && !(email == "")) {
+      setCheckbutton(false);
+    }
+    else {
+      setCheckbutton(true);
+    }
+  });
   return (
     <View style={globalstyles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
@@ -85,22 +96,14 @@ export default function LogForm({ navigation }) {
             ) : null}
           </View>
           <View>
-            {email == "" || password == "" || checkValidEmail == true ? (
-              <TouchableOpacity
-                onPress={() => this.functionCombined()}
-                disabled
-                style={styles.button}
-              >
-                <Text style={globalstyles.buttonText}>Login</Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                onPress={() => navigation.replace(navigations.HOME_SCREEN)}
-                style={styles.button}
-              >
-                <Text style={globalstyles.buttonText}>Login</Text>
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate(navigations.HOME_SCREEN)}
+              disabled={checkbutton}
+            >
+              <Text style={globalstyles.buttonText}>{screenText.LOG_IN}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.footer}>
             <Text

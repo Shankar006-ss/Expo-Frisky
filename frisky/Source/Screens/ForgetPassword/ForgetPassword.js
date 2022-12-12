@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -22,6 +22,7 @@ import { globalstyles } from "../../Common/Style";
 export default function Forget({ navigation }) {
   const [email, setEmail] = useState("");
   const [checkValidEmail, setCheckValidEmail] = useState(false);
+  const [checkbutton, setCheckbutton] = useState(true);
   //Email field validation
   const handleCheckEmail = (text) => {
     setEmail(text);
@@ -31,7 +32,15 @@ export default function Forget({ navigation }) {
       setCheckValidEmail(true);
     }
   };
-
+  //button functionality
+  useEffect(() => {
+    if ((checkValidEmail == false) && !(email == "")) {
+      setCheckbutton(false);
+    }
+    else {
+      setCheckbutton(true);
+    }
+  });
   return (
     <View style={globalstyles.container}>
       <StatusBar translucent backgroundColor="black" barStyle="light-content" />
@@ -61,22 +70,15 @@ export default function Forget({ navigation }) {
             {checkValidEmail ? (
               <Text style={globalstyles.Errormsg}>{ErrorMessage.EMAIL}</Text>
             ) : null}
-            {email == "" || checkValidEmail == true ? (
-              <TouchableOpacity disabled style={styles.button}>
-                <Text style={globalstyles.buttonText}>
-                  {screenText.SEND_TEXT}{" "}
-                </Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate(navigations.CHANGE_SCREEN)}
-              >
-                <Text style={globalstyles.buttonText}>
-                  {screenText.SEND_TEXT}
-                </Text>
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate(navigations.CHANGE_SCREEN)}
+              disabled={checkbutton}
+            >
+              <Text style={globalstyles.buttonText}>
+                {screenText.SEND_TEXT}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
